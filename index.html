@@ -5,113 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G-Talks Teknoloji Konferansı</title>
     <style>
+        /* --- GENEL SAYFA TASARIMI --- */
         body {
+            background-color: #0f172a; /* Çok koyu modern mavi/siyah */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0d1117;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- ANA KONTEYNER --- */
+        .container {
+            width: 90%;
+            max-width: 800px;
             text-align: center;
+            padding: 40px 0;
         }
-        header {
-            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-            padding: 60px 20px;
-            border-bottom: 1px solid #30363d;
+
+        /* --- LOGO VE BAŞLIK --- */
+        .main-logo img {
+            width: 180px;
+            height: auto;
+            border-radius: 20px; /* Logoyu hafif oval yapar */
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.3); /* Arkasına altın rengi ışık verir */
+            margin-bottom: 20px;
         }
-        .main-logo {
-            width: 220px;
-            max-width: 80%;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
-            margin-bottom: 25px;
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            font-weight: 700;
         }
-        h1 { font-size: 2.5rem; margin: 10px 0; color: #ffffff; }
-        .gold-text { color: #e0aa3e; }
-        .event-details {
-            font-size: 1.2rem;
-            color: #8b949e;
-            margin-top: 15px;
-            line-height: 1.6;
+
+        .highlight {
+            color: #fbbf24; /* Altın Sarısı */
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+        /* --- BİLGİ KUTUSU (TARİH/KONUM) --- */
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            display: inline-block;
+            width: 80%;
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* --- BÖLÜM BAŞLIKLARI --- */
         h2 {
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
-            margin-top: 50px;
-            color: #e0aa3e;
+            color: #fbbf24;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            display: inline-block;
         }
+
+        /* --- LOGO KUTULARI (GRID) --- */
         .logo-grid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
-            margin-top: 30px;
         }
-        .logo-box {
+
+        .logo-card {
             background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            width: 150px;
-            height: 80px;
+            width: 200px;
+            height: 120px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease;
+            padding: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
-        .logo-box:hover { transform: scale(1.05); }
-        .company-logo { max-width: 100%; max-height: 100%; }
-        footer {
-            margin-top: 60px;
-            padding: 40px;
-            background-color: #161b22;
-            color: #8b949e;
-            font-size: 0.9rem;
+
+        /* Mouse üzerine gelince efekt */
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); /* Sarı parlama */
         }
-        a { color: #e0aa3e; text-decoration: none; font-weight: bold; }
-    </style>
-</head>
-<body>
 
-    <header>
-        <img src="G-Talks.jpg.png" alt="G-Talks Logo" class="main-logo">
-        
-        <h1>G-Talks <span class="gold-text">Teknoloji Konferansı</span></h1>
-        
-        <div class="event-details">
-            <p>📅 <strong>16 Şubat 2026</strong></p>
-            <p>📍 Konya Gıda ve Tarım Üniversitesi<br>Konferans Salonu</p>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <h2>Konuşmacı Şirketler</h2>
-        <div class="logo-grid">
-            <div class="logo-box">
-                <img src="ilko.png.png" alt="İlko İlaç" class="company-logo">
-            </div>
-            <div class="logo-box">
-                <img src="atiker.png.png" alt="Atiker Yazılım" class="company-logo">
-            </div>
-        </div>
-
-        <h2>Sponsorlar</h2>
-        <div class="logo-grid">
-            <div class="logo-box"><img src="ilko.png.png" class="company-logo"></div>
-            <div class="logo-box"><img src="atiker.png.png" class="company-logo"></div>
-            <div class="logo-box"><img src="uludag.png.png" class="company-logo"></div>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>SORU VE KAYIT İÇİN</p>
-        <p>📩 <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a></p>
-        <br>
-        <p>&copy; 2026 G-Talks Organizasyon Ekibi</p>
-    </footer>
-
-</body>
-</html>
+        .logo-card img {
+            max-width: 100%;
+            max-height:
