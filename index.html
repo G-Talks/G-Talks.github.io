@@ -3,183 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Talks | Gelecek Etkinlik</title>
+    <title>G-Talks Teknoloji Konferansı</title>
     <style>
-        /* Genel Ayarlar */
-        * {
+        /* --- 1. GENEL AYARLAR --- */
+        body {
+            background-color: #0f172a; /* Koyu Lacivert/Siyah */
+            color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #0a0a0a; /* Koyu, premium siyah */
-            color: #ffffff;
-            height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Tek sayfa hissi için */
-        }
-
-        /* 1. HEADER (Üst Menü) */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 80px; /* Üst menü payı */
         }
 
-        .logo-placeholder {
-            font-weight: bold;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-        }
-
-        /* Özel İletişim Bölmesi (Buton) */
-        .contact-btn {
-            background-color: transparent;
-            border: 2px solid #00ff88; /* Teknoloji/Tarım yeşili */
-            color: #00ff88;
-            padding: 10px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            background-color: #00ff88;
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
-        }
-
-        /* 2. HERO (Ana Orta Bölüm) */
-        main {
-            flex: 1;
+        /* --- 2. ÜST MENÜ (NAVBAR) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95); /* Yarı saydam koyu */
+            border-bottom: 2px solid #fbbf24;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
+            padding: 15px 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .main-title {
-            font-size: 8rem; /* Devasa Başlık */
-            font-weight: 900;
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -5px;
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .sub-title {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #00ff88;
-            margin-bottom: 40px;
-        }
-
-        /* Geri Sayım Sayacı Tasarımı */
-        .countdown {
+        .nav-links {
             display: flex;
             gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums; /* Rakamların oynamaması için */
-        }
-
-        .label {
-            font-size: 0.9rem;
-            color: #666;
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 5px;
         }
 
-        /* 3. FOOTER (Alt Bilgi) */
-        footer {
-            padding: 30px;
-            background-color: #111;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #aaa;
+        .nav-btn:hover, .nav-btn.active {
+            color: #fbbf24; /* Altın sarısı */
         }
 
-        .footer-info h4 {
-            color: #fff;
-            margin-bottom: 5px;
+        /* --- 3. SEKMELER (SAYFALAR) --- */
+        .tab-content {
+            display: none; /* Başlangıçta hepsi gizli */
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            animation: fadeIn 0.5s;
         }
 
-        /* Mobilde Görünüm */
-        @media (max-width: 768px) {
-            .main-title { font-size: 4rem; }
-            .countdown { gap: 15px; }
-            .number { font-size: 2rem; }
-            footer { flex-direction: column; gap: 20px; text-align: center; }
+        /* Varsayılan olarak açık olan sekme */
+        #home-tab { display: block; }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* --- 4. TASARIM ÖGELERİ --- */
+        .main-logo img {
+            width: 200px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.4));
+            transition: transform 0.3s;
+        }
+        .main-logo img:hover { transform: scale(1.05); }
+
+        h1 { font-size: 2.5rem; margin: 10px 0; color: white; }
+        h2 { color: #fbbf24; border-bottom: 1px solid #333; display: inline-block; padding-bottom: 5px; margin-top: 30px;}
+        .highlight { color: #fbbf24; }
+
+        /* Bilgi Kutusu */
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            width: 80%;
+        }
+
+        /* Konferans Kartları */
+        .conf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .conf-card {
+            background: #1e293b;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .conf-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+        .conf-title { color: #fbbf24; font-size: 1.3rem; margin-bottom: 10px; font-weight: bold; }
+        .conf-date { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; display: block; }
+        .coming-soon { color: #94a3b8; font-style: italic; }
+
+        /* Logo Grid */
+        .logo-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+        .logo-card {
+            background: white; width: 200px; height: 120px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center; padding: 15px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .logo-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .logo-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px #fbbf24; }
+
+        /* Akordiyon (Hakkımızda için) */
+        .accordion {
+            background-color: #1e293b; color: #fbbf24; cursor: pointer; padding: 18px; width: 100%;
+            text-align: left; border: none; outline: none; transition: 0.4s; border-radius: 10px;
+            margin-bottom: 10px; font-weight: bold; display: flex; justify-content: space-between;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        .panel { padding: 0 18px; background-color: rgba(0,0,0,0.2); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; margin-bottom: 10px; }
+        .accordion:after { content: '\002B'; color: white; margin-left: 5px; }
+        .active:after { content: "\2212"; }
+        ul { list-style: none; padding: 0; } ul li::before { content: '➤'; color: #fbbf24; margin-right: 5px; }
+
+        /* İletişim Butonu */
+        .mail-button {
+            display: inline-block; background-color: #fbbf24; color: #0f172a; padding: 15px 30px;
+            border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 20px;
+        }
+
+        /* Modal (Popup) */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .modal-content { background-color: #1e293b; margin: 15% auto; padding: 30px; border: 2px solid #fbbf24; width: 80%; max-width: 600px; border-radius: 15px; position: relative; animation: fadeIn 0.4s; text-align: left;}
+        .close-btn { color: #fbbf24; float: right; font-size: 28px; cursor: pointer; }
+        .modal-title { color: #fbbf24; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid #333; }
+
+        /* Mobil Uyum */
+        @media (max-width: 600px) {
+            .nav-links { gap: 10px; font-size: 0.8rem; }
+            .nav-btn { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-placeholder">G-TALKS</div>
-        <a href="#contact" class="contact-btn">İLETİŞİM</a>
-    </header>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><button class="nav-btn active" onclick="openTab('home-tab')">Anasayfa</button></li>
+            <li><button class="nav-btn" onclick="openTab('about-tab')">G-Talks Nedir?</button></li>
+            <li><button class="nav-btn" onclick="openTab('conferences-tab')">Konferanslar</button></li>
+            <li><button class="nav-btn" onclick="openTab('sponsors-tab')">Sponsorlar</button></li>
+        </ul>
+    </nav>
 
-    <main>
-        <h1 class="main-title">G-TALKS</h1>
-        <p class="sub-title">Sıradaki Etkinlik</p>
+    <div id="home-tab" class="tab-content">
+        <div class="main-logo">
+            <img src="gtalks.png" alt="G-Talks Logo">
+        </div>
+        
+        <h1>G-Talks <span class="highlight">Teknoloji Konferansı</span></h1>
+        
+        <div class="info-box">
+            <h3>🔥 Sıradaki Etkinlik (Yaklaşan)</h3>
+            <p style="font-size: 1.2rem;">📅 16 Şubat 2026</p>
+            <p>📍 Konya Gıda ve Tarım Üniversitesi</p>
+        </div>
 
-        <div class="countdown">
-            <div class="time-box">
-                <span class="number">12</span>
-                <span class="label">Gün</span>
-            </div>
-            <div class="time-box">
-                <span class="number">08</span>
-                <span class="label">Saat</span>
-            </div>
-            <div class="time-box">
-                <span class="number">45</span>
-                <span class="label">Dakika</span>
-            </div>
-            <div class="time-box">
-                <span class="number">22</span>
-                <span class="label">Saniye</span>
+        <div>
+            <h2>Konuşmacı Şirket</h2>
+            <p style="font-size:0.8rem; color:#aaa;">(Detay için logoya tıkla)</p>
+            <div class="logo-grid">
+                <div class="logo-card" onclick="openModal('modal-atiker')">
+                    <img src="atiker.png" alt="Atiker">
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer id="contact">
-        <div class="footer-info">
-            <h4>Adres</h4>
-            <p>Konya Gıda ve Tarım Üniversitesi<br>Konferans Salonu</p>
+    <div id="about-tab" class="tab-content">
+        <div class="main-logo"><img src="gtalks.png" width="100"></div>
+        <h2>G-Talks Hakkında</h2>
+        
+        <button class="accordion">G-Talks Nedir?</button>
+        <div class="panel">
+            <p>G-Talks; <strong>tarım, teknoloji, akademi ve sosyal fayda</strong> alanlarında bilgi paylaşımını ve yenilikçi düşünceyi merkeze alan bir platformdur.</p>
         </div>
-        <div class="footer-info">
-            <h4>E-Posta</h4>
-            <p>iletisim@gtalks.com</p>
+
+        <button class="accordion">Odak Alanları</button>
+        <div class="panel">
+            <ul>
+                <li>🌱 Tarım ve Akıllı Teknolojiler</li>
+                <li>💻 Dijital Dönüşüm</li>
+                <li>🎓 Akademik Bilgi</li>
+                <li>🤝 Sosyal Yardım Projeleri</li>
+            </ul>
         </div>
-        <div class="footer-info">
-            <h4>Sosyal Medya</h4>
-            <p>@kgtu_iletisim | @gtalks_official</p>
+
+        <button class="accordion">Amacımız</button>
+        <div class="panel">
+            <ul>
+                <li>Bilimsel yaklaşımları yaygınlaştırmak</li>
+                <li>Akademi ile sahayı buluşturmak</li>
+                <li>Gençlere vizyon kazandırmak</li>
+            </ul>
         </div>
-    </footer>
+
+        <button class="accordion">Kimlere Hitap Eder?</button>
+        <div class="panel">
+            <ul>
+                <li>Öğrenciler ve Akademisyenler</li>
+                <li>Sektör Profesyonelleri</li>
+                <li>Girişimciler</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top:40px; border-top:1px solid #333; padding-top:20px;">
+            <h2>İletişim</h2>
+            <p>Bize ulaşın:</p>
+            <a href="mailto:gitalks.official@gmail.com" class="mail-button">✉️ gitalks.official@gmail.com</a>
+        </div>
+    </div>
+
+    <div id="conferences-tab" class="tab-content">
+        <h2>G-Talks Konferansları</h2>
+        <p>Gelecek programlarımız ve alanlarımız:</p>
+
+        <div class="conf-grid">
+            <div class="conf-card" style="border-color: #fbbf24;">
+                <div class="conf-title">💻 Teknoloji</div>
+                <span class="conf-date">📅 16 Şubat 2026</span>
+                <p><strong>Konuk:</strong> Atiker</p>
+                <p>Yer: KGTÜ Konferans Salonu</p>
+            </div>
+
+            <div class="conf-card">
+                <div class="conf-title">🌱 Tarım</div>
+                <span class="conf-date">Tarih Henüz Belirlenmedi</span>
+                <p class="coming-soon">🚧 Yakında Hizmetinizde</p>
+            </div>
+
+            <div class="conf-card">
+                <div class="conf-title">🎓 Akademik</div>
+                <span class="conf-date">Tarih Henüz Belirlenmedi</span>
+                <p class="coming-soon">🚧 Yakında Hizmetinizde</p>
+            </div>
+
+            <div class="conf-card">
+                <div class="conf-title">🤝 Sosyal Yardım</div>
+                <span class="conf-date">Tarih Henüz Belirlenmedi</span>
+                <p class="coming-soon">🚧 Yakında Hizmetinizde</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sponsors-tab" class="tab-content">
+        <h2>Değerli Sponsorlarımız</h2>
+        <p>Katkılarından dolayı teşekkür ederiz.</p>
+        
+        <div class="logo-grid">
+            <div class="logo-card" onclick="openModal('modal-uludag')">
+                <img src="uludag.png" alt="Uludağ">
+            </div>
+            <div class="logo-card" onclick="openModal('modal-ilko')">
+                <img src="ilko.png" alt="İlko İlaç">
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-atiker" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('modal-atiker')">&times;</span>
+        <div class="modal-title">ATİKER – Kurumsal Özgeçmiş</div>
+        <p>Atiker, otomotiv ve enerji teknolojileri alanında faaliyet gösteren, özellikle LPG sistemleri konusunda Türkiye’nin lider sanayi kuruluşudur.</p>
+        <p>Yerli üretim gücü ve Ar-Ge yatırımları ile enerji verimliliği alanında önemli katkılar sunmaktadır.</p>
+    </div></div>
+
+    <div id="modal-uludag" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('modal-uludag')">&times;</span>
+        <div class="modal-title">ULUDAĞ – Kurumsal Özgeçmiş</div>
+        <p>Uludağ, köklü yapısı ve üniversite-sanayi iş birlikleriyle öne çıkan saygın bir markadır.</p>
+        <p>Bilimsel üretim ve toplumsal fayda odaklı projeleriyle akademi ve sektörü buluşturur.</p>
+    </div></div>
+
+    <div id="modal-ilko" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('modal-ilko')">&times;</span>
+        <div class="modal-title">İLKO İLAÇ – Kurumsal Özgeçmiş</div>
+        <p>İlko İlaç, bilimsel araştırma ve etik üretim anlayışını temel alan yerli bir ilaç firmasıdır.</p>
+        <p>Ar-Ge odaklı yaklaşımıyla sağlık alanında sürdürülebilir çözümler üretmeyi hedefler.</p>
+    </div></div>
+
+
+    <script>
+        // Sekme Değiştirme Fonksiyonu
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("tab-content");
+            var buttons = document.getElementsByClassName("nav-btn");
+            
+            // Tüm sekmeleri gizle
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            // Tüm butonların aktifliğini kaldır
+            for (i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // İstenen sekmeyi aç
+            document.getElementById(tabName).style.display = "block";
+            // Tıklanan butonu aktif yap (Sarı renk için)
+            event.currentTarget.classList.add("active");
+        }
+
+        // Akordiyon
+        var acc = document.getElementsByClassName("accordion");
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) { panel.style.maxHeight = null; } 
+                else { panel.style.maxHeight = panel.scrollHeight + "px"; } 
+            });
+        }
+
+        // Modal Kodları
+        function openModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; }}
+    </script>
 
 </body>
 </html>
