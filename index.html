@@ -334,7 +334,8 @@
         <div class="guest-info">Ana Konuk: <span style="font-weight:bold; color:#D4AF37;">Yakında Açıklanacak</span></div>
 
         <div class="info-box">
-            <h3 style="margin-top:0; color:#fff;">Büyük Buluşmaya Kalan Süre</h3>
+            <h3 style="margin-top:0; color:#fff;">G-Talks Teknoloji</h3>
+            
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
@@ -418,7 +419,7 @@
     </div>
 
     <script>
-        // --- SPONSOR VERİLERİ ---
+        // --- SPONSOR BİLGİLERİ ---
         const sponsorData = {
             'uludag': {
                 title: 'Uludağ İçecek',
@@ -452,6 +453,7 @@
             document.getElementById("bioModal").style.display = "none";
         }
 
+        // Modal dışına tıklayınca kapatma
         window.onclick = function(event) {
             const modal = document.getElementById("bioModal");
             if (event.target == modal) {
@@ -459,7 +461,7 @@
             }
         }
 
-        // --- SEKMELER ---
+        // --- SEKMELERİ YÖNETME ---
         function openTab(tabName) {
             var i;
             var x = document.getElementsByClassName("tab-content");
