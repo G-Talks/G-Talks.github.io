@@ -1,140 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>G-TALKS — Teknoloji & Girişim Konferansları</title>
-  <meta name="description" content="G-TALKS: Teknoloji, girişimcilik ve inovasyon konularında konferanslar. Konuşmacılar, sponsorlar, etkinlik tarihleri ve bilet bilgileri." />
-  <meta name="theme-color" content="#0f172a" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="G-TALKS — Teknoloji & Girişim Konferansları" />
-  <meta property="og:description" content="G-TALKS: Teknoloji, girişimcilik ve inovasyon konularında konferanslar. Konuşmacılar, sponsorlar, etkinlik tarihleri ve bilet bilgileri." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/g-talks-logo.svg" />
-  <meta property="og:url" content="https://otalhakilic.github.io/G-Talks-/" />
-  <link rel="icon" href="assets/g-talks-favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Yapısal veri (JSON-LD): Organization + örnek Event + örnek Person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "G-TALKS",
-        "url": "https://otalhakilic.github.io/G-Talks-/",
-        "logo": "https://otalhakilic.github.io/G-Talks-/assets/g-talks-logo.svg"
-      },
-      {
-        "@type": "Event",
-        "name": "G-TALKS 2026 - İstanbul",
-        "startDate": "2026-03-05T09:00:00+03:00",
-        "endDate": "2026-03-05T18:00:00+03:00",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-          "@type": "Place",
-          "name": "X Kongre Merkezi",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Adres Cad. No:1",
-            "addressLocality": "İstanbul",
-            "postalCode": "34000",
-            "addressCountry": "TR"
-          }
-        },
-        "image": ["https://otalhakilic.github.io/G-Talks-/assets/event-hero.jpg"],
-        "description": "G-TALKS 2026 — Teknoloji ve girişimcilik konuşmaları, paneller ve network fırsatları.",
-        "offers": {
-          "@type": "Offer",
-          "url": "https://otalhakilic.github.io/G-Talks-/bilet",
-          "availability": "https://schema.org/InStock",
-          "price": "0",
-          "priceCurrency": "TRY"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Talks Teknoloji Konferansı</title>
+    <style>
+        /* SİTE TASARIMI */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117; /* Koyu siyah/lacivert arka plan */
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
         }
-      },
-      {
-        "@type": "Person",
-        "name": "Örnek Konuşmacı",
-        "jobTitle": "CTO, Örnek Şirket",
-        "description": "Bulut ve ölçeklenebilir sistemler üzerine konuşmacı.",
-        "sameAs": "https://twitter.com/ornek"
-      }
-    ]
-  }
-  </script>
+
+        /* ÜST BAŞLIK ALANI */
+        header {
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+            padding: 60px 20px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .main-logo {
+            width: 220px;
+            max-width: 80%;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); /* Altın rengi parlama */
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .gold-text {
+            color: #e0aa3e; /* Altın rengi */
+        }
+
+        .event-details {
+            font-size: 1.2rem;
+            color: #8b949e;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        /* KUTULAR VE BÖLÜMLER */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 10px;
+            margin-top: 50px;
+            color: #e0aa3e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .logo-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-box:hover {
+            transform: scale(1.05); /* Üzerine gelince büyür */
+        }
+
+        .company-logo {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* ALT BİLGİ */
+        footer {
+            margin-top: 60px;
+            padding: 40px;
+            background-color: #161b22;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: #e0aa3e;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
+
+    <header>
+        <img src="gtalks.jpg" alt="G-Talks Logo" class="main-logo">
+        
+        <h1>G-Talks <span class="gold-text">Teknoloji Konferansı</span></h1>
+        
+        <div class="event-details">
+            <p>📅 <strong>16 Şubat 2026</strong></p>
+            <p>📍 Konya Gıda ve Tarım Üniversitesi<br>Konferans Salonu</p>
+        </div>
+    </header>
+
     <div class="container">
-      <a class="logo" href="./">
-        <img src="assets/g-talks-logo.svg" alt="G-TALKS logo" height="56" />
-      </a>
-      <nav class="main-nav" aria-label="Ana menü">
-        <a href="#etkinlikler">Etkinlikler</a>
-        <a href="#konusmacilar">Konuşmacılar</a>
-        <a href="#sponsorlar">Sponsorlar</a>
-        <a href="hakkimda.html">Hakkımızda</a>
-        <a href="iletisim.html">İletişim</a>
-      </nav>
+        
+        <h2>Konuşmacı Şirketler</h2>
+        <div class="logo-grid">
+            <div class="logo-box">
+                <img src="ilko.png" alt="İlko İlaç" class="company-logo">
+            </div>
+            <div class="logo-box">
+                <img src="atiker.png" alt="Atiker Yazılım" class="company-logo">
+            </div>
+        </div>
+
+        <h2>Sponsorlar</h2>
+        <div class="logo-grid">
+            <div class="logo-box"><img src="ilko.png" class="company-logo"></div>
+            <div class="logo-box"><img src="atiker.png" class="company-logo"></div>
+            <div class="logo-box"><img src="uludag.png" class="company-logo"></div>
+        </div>
+
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h1>G-TALKS — Teknoloji & Girişim Konferansları</h1>
-        <p>Alanında uzman konuşmacılarla, ilham verici konuşmalar ve networking fırsatları. Bir sonraki etkinlik: 5 Mart 2026 — İstanbul</p>
-        <a class="btn" href="#etkinlikler">Bilet & Detaylar</a>
-      </div>
-    </section>
+    <footer>
+        <p>SORU VE KAYIT İÇİN</p>
+        <p>📩 <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a></p>
+        <br>
+        <p>&copy; 2026 G-Talks Organizasyon Ekibi</p>
+    </footer>
 
-    <section id="etkinlikler" class="container section">
-      <h2>Yaklaşan Etkinlik</h2>
-      <article class="event-card">
-        <h3>G-TALKS 2026 — İstanbul</h3>
-        <p><strong>Tarih:</strong> 5 Mart 2026 • <strong>Mekan:</strong> X Kongre Merkezi</p>
-        <p>Kısa açıklama: Teknoloji trendleri, startup hikâyeleri ve paneller.</p>
-        <a href="etkinlikler/2026-03-05-g-talks-istanbul.html" class="btn">Detaylı Program</a>
-      </article>
-    </section>
-
-    <section id="konusmacilar" class="container section">
-      <h2>Konuşmacılar</h2>
-      <div class="grid" id="speakers-grid">
-        <!-- Konuşmacılar buraya eklenecek -->
-      </div>
-    </section>
-
-    <section id="sponsorlar" class="container section">
-      <h2>Sponsorlar</h2>
-      <div class="sponsors" id="sponsors-list">
-        <!-- Sponsor logoları buraya eklenecek -->
-      </div>
-      <p>Sponsor paketleri ve iletişim için <a href="iletisim.html">buradan</a> ulaşın.</p>
-    </section>
-
-    <section id="iletisim" class="container section">
-      <h2>İletişim</h2>
-      <p>Etkinlik veya sponsor bilgi talepleri için: <a href="mailto:info@g-talks.example.com">info@g-talks.example.com</a></p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 G-TALKS — Tüm hakları saklıdır.</p>
-    </div>
-  </footer>
-
-  <!-- Modal for speaker bios -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button id="modal-close" class="modal-close" aria-label="Kapat">✕</button>
-      <h3 id="modal-title"></h3>
-      <p id="modal-body"></p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
