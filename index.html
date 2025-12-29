@@ -36,6 +36,7 @@
             --dark-bg: #050505;
             --panel-bg: #111;
             --text-color: #ecf0f1;
+            --sidebar-width: 280px;
         }
 
         body {
@@ -88,8 +89,7 @@
             color: var(--gold);
             letter-spacing: 2px;
             text-transform: uppercase;
-            cursor: pointer; /* Tıklanabilir olduğunu gösterir */
-            transition: 0.3s;
+            cursor: pointer;
         }
         .navbar-logo:hover {
             color: #fff;
@@ -122,7 +122,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 1px solid #1a1a1a;
-            white-space: nowrap;
         }
 
         .sidebar a:hover, .sidebar a.active {
@@ -466,6 +465,7 @@
             .time-box { width: 50px; padding: 10px; }
             .time-box span { font-size: 1.4rem; }
             .modal-content { width: 90%; margin: 15% auto; padding: 20px; }
+            .nav-btn { font-size: 0.7rem; padding: 10px 5px; letter-spacing: 0.5px; }
             .sponsor-img-box { width: 100%; max-width: 250px; }
             /* Mobilde Sidebar %100 */
             .sidebar { width: 0; } 
@@ -498,7 +498,7 @@
     </div>
 
     <div id="home-tab" class="tab-content">
-        <div class="main-logo">
+        <div class="main-logo" style="margin-top: 30px;">
             <h1>GıTalks</h1>
         </div>
         
@@ -510,7 +510,7 @@
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
-                <div class="time-box"><span id="minutes">00</span><label>DK</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>DAKİKA</label></div>
                 <div class="time-box"><span id="seconds">00</span><label>SANİYE</label></div>
             </div>
             <p style="color:#D4AF37; font-weight:bold; letter-spacing: 1px;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
@@ -598,7 +598,7 @@
             
             <br><hr style="border:0; border-top:1px solid #333;"><br>
             
-            <p style="font-size: 0.9rem; color: #888; font-style: italic;">
+            <p style="font-size: 0.85rem; color: #888; font-style: italic;">
                 GıTalks, üniversite öğrenci toplulukları tarafından yürütülen, teknoloji, tarım, sosyal sorumluluk ve akademik gelişim alanlarında konferans ve etkinlikler düzenleyen bağımsız bir etkinlik platformudur.
             </p>
         </div>
@@ -914,7 +914,7 @@
             }
 
             setInterval(updateCountdowns, 1000);
-            updateCountdowns(); // İlk yüklemede çalıştır
+            updateCountdowns(); 
         });
     </script>
 </body>
