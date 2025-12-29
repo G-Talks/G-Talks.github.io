@@ -9,6 +9,10 @@
     <meta name="author" content="GıTalks Organization">
     <meta name="robots" content="index, follow">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
     <meta name="theme-color" content="#050505">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,29 +28,49 @@
         /* --- 1. GENEL AYARLAR --- */
         :root {
             --gold: #D4AF37;
+            --gold-light: #F2E2A6;
             --gold-dim: #aa8c2c;
-            --gold-glow: rgba(212, 175, 55, 0.4);
             --dark-bg: #050505;
-            --panel-bg: rgba(20, 20, 20, 0.6);
-            --text-color: #f0f0f0;
-            --text-muted: #a0a0a0;
+            --panel-bg: rgba(20, 20, 20, 0.75);
+            --text-color: #f5f5f5;
+            --text-muted: #b0b0b0;
         }
 
         * { box-sizing: border-box; }
 
+        /* Özel Scrollbar (Kaydırma Çubuğu) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold); 
+        }
+
         body {
             background-color: var(--dark-bg);
-            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 80%);
+            background-image: radial-gradient(circle at 50% 0%, #1f1f1f 0%, #000000 80%);
             color: var(--text-color);
-            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-family: 'Open Sans', sans-serif; /* Okunabilirlik için */
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.7;
             padding-top: 80px;
+            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+        }
+
+        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn {
+            font-family: 'Montserrat', sans-serif; /* Başlıklar için modern font */
         }
 
         /* --- 2. NAVBAR --- */
@@ -55,15 +79,15 @@
             top: 0;
             width: 100%;
             height: 70px;
-            background-color: rgba(5, 5, 5, 0.95);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background-color: rgba(5, 5, 5, 0.9);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 30px;
             z-index: 1000;
             backdrop-filter: blur(15px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
         }
 
         .hamburger-container {
@@ -72,9 +96,8 @@
             justify-content: center;
             width: 42px;
             height: 42px;
-            border: 1px solid var(--gold);
-            border-radius: 4px;
-            margin-left: 10px; 
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%; /* Modern yuvarlak buton */
             margin-right: auto;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -82,25 +105,26 @@
         }
 
         .hamburger-container:hover {
-            background-color: rgba(212, 175, 55, 0.15);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            background-color: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            transform: rotate(90deg);
         }
 
         .hamburger-btn {
             background: none;
             border: none;
             color: var(--gold);
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             cursor: pointer;
             padding: 0;
             line-height: 1;
         }
 
         .navbar-logo {
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--gold);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: 0.3s;
@@ -135,7 +159,7 @@
         .sidebar a {
             padding: 15px 30px;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             display: block;
             transition: 0.3s;
@@ -143,7 +167,7 @@
             letter-spacing: 2px;
             border-bottom: 1px solid #151515;
             white-space: nowrap;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .sidebar a:hover, .sidebar a.active {
@@ -157,7 +181,7 @@
         .install-pwa-btn {
             display: none; 
             color: #D4AF37 !important;
-            font-weight: bold !important;
+            font-weight: 800 !important;
             border: 1px solid rgba(212, 175, 55, 0.3);
             margin: 10px 20px;
             text-align: center;
@@ -180,7 +204,7 @@
         .sidebar .closebtn:hover { opacity: 1; color: var(--gold); }
 
         .sidebar-legal { margin-top: 40px; border-top: 1px solid #222; }
-        .sidebar-legal a { font-size: 0.75rem; color: #555; padding: 12px 30px; letter-spacing: 1px; text-transform: none; }
+        .sidebar-legal a { font-size: 0.7rem; color: #555; padding: 12px 30px; letter-spacing: 1px; text-transform: none; font-family: 'Open Sans', sans-serif; }
 
         #menuOverlay {
             display: none;
@@ -208,25 +232,33 @@
             to {opacity: 1; transform: translateY(0);}
         }
 
+        /* SHINE ANIMASYONU İÇİN LOGO */
         h1 { 
             font-size: clamp(3rem, 8vw, 5rem); 
             margin: 20px 0 10px 0; 
             color: var(--gold);
             text-transform: uppercase; 
             letter-spacing: 4px;
-            font-weight: 800;
+            font-weight: 900;
             line-height: 1.1;
-            background: linear-gradient(to bottom, #ebd178, #D4AF37);
+            /* Shine Effect */
+            background: linear-gradient(to right, #aa8c2c 20%, #F2E2A6 40%, #aa8c2c 60%, #D4AF37 80%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 0px 15px rgba(212, 175, 55, 0.3));
+            animation: shine 5s linear infinite;
+            filter: drop-shadow(0px 0px 15px rgba(212, 175, 55, 0.2));
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
         
         .sub-header {
             font-size: clamp(1rem, 3vw, 1.4rem);
-            color: #fff;
+            color: #eee;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 20px;
             border-bottom: 1px solid #444;
             display: inline-block;
@@ -238,58 +270,61 @@
 
         h2 { 
             color: var(--gold); 
-            border-bottom: 1px solid var(--gold); 
+            border-bottom: 2px solid var(--gold); 
             display: inline-block;
             padding-bottom: 10px; margin-top: 40px; margin-bottom: 30px;
             text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem;
+            font-weight: 700;
         }
         
-        h3 { color: var(--gold); font-size: 1.3rem; letter-spacing: 1px; margin-top:0; }
+        h3 { color: var(--gold); font-size: 1.3rem; letter-spacing: 1px; margin-top:0; font-weight: 600; }
 
-        /* --- ACCORDION (VİZYON-MİSYON) --- */
+        /* --- ACCORDION (GENEL) --- */
         .accordion-btn {
-            background-color: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(90deg, rgba(20, 20, 20, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%);
             color: var(--gold);
             cursor: pointer;
-            padding: 18px;
+            padding: 20px;
             width: 100%;
             text-align: left;
-            border: 1px solid #333;
-            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 6px;
             outline: none;
-            transition: 0.4s;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             text-transform: uppercase;
             letter-spacing: 1px;
+            backdrop-filter: blur(5px);
         }
 
         .accordion-btn:hover, .accordion-btn.active-acc {
-            background-color: rgba(212, 175, 55, 0.15);
+            background: rgba(212, 175, 55, 0.1);
             border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
         }
 
         .accordion-btn span { font-size: 0.8rem; transition: transform 0.3s; }
         .accordion-btn.active-acc span { transform: rotate(180deg); }
 
         .accordion-panel {
-            padding: 0 18px;
-            background-color: rgba(0, 0, 0, 0.3);
+            padding: 0 20px;
+            background-color: rgba(10, 10, 10, 0.5);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease;
-            border-radius: 0 0 4px 4px;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            border-radius: 0 0 6px 6px;
             border-top: none;
             text-align: left;
         }
         
         .accordion-panel.open {
-             padding: 15px 18px;
-             border: 1px solid #333;
+             padding: 20px;
+             border: 1px solid rgba(212, 175, 55, 0.2);
              border-top: none;
         }
 
@@ -308,7 +343,7 @@
             border: 1px solid #333;
             color: var(--gold); 
             padding: 15px 10px; 
-            border-radius: 6px; 
+            border-radius: 8px; 
             width: 80px;
             min-width: 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -324,13 +359,15 @@
             font-weight: 700; 
             line-height: 1; 
             margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .time-box label { 
-            font-size: 0.65rem; 
+            font-size: 0.6rem; 
             color: #888; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
+            font-weight: 600;
         }
 
         .info-box {
@@ -381,12 +418,12 @@
             transform: translateY(-7px);
             border-color: var(--gold);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(30, 30, 30, 0.8));
+            background: linear-gradient(145deg, rgba(25, 25, 25, 0.9), rgba(35, 35, 35, 0.9));
         }
 
         .conf-card:hover::before {
             opacity: 1;
-            box-shadow: 0 0 10px var(--gold);
+            box-shadow: 0 0 15px var(--gold);
         }
 
         .card-header {
@@ -405,7 +442,7 @@
         .conf-date-badge {
             background: rgba(212, 175, 55, 0.15);
             color: var(--gold);
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 50px;
             font-size: 0.7rem;
             font-weight: 700;
@@ -428,14 +465,15 @@
             border-bottom: none;
             padding-bottom: 0;
             transition: 0.3s;
+            font-weight: 700;
         }
 
         .conf-card:hover h3 { color: var(--gold); }
 
         .conf-card p {
-            color: #bbb;
+            color: #ccc;
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 20px;
             flex-grow: 1;
         }
@@ -454,7 +492,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: #ccc;
+            color: #bbb;
         }
         
         .guest-pill strong { color: var(--gold); }
@@ -470,7 +508,7 @@
         .mini-time { 
             display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 25px; 
         }
-        .mini-time span { font-size: 0.9rem; color: var(--gold); font-weight: bold; line-height: 1; }
+        .mini-time span { font-size: 0.9rem; color: var(--gold); font-weight: bold; line-height: 1; font-family: 'Montserrat', sans-serif; }
         .mini-time label { font-size: 0.4rem; color: #666; margin-top: 2px; }
 
         .contact-home { margin-top: 50px; padding: 30px; border-top: 1px solid #222; width: 100%; text-align: center; }
@@ -610,60 +648,62 @@
             </div>
         </div>
 
-        <h3 style="text-align:left; color:var(--gold); border-bottom:1px solid #333; padding-bottom:10px; margin-top:40px;">YAYINDA OLMAYAN</h3>
-        <div class="conf-grid">
-            <div class="conf-card">
-                <div class="card-header">
-                    <div class="card-icon"></div>
-                    <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
-                </div>
-                <h3>GıTalks 2026 AKADEMİ</h3>
-                <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
-                <div class="card-footer">
-                    <div class="guest-pill">
-                        Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+        <button class="accordion-btn">Planlanan Diğer Etkinlikler (Tarih Bekleniyor) <span>&#9660;</span></button>
+        <div class="accordion-panel">
+            <div class="conf-grid">
+                <div class="conf-card">
+                    <div class="card-header">
+                        <div class="card-icon"></div>
+                        <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
+                    </div>
+                    <h3>GıTalks 2026 AKADEMİ</h3>
+                    <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
+                    <div class="card-footer">
+                        <div class="guest-pill">
+                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="conf-card">
-                <div class="card-header">
-                    <div class="card-icon"></div>
-                    <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
-                </div>
-                <h3>GıTalks 2026 TARIM</h3>
-                <p>Sürdürülebilir tarım teknikleri, gıda güvenliği ve modern tarım teknolojileri.</p>
-                <div class="card-footer">
-                    <div class="guest-pill">
-                        Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                <div class="conf-card">
+                    <div class="card-header">
+                        <div class="card-icon"></div>
+                        <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
+                    </div>
+                    <h3>GıTalks 2026 TARIM</h3>
+                    <p>Sürdürülebilir tarım teknikleri, gıda güvenliği ve modern tarım teknolojileri.</p>
+                    <div class="card-footer">
+                        <div class="guest-pill">
+                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="conf-card">
-                <div class="card-header">
-                    <div class="card-icon"></div>
-                    <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
-                </div>
-                <h3>GıTalks 2026 EKONOMİ</h3>
-                <p>Küresel piyasalar, fintech girişimleri ve yeni nesil ekonomi modelleri üzerine analizler.</p>
-                <div class="card-footer">
-                    <div class="guest-pill">
-                        Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                <div class="conf-card">
+                    <div class="card-header">
+                        <div class="card-icon"></div>
+                        <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
+                    </div>
+                    <h3>GıTalks 2026 EKONOMİ</h3>
+                    <p>Küresel piyasalar, fintech girişimleri ve yeni nesil ekonomi modelleri üzerine analizler.</p>
+                    <div class="card-footer">
+                        <div class="guest-pill">
+                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="conf-card">
-                <div class="card-header">
-                    <div class="card-icon"></div>
-                    <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
-                </div>
-                <h3>GıTalks 2026 SOSYAL ETKİ</h3>
-                <p>Toplumsal fayda odaklı projeler, sosyal sorumluluk ve yardım organizasyonları.</p>
-                <div class="card-footer">
-                    <div class="guest-pill">
-                        Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                <div class="conf-card">
+                    <div class="card-header">
+                        <div class="card-icon"></div>
+                        <div class="conf-date-badge pending">TARİH BEKLENİYOR</div>
+                    </div>
+                    <h3>GıTalks 2026 SOSYAL ETKİ</h3>
+                    <p>Toplumsal fayda odaklı projeler, sosyal sorumluluk ve yardım organizasyonları.</p>
+                    <div class="card-footer">
+                        <div class="guest-pill">
+                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -854,7 +894,7 @@
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            // --- 2. ACCORDION (VİZYON/MİSYON) İŞLEMLERİ ---
+            // --- 2. ACCORDION (VİZYON/MİSYON ve ETKİNLİKLER) İŞLEMLERİ ---
             const acc = document.getElementsByClassName("accordion-btn");
             for (let i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
