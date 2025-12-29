@@ -22,6 +22,7 @@
             min-height: 100vh;
             line-height: 1.6;
             padding-top: 90px;
+            overflow: hidden; /* Başlangıçta scroll kapalı */
         }
 
         /* --- 2. ÜST MENÜ (NAVBAR) --- */
@@ -255,7 +256,7 @@
             object-fit: contain;
         }
 
-        /* --- MODAL (POP-UP) PENCERE --- */
+        /* --- SPONSOR DETAY MODALI --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -306,111 +307,194 @@
             margin-bottom: 20px;
         }
 
-        /* --- KVKK / ÇEREZ POP-UP STİLLERİ --- */
-        .kvkk-overlay {
+        /* ========================================= */
+        /* --- ZORUNLU GİRİŞ PROTOKOLÜ (KVKK) --- */
+        /* ========================================= */
+        
+        .security-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95); /* Çok koyu arka plan */
-            z-index: 9999; /* En üst katman */
+            z-index: 99999; /* En üstte */
             display: flex;
+            align-items: flex-end; /* Alt tarafta */
             justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px); /* Arka planı tamamen flulaştır */
         }
 
-        .kvkk-box {
-            background-color: #0a0a0a;
-            border: 2px solid #D4AF37;
-            border-radius: 15px;
-            padding: 40px;
-            width: 90%;
+        .security-modal {
+            background: linear-gradient(180deg, #1a1a1a, #000);
+            border: 1px solid #333;
+            border-top: 3px solid #D4AF37;
+            width: 100%;
             max-width: 600px;
-            text-align: center;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
-            color: #ecf0f1;
+            margin-bottom: 20px; /* Alttan biraz boşluk */
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+            padding: 20px;
+            animation: slideUp 0.5s ease-out;
+            position: relative;
         }
 
-        .kvkk-box h2 {
-            margin-top: 0;
-            font-size: 1.8rem;
-            color: #D4AF37;
+        @keyframes slideUp {
+            from {transform: translateY(100%); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .security-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-            display: block;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
 
-        .kvkk-text {
+        .security-title {
+            color: #D4AF37;
             font-size: 1rem;
-            color: #bbb;
-            margin: 20px 0;
-            line-height: 1.6;
-            text-align: justify;
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .kvkk-btn {
+        .security-badge {
+            background: #222;
+            color: #555;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #333;
+        }
+
+        .contract-box {
+            background-color: #050505;
+            border: 1px solid #222;
+            padding: 10px;
+            height: 120px; /* Küçük alan */
+            overflow-y: scroll;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        /* Scrollbar stilini özelleştirme */
+        .contract-box::-webkit-scrollbar { width: 4px; }
+        .contract-box::-webkit-scrollbar-thumb { background: #D4AF37; }
+        .contract-box::-webkit-scrollbar-track { background: #111; }
+
+        .contract-box strong { color: #ccc; }
+        .ip-placeholder { color: #D4AF37; }
+
+        .security-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .btn-secure-accept {
             background-color: #D4AF37;
             color: #000;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 10px 20px;
+            font-size: 0.8rem;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: 0.3s;
-            margin-top: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            flex: 1;
+            transition: 0.2s;
+        }
+        .btn-secure-accept:hover {
+            background-color: #f1c40f;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
-        .kvkk-btn:hover {
-            background-color: #fff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
+        .btn-secure-reject {
+            background: transparent;
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-secure-reject:hover {
+            background: #e74c3c;
+            color: #fff;
         }
 
-        /* Scrollbar stilleri (KVKK metni için) */
-        .kvkk-text::-webkit-scrollbar { width: 8px; }
-        .kvkk-text::-webkit-scrollbar-track { background: #111; }
-        .kvkk-text::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-        .kvkk-text::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+        /* Hata mesajı */
+        .error-msg {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             .time-box { width: 50px; padding: 10px; }
             .time-box span { font-size: 1.4rem; }
             .modal-content { width: 90%; margin: 20% auto; }
-            .kvkk-box { padding: 20px; }
+            .security-modal { width: 90%; margin-bottom: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="kvkkModal" class="kvkk-overlay">
-        <div class="kvkk-box">
-            <h2>🔒 KVKK ve Çerez Aydınlatma Metni</h2>
-            <div class="kvkk-text">
-                <p><strong>Değerli Ziyaretçimiz,</strong></p>
-                <p>G-Talks Teknoloji Konferansı olarak kişisel verilerinizin güvenliğine önem veriyoruz. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, sitemizi ziyaretiniz sırasında elde edilen verileriniz aşağıda belirtilen şartlarda işlenmektedir.</p>
-                <p>Sitemizde, kullanıcı deneyiminizi iyileştirmek, web sitesinin performansını analiz etmek ve sizlere daha iyi hizmet sunabilmek amacıyla <strong>Çerezler (Cookies)</strong> kullanılmaktadır.</p>
-                <p><strong>Veri İşleme Amaçları:</strong></p>
-                <ul style="text-align: left; margin-left: 20px;">
-                    <li>Site trafiğinin analizi ve performansı artırma.</li>
-                    <li>Kullanıcı tercihlerinin hatırlanması (Örn: Dil seçimi, KVKK onayı).</li>
-                    <li>Site güvenliğinin sağlanması.</li>
-                </ul>
-                <p>Bu siteye giriş yaparak, çerez kullanımını ve KVKK aydınlatma metninde belirtilen şartları kabul etmiş sayılırsınız. Kabul etmemeniz durumunda tarayıcı sekmesini kapatarak siteden ayrılabilirsiniz.</p>
+    <div id="securityProtocol" class="security-overlay">
+        <div class="security-modal">
+            <div class="security-header">
+                <div class="security-title">
+                    <span>🔒 G-TALKS ERIŞIM PROTOKOLÜ</span>
+                </div>
+                <div class="security-badge">VER. 2.0.4</div>
             </div>
-            <button class="kvkk-btn" onclick="acceptKVKK()">Okudum, Onaylıyorum</button>
+            
+            <div class="contract-box">
+                <p><strong>MADDE 1: VERİ İŞLEME VE ERİŞİM İZNİ</strong><br>
+                Bu platforma (G-Talks Web Arayüzü) erişim sağlayarak; 6698 sayılı KVKK ve ilgili uluslararası veri güvenliği standartları gereğince, aşağıdaki verilerin işlenmesini <strong>kabul etmiş sayılırsınız:</strong></p>
+                <p>> Cihaz IP Adresiniz: <span class="ip-placeholder" id="userIP">Yükleniyor...</span><br>
+                > Tarayıcı Parmak İzi (Fingerprint)<br>
+                > Oturum Süresi ve Etkileşim Isı Haritaları</p>
+                
+                <p><strong>MADDE 2: YASAL YÜKÜMLÜLÜKLER</strong><br>
+                Toplanan veriler, siber saldırıların önlenmesi (DDoS koruması), sponsor firmalarla (Atiker, İlko, Uludağ vb.) anonim istatistiklerin paylaşılması ve 5651 sayılı kanun gereği log tutulması amacıyla saklanmaktadır. Bu veriler 3. şahıslara pazarlama amacıyla satılmaz.</p>
+                
+                <p><strong>MADDE 3: REDDETME HAKKI</strong><br>
+                Bu sözleşmeyi reddetme hakkınız saklıdır. Ancak, platformun güvenliği gereği <u>onay vermeyen kullanıcıların sisteme girişine ve veritabanı bağlantısına izin verilmeyecektir.</u></p>
+                <br>
+                <p style="text-align:center;">--- SÖZLEŞME SONU ---</p>
+            </div>
+
+            <div class="security-actions">
+                <button class="btn-secure-reject" onclick="rejectProtocol()">REDDET</button>
+                <button class="btn-secure-accept" onclick="acceptProtocol()">OKUDUM, KABUL EDİYORUM</button>
+            </div>
+            <div id="rejectError" class="error-msg">⚠️ GİRİŞ BAŞARISIZ: Siteye erişmek için güvenlik protokolünü onaylamanız zorunludur.</div>
         </div>
     </div>
-
     <nav class="navbar">
         <ul class="nav-links">
             <li><button class="nav-btn active" onclick="openTab('home-tab')">Anasayfa</button></li>
@@ -514,33 +598,55 @@
     </div>
 
     <script>
-        // --- KVKK KONTROLÜ ---
-        // Sayfa yüklendiğinde çalışır
+        // --- ZORUNLU GÜVENLİK PROTOKOLÜ (KVKK) LOGIC ---
+        
+        // Sahte IP Üretici (Daha gerçekçi görünmesi için)
+        function generateFakeIP() {
+            return Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255) + ".1." + Math.floor(Math.random() * 255);
+        }
+        document.getElementById("userIP").innerText = generateFakeIP();
+
+        // Sayfa Yüklendiğinde Kontrol Et
         document.addEventListener("DOMContentLoaded", function() {
-            // LocalStorage'da onay var mı kontrol et
-            if (localStorage.getItem("kvkkApproved") === "true") {
-                // Onay varsa pop-up'ı gizle
-                document.getElementById("kvkkModal").style.display = "none";
-                // Sayfayı kaydırılabilir yap
-                document.body.style.overflow = "auto";
+            const consent = localStorage.getItem("siteAccessProtocol");
+            
+            if (consent === "authorized") {
+                // Daha önce kabul etmişse modalı kaldır ve scrollu aç
+                document.getElementById("securityProtocol").style.display = "none";
+                document.body.style.overflow = "auto"; 
             } else {
-                // Onay yoksa pop-up'ı göster
-                document.getElementById("kvkkModal").style.display = "flex";
-                // Arka planın kaymasını engelle
+                // Kabul etmemişse modalı göster ve scrollu kilitle
+                document.getElementById("securityProtocol").style.display = "flex";
                 document.body.style.overflow = "hidden";
             }
         });
 
-        function acceptKVKK() {
-            // Tarayıcı hafızasına onayı kaydet
-            localStorage.setItem("kvkkApproved", "true");
-            // Pop-up'ı kapat
-            document.getElementById("kvkkModal").style.display = "none";
-            // Sayfa kaydırmasını aç
-            document.body.style.overflow = "auto";
+        // Kabul Et Butonu
+        function acceptProtocol() {
+            localStorage.setItem("siteAccessProtocol", "authorized");
+            // Efektli kapanış
+            document.querySelector(".security-modal").style.transform = "translateY(100%)";
+            document.querySelector(".security-modal").style.opacity = "0";
+            
+            setTimeout(() => {
+                document.getElementById("securityProtocol").style.display = "none";
+                document.body.style.overflow = "auto";
+            }, 500);
         }
 
-        // --- SPONSOR BİLGİLERİ ---
+        // Reddet Butonu (Girişi Engelle)
+        function rejectProtocol() {
+            const errorMsg = document.getElementById("rejectError");
+            errorMsg.style.display = "block";
+            
+            // Kullanıcıyı rahatsız etmek için butonu kısa süreliğine disable yapabiliriz veya sadece uyarı gösterebiliriz.
+            // Burada uyarıyı gösterip modalı KAPATMIYORUZ.
+        }
+
+
+        // --- DİĞER FONKSİYONLAR (MEVCUT SİSTEM) ---
+        
+        // Sponsor Bilgileri
         const sponsorData = {
             'uludag': {
                 title: 'Uludağ İçecek',
@@ -556,7 +662,6 @@
             }
         };
 
-        // --- MODAL FONKSİYONLARI ---
         function openBio(sponsorKey) {
             const modal = document.getElementById("bioModal");
             const title = document.getElementById("modal-title");
@@ -574,7 +679,6 @@
             document.getElementById("bioModal").style.display = "none";
         }
 
-        // Modal dışına tıklayınca kapatma
         window.onclick = function(event) {
             const modal = document.getElementById("bioModal");
             if (event.target == modal) {
@@ -582,7 +686,6 @@
             }
         }
 
-        // --- SEKMELERİ YÖNETME ---
         function openTab(tabName) {
             var i;
             var x = document.getElementsByClassName("tab-content");
@@ -599,7 +702,7 @@
             if(activeBtn) activeBtn.classList.add("active");
         }
 
-        // --- GERİ SAYIM ---
+        // Geri Sayım
         var countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
 
         var x = setInterval(function() {
