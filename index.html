@@ -9,6 +9,12 @@
     <meta name="author" content="GıTalks Organization">
     <meta name="robots" content="index, follow">
 
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <meta property="og:title" content="GıTalks | Geleceği Tasarlayan Zirve">
     <meta property="og:description" content="Teknoloji, Akademi ve İnovasyonun kalbi burada atıyor. 16 Şubat 2026'da buluşuyoruz.">
     <meta property="og:type" content="website">
@@ -147,6 +153,20 @@
             border-left: 3px solid var(--gold);
         }
 
+        /* PWA Install Button Style */
+        .install-pwa-btn {
+            display: none; 
+            color: #D4AF37 !important;
+            font-weight: bold !important;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin: 10px 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .install-pwa-btn:hover {
+            background-color: rgba(212, 175, 55, 0.2) !important;
+        }
+
         .sidebar .closebtn {
             position: absolute;
             top: 15px;
@@ -176,7 +196,7 @@
         .tab-content {
             display: none;
             width: 90%;
-            max-width: 1000px; /* Genişletildi */
+            max-width: 1000px;
             text-align: center;
             animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             padding-bottom: 80px;
@@ -225,6 +245,53 @@
         }
         
         h3 { color: var(--gold); font-size: 1.3rem; letter-spacing: 1px; margin-top:0; }
+
+        /* --- ACCORDION (VİZYON-MİSYON) --- */
+        .accordion-btn {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--gold);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: 1px solid #333;
+            border-radius: 4px;
+            outline: none;
+            transition: 0.4s;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .accordion-btn:hover, .accordion-btn.active-acc {
+            background-color: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+        }
+
+        .accordion-btn span { font-size: 0.8rem; transition: transform 0.3s; }
+        .accordion-btn.active-acc span { transform: rotate(180deg); }
+
+        .accordion-panel {
+            padding: 0 18px;
+            background-color: rgba(0, 0, 0, 0.3);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            border-radius: 0 0 4px 4px;
+            border-top: none;
+            text-align: left;
+        }
+        
+        .accordion-panel.open {
+             padding: 15px 18px;
+             border: 1px solid #333;
+             border-top: none;
+        }
 
         /* --- SAYAÇ (MASAÜSTÜ) --- */
         .countdown-container { 
@@ -469,6 +536,9 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" id="closeNavBtn">&times;</a>
+        
+        <a href="#" id="installAppBtn" class="nav-link install-pwa-btn">📲 Uygulamayı Yükle</a>
+
         <a href="#" class="nav-link active" data-tab="home-tab">Anasayfa</a>
         <a href="#" class="nav-link" data-tab="conferences-tab">Etkinlikler</a>
         <a href="#" class="nav-link" data-tab="sponsors-tab">Sponsorlar</a>
@@ -622,20 +692,23 @@
             <p><strong>GıTalks</strong>, tarım teknolojileri, yardım ve akademi ekseninde; teknoloji, inovasyon ve toplumsal faydayı bir araya getiren bir konferans ve etkinlik platformudur.</p>
             <p>Akademisyenler, sektör temsilcileri, girişimciler ve öğrencileri aynı çatı altında buluşturan GıTalks; güncel teknolojik gelişmelerin tarım ve toplumsal destek alanlarındaki etkilerini ele almayı amaçlar.</p>
             
-            <h3>VİZYONUMUZ</h3>
-            <p>GıTalks; teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, Türkiye merkezli fakat küresel bakış açısına sahip saygın bir konferans ve düşünce platformu olmayı hedefler.</p>
-            <p>Gençlerin, akademisyenlerin ve sektör profesyonellerinin ortak akıl ürettiği; bilgi, inovasyon ve toplumsal faydanın sürdürülebilir biçimde yaygınlaştığı bir ekosistem oluşturmayı vizyon edinir.</p>
+            <button class="accordion-btn">VİZYONUMUZ <span>&#9660;</span></button>
+            <div class="accordion-panel">
+                <p>GıTalks; teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, Türkiye merkezli fakat küresel bakış açısına sahip saygın bir konferans ve düşünce platformu olmayı hedefler.</p>
+                <p>Gençlerin, akademisyenlerin ve sektör profesyonellerinin ortak akıl ürettiği; bilgi, inovasyon ve toplumsal faydanın sürdürülebilir biçimde yaygınlaştığı bir ekosistem oluşturmayı vizyon edinir.</p>
+            </div>
 
-            <h3>MİSYONUMUZ</h3>
-            <p>GıTalks’un misyonu;</p>
-            <ul>
-                <li>Güncel ve geleceğe yön veren konuları alanında uzman konuşmacılar ile ele almak,</li>
-                <li>Akademi, sektör ve gençler arasında etkileşim ve iş birliği ortamı oluşturmak,</li>
-                <li>Teknoloji ve bilginin toplumsal faydaya dönüşmesini desteklemek,</li>
-                <li>Katılımcılara ilham veren, nitelikli ve erişilebilir etkinlikler düzenleyerek kalıcı etki yaratmaktır.</li>
-            </ul>
-            <p>GıTalks, yalnızca bir etkinlik serisi değil; öğrenen, paylaşan ve üreten bir topluluk olmayı amaçlar.</p>
-
+            <button class="accordion-btn">MİSYONUMUZ <span>&#9660;</span></button>
+            <div class="accordion-panel">
+                <p>GıTalks’un misyonu;</p>
+                <ul>
+                    <li>Güncel ve geleceğe yön veren konuları alanında uzman konuşmacılar ile ele almak,</li>
+                    <li>Akademi, sektör ve gençler arasında etkileşim ve iş birliği ortamı oluşturmak,</li>
+                    <li>Teknoloji ve bilginin toplumsal faydaya dönüşmesini desteklemek,</li>
+                    <li>Katılımcılara ilham veren, nitelikli ve erişilebilir etkinlikler düzenleyerek kalıcı etki yaratmaktır.</li>
+                </ul>
+                <p>GıTalks, yalnızca bir etkinlik serisi değil; öğrenen, paylaşan ve üreten bir topluluk olmayı amaçlar.</p>
+            </div>
             <div style="margin-top:40px; padding-top:20px; border-top:1px solid #333;">
                 <p style="font-size:0.9rem; color:#888; font-style: italic;">
                     GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.
@@ -768,6 +841,7 @@
 
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
+                    if (this.id === 'installAppBtn') return; // Install butonu tab değiştirmez
                     e.preventDefault();
                     switchTab(this.getAttribute('data-tab'));
                 });
@@ -780,10 +854,25 @@
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            // --- 2. ÇEREZ (COOKIE) İŞLEMLERİ ---
+            // --- 2. ACCORDION (VİZYON/MİSYON) İŞLEMLERİ ---
+            const acc = document.getElementsByClassName("accordion-btn");
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active-acc");
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                        panel.classList.remove('open');
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                        panel.classList.add('open');
+                    }
+                });
+            }
+
+            // --- 3. ÇEREZ (COOKIE) İŞLEMLERİ ---
             const cookieBanner = document.getElementById("cookieBanner");
             
-            // Eğer daha önce "accepted" (kabul) olarak işaretlenmemişse banner'ı göster.
             if (localStorage.getItem("cookieConsent") !== "accepted") {
                 cookieBanner.style.display = "block";
             }
@@ -806,7 +895,7 @@
                 });
             });
 
-            // --- 3. SPONSOR ÖZGEÇMİŞLERİ ---
+            // --- 4. SPONSOR ÖZGEÇMİŞLERİ ---
             const bioModal = document.getElementById("bioModal");
             const sponsorData = {
                 'ilko': {
@@ -844,7 +933,7 @@
                 if (event.target.classList.contains('modal')) event.target.style.display = 'none';
             });
 
-            // --- 4. SAYAÇ SİSTEMİ ---
+            // --- 5. SAYAÇ SİSTEMİ ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
             
             function updateCountdowns() {
@@ -878,6 +967,45 @@
             
             setInterval(updateCountdowns, 1000);
             updateCountdowns(); 
+
+            // --- 6. PWA KURULUM (INSTALL) MANTIĞI ---
+            let deferredPrompt;
+            const installBtn = document.getElementById("installAppBtn");
+
+            // Service Worker Kaydı
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                        console.log('ServiceWorker registered with scope: ', registration.scope);
+                    }, function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+
+            // Kurulum Butonu Mantığı
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBtn.style.display = 'block';
+            });
+
+            installBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(!deferredPrompt) return;
+                
+                deferredPrompt.prompt();
+                
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Kullanıcı kurulumu kabul etti');
+                        installBtn.style.display = 'none';
+                    } else {
+                        console.log('Kullanıcı kurulumu reddetti');
+                    }
+                    deferredPrompt = null;
+                });
+            });
         });
     </script>
 </body>
