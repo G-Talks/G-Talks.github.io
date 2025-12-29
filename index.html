@@ -7,13 +7,17 @@
     <meta name="description" content="G-Talks | Teknoloji, tarım, akademi ve sosyal sorumluluk alanlarında konferans ve etkinlik platformu. Geleceği tasarlayan fikirlerin buluşma noktası.">
     <meta name="keywords" content="Teknoloji Konferansı, G-Talks, Tarım Teknolojileri, Yapay Zeka, KGTÜ, Konya Etkinlik, Zirve, Summit">
     <meta name="author" content="G-Talks Organization">
-    
+    <meta name="robots" content="index, follow">
+
     <meta property="og:title" content="G-Talks | Geleceği Tasarlayan Zirve">
     <meta property="og:description" content="Teknoloji, Akademi ve İnovasyonun kalbi burada atıyor. 16 Şubat 2026'da buluşuyoruz.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/username/repo/main/afis.jpg"> <meta property="og:url" content="https://gtalks.org">
+    <meta property="og:image" content="https://raw.githubusercontent.com/username/repo/main/afis.jpg">
+    <meta property="og:url" content="https://gtalks.org">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="https://raw.githubusercontent.com/username/repo/main/favicon.png" type="image/png"> <meta http-equiv="Content-Security-Policy" content="
+    <link rel="icon" href="https://raw.githubusercontent.com/username/repo/main/favicon.png" type="image/png">
+
+    <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         img-src 'self' data: https:; 
         style-src 'self' 'unsafe-inline'; 
@@ -297,14 +301,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: grayscale(100%); /* Başlangıçta siyah beyaz - profesyonel görünüm */
+            filter: grayscale(100%); 
             transition: all 0.4s ease;
             cursor: pointer;
             opacity: 0.7;
         }
         
         .sponsor-img-box:hover {
-            filter: grayscale(0%); /* Üzerine gelince renklenir */
+            filter: grayscale(0%); 
             transform: scale(1.05);
             opacity: 1;
             box-shadow: 0 0 30px rgba(255,255,255,0.1);
@@ -314,7 +318,6 @@
             max-width: 80%;
             max-height: 80%;
             object-fit: contain;
-            display: block;
         }
 
         /* --- TEXT CONTENT --- */
@@ -326,7 +329,7 @@
         }
         .text-content-box strong { color: #fff; }
         .text-content-box ul {
-            list-style-type: none; /* Standart nokta yerine özel ikon */
+            list-style-type: none;
             padding-left: 0;
         }
         .text-content-box ul li {
@@ -386,6 +389,7 @@
         }
         .close-btn:hover { color: var(--gold); }
         
+        /* Modal içi linkler */
         .modal-link {
             color: var(--gold);
             text-decoration: none;
@@ -434,7 +438,7 @@
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
                 <div class="time-box"><span id="minutes">00</span><label>DK</label></div>
-                <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>SANİYE</label></div>
             </div>
             <p style="color:#D4AF37; font-weight:bold; letter-spacing: 1px;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
             <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
@@ -603,8 +607,9 @@
                     Reklam veya kullanıcı takibi amacıyla çerez kullanılmamaktadır.
                 </p>
                 <br>
-                <a href="#" id="linkPrivacy" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Gizlilik Politikası</a> | 
-                <a href="#" id="linkConsent" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Açık Rıza Metni</a>
+                <a href="#" class="modal-link" data-modal="privacyModal" style="color:#D4AF37; margin:0 5px;">Gizlilik Politikası</a> | 
+                <a href="#" class="modal-link" data-modal="kvkkModal" style="color:#D4AF37; margin:0 5px;">KVKK Aydınlatma Metni</a> | 
+                <a href="#" class="modal-link" data-modal="consentModal" style="color:#D4AF37; margin:0 5px;">Açık Rıza Metni</a>
             </div>
             
             <div style="display: flex; gap: 15px;">
@@ -694,14 +699,34 @@
                 });
             });
 
-            // Banner linkleri için event listener (Modal açmak için)
-            document.getElementById('linkPrivacy').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('privacyModal').style.display = 'block';
+            // --- MODAL YÖNETİMİ (GENEL KAPATMA) ---
+            // data-modal ile açma (Footer & Banner linkleri için)
+            const modalTriggers = document.querySelectorAll('[data-modal]');
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modalId = this.getAttribute('data-modal');
+                    const modalEl = document.getElementById(modalId);
+                    if(modalEl) {
+                        modalEl.style.display = 'block';
+                    }
+                });
             });
-            document.getElementById('linkConsent').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('consentModal').style.display = 'block';
+
+            // data-close ile kapatma (X butonları)
+            const closeButtons = document.querySelectorAll('[data-close]');
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-close');
+                    document.getElementById(modalId).style.display = 'none';
+                });
+            });
+
+            // Dışarı tıklayınca kapatma
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
             });
 
 
@@ -753,34 +778,6 @@
                     }
                 });
             });
-
-            // --- MODAL YÖNETİMİ (GENEL KAPATMA) ---
-            // data-modal ile açma (Footer linkleri için)
-            const modalTriggers = document.querySelectorAll('[data-modal]');
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const modalId = this.getAttribute('data-modal');
-                    document.getElementById(modalId).style.display = 'block';
-                });
-            });
-
-            // data-close ile kapatma (X butonları)
-            const closeButtons = document.querySelectorAll('[data-close]');
-            closeButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const modalId = this.getAttribute('data-close');
-                    document.getElementById(modalId).style.display = 'none';
-                });
-            });
-
-            // Dışarı tıklayınca kapatma
-            window.addEventListener('click', function(event) {
-                if (event.target.classList.contains('modal')) {
-                    event.target.style.display = 'none';
-                }
-            });
-
 
             // --- GERİ SAYIMLAR ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
