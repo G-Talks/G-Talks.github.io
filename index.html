@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="GıTalks | Teknoloji, tarım, akademi ve sosyal sorumluluk alanlarında konferans ve etkinlik platformu. Geleceği tasarlayan fikirlerin buluşma noktası.">
-    <meta name="keywords" content="Teknoloji Konferansı, GıTalks, Tarım Teknolojileri, Yapay Zeka, KGTÜ, Konya Etkinlik, Zirve, Summit">
+    <meta name="description" content="GıTalks | Teknoloji, tarım, akademi ve sosyal sorumluluk alanlarında konferans ve etkinlik platformu.">
+    <meta name="keywords" content="Teknoloji Konferansı, GıTalks, Tarım Teknolojileri, Yapay Zeka, KGTÜ, Konya, Zirve">
     <meta name="author" content="GıTalks Organization">
     <meta name="robots" content="index, follow">
 
@@ -30,17 +30,21 @@
 
     <title>GıTalks | Global Teknoloji Zirvesi</title>
     <style>
-        /* --- 1. GENEL AYARLAR --- */
+        /* --- 1. GENEL AYARLAR (PREMIUM TEMPLATE) --- */
         :root {
             --gold: #D4AF37;
+            --gold-dim: #aa8c2c;
             --dark-bg: #050505;
-            --panel-bg: #111;
-            --text-color: #ecf0f1;
+            --panel-bg: #0f0f0f;
+            --text-color: #f0f0f0;
+            --text-muted: #a0a0a0;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             background-color: var(--dark-bg);
-            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 80%);
             color: var(--text-color);
             font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
             margin: 0;
@@ -50,65 +54,61 @@
             align-items: center;
             min-height: 100vh;
             line-height: 1.6;
-            padding-top: 90px; /* Navbar yüksekliği arttı */
+            padding-top: 80px;
         }
 
-        /* --- 2. NAVBAR (DÜZELTİLDİ - Kare İkon ve Ortalı Logo) --- */
+        /* --- 2. NAVBAR (ELİT GÖRÜNÜM) --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 80px; /* Mobilde rahat kullanım için yükselttik */
-            background-color: rgba(0, 0, 0, 0.95);
-            border-bottom: 1px solid var(--gold);
+            height: 70px;
+            background-color: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Daha ince çizgi */
             display: flex;
             align-items: center;
             padding: 0 20px;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
-            box-sizing: border-box;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Hamburger Buton: Kare Çerçeveli ve Soldan Boşluklu */
+        /* Hamburger Buton Kapsayıcı (Kare) */
         .hamburger-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            border: 1px solid var(--gold); /* İnce Kare Çerçeve */
-            border-radius: 4px; /* Hafif yuvarlak köşe */
-            margin-right: auto; /* Solda kalmasını garantiler */
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold);
+            border-radius: 2px; /* Keskin köşeler daha modern durur */
+            margin-right: auto; /* Sola yaslar */
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1002;
         }
 
         .hamburger-container:hover {
-            background-color: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         .hamburger-btn {
             background: none;
             border: none;
             color: var(--gold);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             cursor: pointer;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             line-height: 1;
         }
 
-        /* Logo: Mutlak Ortalama (Telefonda Kaymayı Önler) */
+        /* Logo */
         .navbar-logo {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: var(--gold);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
             transition: 0.3s;
@@ -119,7 +119,7 @@
         }
         .navbar-logo:hover {
             color: #fff;
-            text-shadow: 0 0 15px var(--gold);
+            text-shadow: 0 0 20px var(--gold-dim);
         }
 
         /* --- YAN MENÜ (SIDEBAR) --- */
@@ -130,59 +130,58 @@
             z-index: 2000;
             top: 0;
             left: 0;
-            background-color: #0a0a0a;
+            background-color: #080808;
             overflow-x: hidden;
-            transition: 0.4s;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding-top: 90px;
             border-right: 1px solid var(--gold);
-            box-shadow: 5px 0 30px rgba(0,0,0,0.9);
+            box-shadow: 10px 0 50px rgba(0,0,0,0.9);
         }
 
         .sidebar a {
-            padding: 18px 30px;
+            padding: 15px 30px;
             text-decoration: none;
-            font-size: 1.1rem;
-            color: #aaa;
+            font-size: 1rem;
+            color: var(--text-muted);
             display: block;
             transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid #1a1a1a;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #151515;
             white-space: nowrap;
+            font-weight: 500;
         }
 
         .sidebar a:hover, .sidebar a.active {
             color: var(--gold);
-            background: #111;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
             padding-left: 40px;
-            border-left: 4px solid var(--gold);
+            border-left: 3px solid var(--gold);
         }
 
         .sidebar .closebtn {
             position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 40px;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
             border-bottom: none;
             color: #fff;
-            padding: 0;
-            line-height: 1;
+            opacity: 0.7;
+            transition: 0.3s;
         }
+        .sidebar .closebtn:hover { opacity: 1; color: var(--gold); }
 
-        .sidebar-legal {
-            margin-top: 40px;
-            border-top: 1px solid #333;
-        }
-        .sidebar-legal a { font-size: 0.85rem; color: #666; padding: 12px 30px; text-transform: none; }
+        .sidebar-legal { margin-top: 40px; border-top: 1px solid #222; }
+        .sidebar-legal a { font-size: 0.75rem; color: #555; padding: 12px 30px; letter-spacing: 1px; text-transform: none; }
 
         #menuOverlay {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 1500;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
         }
 
         /* --- İÇERİK ALANI --- */
@@ -191,127 +190,183 @@
             width: 90%;
             max-width: 900px;
             text-align: center;
-            animation: fadeIn 0.8s ease-out;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             padding-bottom: 80px;
         }
-
         #home-tab { display: block; }
 
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(15px);}
+        @keyframes slideUp {
+            from {opacity: 0; transform: translateY(30px);}
             to {opacity: 1; transform: translateY(0);}
         }
 
-        /* --- TASARIM ÖGELERİ --- */
+        /* --- TYPOGRAPHY OPTİMİZASYONU --- */
         h1 { 
-            font-size: 4.5rem; margin: 15px 0; color: var(--gold);
-            text-transform: uppercase; letter-spacing: 6px;
-            text-shadow: 0px 0px 25px rgba(212, 175, 55, 0.4);
-            font-weight: 900;
+            /* Clamp ile font boyutu ekran genişliğine göre otomatik ayarlanır */
+            font-size: clamp(3rem, 8vw, 5rem); 
+            margin: 20px 0 10px 0; 
+            color: var(--gold);
+            text-transform: uppercase; 
+            letter-spacing: 4px;
+            font-weight: 800;
             line-height: 1.1;
+            background: linear-gradient(to bottom, #ebd178, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 15px rgba(212, 175, 55, 0.3));
         }
         
         .sub-header {
-            font-size: 1.4rem; color: #fff; font-weight: 300; letter-spacing: 4px;
-            margin-bottom: 15px; border-bottom: 1px solid #333; display: inline-block;
-            padding-bottom: 10px; text-transform: uppercase;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #fff;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+            display: inline-block;
+            padding-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        .guest-info { font-size: 1.2rem; color: #888; margin-bottom: 50px; font-style: italic; }
+        .guest-info { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
 
         h2 { 
-            color: var(--gold); border-bottom: 1px solid var(--gold); display: inline-block;
+            color: var(--gold); 
+            border-bottom: 1px solid var(--gold); 
+            display: inline-block;
             padding-bottom: 10px; margin-top: 40px; margin-bottom: 30px;
             text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem;
         }
+        
+        h3 { color: var(--gold); font-size: 1.3rem; letter-spacing: 1px; margin-top:0; }
 
-        h3 { color: var(--gold); margin-top: 25px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- SAYAC --- */
-        .countdown-container { display: flex; justify-content: center; gap: 20px; margin: 40px auto; flex-wrap: wrap; }
-        .time-box {
-            background: linear-gradient(145deg, #0f0f0f, #161616); border: 1px solid #222;
-            color: var(--gold); padding: 25px; border-radius: 8px; width: 85px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+        /* --- SAYAÇ (OPTİMİZE EDİLDİ) --- */
+        .countdown-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 20px; /* PC için boşluk */
+            margin: 30px auto; 
+            flex-wrap: nowrap; /* Asla alt satıra geçmesin */
         }
-        .time-box span { display: block; font-size: 2.4rem; font-weight: 700; line-height: 1; }
-        .time-box label { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; display: block; }
+        
+        .time-box {
+            background: linear-gradient(145deg, #111, #1a1a1a); 
+            border: 1px solid #333;
+            color: var(--gold); 
+            padding: 15px 10px; 
+            border-radius: 6px; 
+            width: 80px; /* PC Genişliği */
+            min-width: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .time-box span { 
+            display: block; 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            line-height: 1; 
+            margin-bottom: 5px;
+        }
+        
+        .time-box label { 
+            font-size: 0.65rem; 
+            color: #888; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
 
         .info-box {
-            background: rgba(20, 20, 20, 0.7); border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 50px; border-radius: 15px; margin: 30px auto; width: 100%; box-sizing: border-box; backdrop-filter: blur(8px);
+            background: rgba(15, 15, 15, 0.85); 
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 50px; 
+            border-radius: 12px; 
+            margin: 30px auto; 
+            width: 100%; 
+            box-sizing: border-box; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         /* --- KARTLAR --- */
         .conf-card {
             background: var(--panel-bg); border: 1px solid #222; border-left: 3px solid var(--gold);
-            border-radius: 4px; padding: 30px; text-align: left; margin-bottom: 30px;
+            border-radius: 4px; padding: 30px; text-align: left; margin-bottom: 25px;
             transition: all 0.3s ease; position: relative;
         }
         .conf-card:hover { 
-            transform: translateX(5px); border-color: var(--gold); background: #151515; box-shadow: -5px 5px 25px rgba(0,0,0,0.6);
+            transform: translateX(5px); border-color: var(--gold); background: #161616; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .conf-date {
-            display: inline-block; background: var(--gold); color: #000; padding: 5px 12px; border-radius: 2px; font-size: 0.8rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; background: var(--gold); color: #000; padding: 4px 12px; 
+            border-radius: 2px; font-size: 0.75rem; font-weight: 800; margin-bottom: 15px; 
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .mini-countdown { display: flex; gap: 15px; margin-top: 20px; background: #000; padding: 10px 20px; border-radius: 4px; border: 1px solid #333; width: fit-content; }
-        .mini-time { text-align: center; }
-        .mini-time span { display: block; font-size: 1.3rem; color: var(--gold); font-weight: bold; line-height: 1; }
-        .mini-time label { font-size: 0.55rem; color: #666; text-transform: uppercase; }
+        .mini-countdown { 
+            display: flex; gap: 10px; margin-top: 20px; background: #000; 
+            padding: 10px 20px; border-radius: 4px; border: 1px solid #333; width: fit-content; 
+        }
+        .mini-time span { font-size: 1.2rem; color: var(--gold); font-weight: bold; }
+        .mini-time label { font-size: 0.5rem; color: #666; display: block; }
 
-        .contact-home { margin-top: 60px; padding: 30px; border-top: 1px solid #222; width: 100%; text-align: center; }
-        .contact-home p { color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
-        .contact-home a { color: var(--gold); text-decoration: none; font-weight: bold; display: block; margin: 10px 0; font-size: 1.3rem; transition: 0.3s; }
+        .contact-home { margin-top: 50px; padding: 30px; border-top: 1px solid #222; width: 100%; text-align: center; }
+        .contact-home a { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 1.3rem; transition: 0.3s; }
         .contact-home a:hover { color: #fff; text-shadow: 0 0 15px var(--gold); }
 
-        .sponsor-grid { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        .sponsor-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
         .sponsor-img-box {
-            background: #fff; padding: 25px; border-radius: 4px; width: 220px; height: 110px;
+            background: #fff; padding: 20px; border-radius: 4px; width: 220px; height: 110px;
             display: flex; align-items: center; justify-content: center; filter: grayscale(100%); 
-            transition: all 0.4s ease; cursor: pointer; opacity: 0.7;
+            transition: all 0.4s ease; cursor: pointer; opacity: 0.7; border: 1px solid #333;
         }
-        .sponsor-img-box:hover { filter: grayscale(0%); transform: scale(1.05); opacity: 1; box-shadow: 0 0 35px rgba(255,255,255,0.15); }
+        .sponsor-img-box:hover { filter: grayscale(0%); transform: scale(1.03); opacity: 1; border-color: var(--gold); }
         .sponsor-img-box img { max-width: 85%; max-height: 85%; object-fit: contain; }
 
         .text-content-box { text-align: left; line-height: 1.8; color: #ccc; font-size: 1rem; }
         .text-content-box strong { color: #fff; }
-        .text-content-box ul { list-style-type: none; padding-left: 0; }
-        .text-content-box ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
-        .text-content-box ul li::before { content: "›"; color: var(--gold); position: absolute; left: 0; font-weight: bold; font-size: 1.3rem; line-height: 1.3rem; }
-        .text-content-box p { margin-bottom: 20px; }
-
-        .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(8px); animation: fadeIn 0.3s; }
-        .modal-content { background-color: #0a0a0a; margin: 8% auto; padding: 40px; border: 1px solid var(--gold); width: 85%; max-width: 800px; border-radius: 0; color: #ecf0f1; position: relative; box-shadow: 0 0 120px rgba(212, 175, 55, 0.2); text-align: left; max-height: 85vh; overflow-y: auto; }
-        .close-btn { color: #666; float: right; font-size: 35px; font-weight: 300; cursor: pointer; transition: 0.3s; }
+        .text-content-box ul li { margin-bottom: 10px; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); }
+        .modal-content { background-color: #0a0a0a; margin: 8% auto; padding: 40px; border: 1px solid var(--gold); width: 85%; max-width: 800px; color: #ecf0f1; position: relative; text-align: left; }
+        .close-btn { color: #666; float: right; font-size: 35px; cursor: pointer; }
         .close-btn:hover { color: var(--gold); }
-        .modal-link { color: var(--gold); text-decoration: none; cursor: pointer; font-weight: bold; border-bottom: 1px dotted var(--gold); transition: 0.2s; }
-        .modal-link:hover { color: #fff; border-bottom: 1px solid #fff; }
+        .modal-link { color: var(--gold); text-decoration: none; cursor: pointer; border-bottom: 1px dotted var(--gold); font-size: 0.9rem; }
 
-        /* MOBİL UYUMLULUK (RESPONSIVE) */
+        /* MOBİL UYUMLULUK (RESPONSIVE) - SAYAÇ DÜZELTMESİ BURADA */
         @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; letter-spacing: 3px; margin-top: 10px; }
-            .sub-header { font-size: 1.1rem; }
-            .info-box { padding: 25px; }
+            h1 { font-size: 2.5rem; margin-top: 15px; letter-spacing: 2px; }
+            .info-box { padding: 25px 15px; } /* Mobilde padding azaltıldı */
             
-            /* Sayaç mobilde daha derli toplu */
-            .countdown-container { gap: 10px; }
-            .time-box { width: 60px; padding: 15px 10px; }
-            .time-box span { font-size: 1.6rem; }
-            
-            /* Navbar ve Menü Düzeltmeleri */
-            .navbar { padding: 0 15px; height: 70px; }
-            .navbar-logo { font-size: 1.4rem; }
-            
-            /* Kare Hamburger Buton (Mobilde biraz daha küçük olabilir) */
-            .hamburger-container { width: 40px; height: 40px; }
-            .hamburger-btn { font-size: 1.6rem; }
+            /* SAYAÇ MOBİL AYARI: TEK SATIR, KÜÇÜK KUTULAR */
+            .countdown-container { 
+                gap: 8px; /* Boşluk azaltıldı */
+            }
+            .time-box { 
+                width: 65px; /* Kutu genişliği küçültüldü */
+                padding: 10px 5px; 
+            }
+            .time-box span { 
+                font-size: 1.5rem; /* Rakam boyutu küçültüldü */
+            }
+            .time-box label {
+                font-size: 0.55rem;
+            }
 
-            .modal-content { width: 90%; margin: 15% auto; padding: 25px; }
+            .navbar { padding: 0 15px; height: 60px; } 
+            .navbar-logo { font-size: 1.3rem; }
+            .hamburger-container { width: 38px; height: 38px; }
+            .hamburger-btn { font-size: 1.4rem; }
+
+            .sidebar { width: 0; }
+            .modal-content { width: 90%; margin: 20% auto; padding: 20px; }
             .sponsor-img-box { width: 100%; max-width: 250px; }
-            .sidebar { width: 0; } 
-            
-            .footer-links { display: flex; flex-direction: column; gap: 15px; }
+            .footer-links { display: flex; flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
@@ -336,31 +391,33 @@
         <div class="hamburger-container" id="openNavBtn">
             <button class="hamburger-btn">&#9776;</button>
         </div>
-
         <div class="navbar-logo" id="mainLogo">GıTalks</div>
+        <div style="width: 38px; margin-left: auto;"></div> 
     </div>
 
     <div id="home-tab" class="tab-content">
         <div class="main-logo" style="margin-top: 30px;">
             <h1>GıTalks</h1>
         </div>
-        <div class="sub-header">Geleceği Şekillendiren Sesler GıTalks 2026</div>
+        <div class="sub-header">Geleceği Şekillendiren Sesler</div>
         <div class="guest-info">Ana Konuk: <span style="font-weight:bold; color:#D4AF37;">Yakında Açıklanacak</span></div>
+        
         <div class="info-box">
-            <h3 style="margin-top:0; color:#fff;">GıTalks Teknoloji</h3>
+            <h3>GıTalks Teknoloji</h3>
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
                 <div class="time-box"><span id="minutes">00</span><label>DK</label></div>
-                <div class="time-box"><span id="seconds">00</span><label>SANİYE</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
             </div>
-            <p style="color:#D4AF37; font-weight:bold; letter-spacing: 1px;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
-            <hr style="border:0; border-top:1px solid #333; margin:25px 0;">
-            <p style="font-size:0.95rem; color:#aaa; font-style:italic;">GıTalks, 2026 ve sonrası için sürdürülebilir etkinlik vizyonu ile planlanmaktadır.</p>
+            <p style="color:#D4AF37; font-weight:bold; margin-top:20px; letter-spacing: 1px;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
+            <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
+            <p style="font-size:0.9rem; color:var(--text-muted); font-style:italic;">GıTalks, 2026 ve sonrası için sürdürülebilir etkinlik vizyonu ile planlanmaktadır.</p>
         </div>
+
         <div class="contact-home">
             <p style="color:#666; font-size:0.8rem; letter-spacing:2px; margin-bottom:10px;">RESMİ İLETİŞİM & BASIN</p>
-            <a href="mailto:gitalks.official@gmail.com" style="color:#D4AF37; text-decoration:none; font-size:1.3rem; font-weight:bold;">gitalks.official@gmail.com</a>
+            <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a>
         </div>
     </div>
 
@@ -370,7 +427,7 @@
             <div class="conf-date">16 ŞUBAT 2026</div>
             <h3>💻 TEKNOLOJİ</h3>
             <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
-            <p>Yapay zekâ, yazılım ve dijital dönüşüm başta olmak üzere; güncel ve geleceğe yönelik teknolojik gelişmeler çok boyutlu olarak değerlendirilecektir.</p>
+            <p>Yapay zekâ, yazılım ve dijital dönüşüm odağında teknolojik gelişmeler.</p>
             <div class="mini-countdown" id="tech-countdown">
                 <div class="mini-time"><span id="t-days">00</span><label>GÜN</label></div>
                 <div class="mini-time"><span id="t-hours">00</span><label>SA</label></div>
@@ -381,26 +438,22 @@
         <div class="conf-card">
             <div class="conf-date" style="background:#333; color:#aaa;">TARİH BELİRLENEMEDİ</div>
             <h3>🎓 AKADEMİ</h3>
-            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
-            <p>Bilimsel araştırmalar, eğitimde inovasyon ve akademik gelecek vizyonu.</p>
+            <p>Bilimsel araştırmalar ve akademik gelecek vizyonu.</p>
         </div>
         <div class="conf-card">
             <div class="conf-date" style="background:#333; color:#aaa;">TARİH BELİRLENEMEDİ</div>
             <h3>🌾 TARIM</h3>
-            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
             <p>Sürdürülebilir tarım teknikleri ve gıda güvenliği.</p>
         </div>
         <div class="conf-card">
             <div class="conf-date" style="background:#333; color:#aaa;">TARİH BELİRLENEMEDİ</div>
             <h3>📈 EKONOMİ</h3>
-            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
             <p>Küresel piyasalar ve girişimcilik ekosistemi.</p>
         </div>
         <div class="conf-card">
             <div class="conf-date" style="background:#333; color:#aaa;">TARİH BELİRLENEMEDİ</div>
             <h3>🤝 YARDIM & SOSYAL ETKİ</h3>
-            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
-            <p>Sosyal sorumluluk projeleri ve toplumsal fayda odaklı çalışmalar.</p>
+            <p>Sosyal sorumluluk projeleri ve toplumsal fayda.</p>
         </div>
     </div>
 
@@ -425,8 +478,8 @@
             <p><strong>GıTalks</strong>, tarım teknolojileri, yardım ve akademi ekseninde; teknoloji, inovasyon ve toplumsal faydayı bir araya getiren bir konferans ve etkinlik platformudur.</p>
             <p>Akademisyenler, sektör temsilcileri, girişimciler ve öğrencileri aynı çatı altında buluşturan GıTalks; güncel teknolojik gelişmelerin tarım ve toplumsal destek alanlarındaki etkilerini ele almayı amaçlar.</p>
             <div style="margin-top:40px; padding-top:20px; border-top:1px solid #333;">
-                <p style="font-size:0.95rem; color:#888; font-style: italic;">
-                    GıTalks, üniversite öğrenci toplulukları tarafından yürütülen, teknoloji, tarım, sosyal sorumluluk ve akademik gelişim alanlarında konferans ve etkinlikler düzenleyen bağımsız bir etkinlik platformudur.
+                <p style="font-size:0.9rem; color:#888; font-style: italic;">
+                    GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.
                 </p>
             </div>
         </div>
@@ -436,55 +489,42 @@
         <h2>Gizlilik Politikası</h2>
         <div class="info-box text-content-box">
             <p>GıTalks olarak kullanıcılarımızın gizliliğine önem veriyoruz. Bu Gizlilik Politikası, web sitemizi ziyaret eden kişilere ait kişisel verilerin hangi kapsamda işlendiğini açıklamak amacıyla hazırlanmıştır.</p>
-            <h3>Toplanan Veriler</h3>
-            <ul><li>IP adresi ve erişim bilgileri</li><li>Teknik site kullanım verileri</li></ul>
-            <h3>Veri Güvenliği</h3>
-            <p>Kişisel verileriniz, yetkisiz erişim, kayıp veya kötüye kullanıma karşı teknik ve idari tedbirlerle korunmaktadır. Web sitemiz GitHub Pages altyapısı üzerinden barındırılmaktadır.</p>
             <p>İletişim: <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong></p>
         </div>
     </div>
-
     <div id="consent-tab" class="tab-content">
         <h2>Açık Rıza Metni</h2>
         <div class="info-box text-content-box">
             <p>GıTalks web sitesini ziyaret etmem sebebiyle, kişisel verilerimin yalnızca web sitesinin teknik işleyişi ve güvenliğinin sağlanması amacıyla işlendiği konusunda bilgilendirildim.</p>
-            <p>Bu kapsamda açık rızamın gerekmediğini, verilerin ilgili mevzuat çerçevesinde işlendiğini kabul ederim.</p>
         </div>
     </div>
-
     <div id="terms-tab" class="tab-content">
         <h2>Kullanım Koşulları</h2>
         <div class="info-box text-content-box">
             <p>Bu web sitesini ziyaret ederek aşağıdaki koşulları kabul etmiş sayılırsınız:</p>
-            <ul>
-                <li><strong>Fikri Mülkiyet:</strong> GıTalks logosu, içeriği ve tasarımı telif hakları ile korunmaktadır.</li>
-                <li><strong>Etkinlik Kayıtları:</strong> Etkinliklerimizde fotoğraf ve video kaydı alınabilir.</li>
-            </ul>
+            <ul><li>Fikri Mülkiyet: GıTalks logosu ve içeriği korunmaktadır.</li></ul>
         </div>
     </div>
 
     <footer>
-        <div class="corporate-statement" style="max-width: 800px; margin: 0 auto 20px auto; line-height: 1.6; color: #555; text-align: center; padding: 0 20px;">
+        <div class="corporate-statement" style="max-width: 800px; margin: 0 auto 20px auto; color: #555; text-align: center; padding: 0 20px;">
             <p><strong>Yasal Bilgilendirme:</strong> GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.</p>
         </div>
         <div class="footer-links" style="text-align: center; margin-bottom: 20px;">
-            <a href="#" class="modal-link" data-tab="privacy-tab" style="margin: 0 10px; color:#888;">Gizlilik Politikası</a> | 
-            <a href="#" class="modal-link" data-modal="kvkkModal" style="margin: 0 10px; color:#888;">KVKK Aydınlatma Metni</a> | 
-            <a href="#" class="modal-link" data-tab="consent-tab" style="margin: 0 10px; color:#888;">Açık Rıza Metni</a>
+            <a href="#" class="modal-link" data-tab="privacy-tab">Gizlilik</a> | 
+            <a href="#" class="modal-link" data-modal="kvkkModal">KVKK</a> | 
+            <a href="#" class="modal-link" data-tab="consent-tab">Rıza Metni</a>
         </div>
-        <p style="text-align: center; color: #666; font-size: 0.8rem;">&copy; 2026 GıTalks Organization. Tüm Hakları Saklıdır.</p>
+        <p style="text-align: center; color: #666; font-size: 0.8rem;">&copy; 2026 GıTalks Organization.</p>
     </footer>
 
-    <div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(10, 10, 10, 0.98); border-top:2px solid #D4AF37; color:#ccc; padding:20px; z-index:9999; display:none; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); box-sizing: border-box;">
-        <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <div style="text-align: center;">
-                <strong style="color:#D4AF37; font-size: 1.1rem; text-transform: uppercase;">Çerez Bilgilendirmesi</strong><br>
-                <p style="margin: 10px 0; color:#ddd;">Bu web sitesinde yalnızca sitenin çalışması için gerekli zorunlu teknik çerezler kullanılmaktadır. Reklam veya kullanıcı takibi amacıyla çerez kullanılmamaktadır.</p>
-                <a href="#" id="linkPrivacy" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Gizlilik Politikası</a> | <a href="#" id="linkConsent" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Açık Rıza Metni</a>
-            </div>
-            <div style="display: flex; gap: 15px;">
-                <button id="btnReject" style="background:transparent; color:#e74c3c; border:1px solid #e74c3c; padding:8px 20px; cursor:pointer; border-radius: 4px;">Sadece Bilgi Al (Reddet)</button>
-                <button id="btnAccept" style="background:#D4AF37; color:#000; border:none; padding:8px 25px; font-weight:bold; cursor:pointer; border-radius: 4px;">Anladım & Kabul Et</button>
+    <div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(10, 10, 10, 0.98); border-top:2px solid #D4AF37; color:#ccc; padding:20px; z-index:9999; display:none; box-shadow: 0 -5px 20px rgba(0,0,0,0.8);">
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <strong style="color:#D4AF37; font-size: 1rem;">ÇEREZ BİLGİLENDİRMESİ</strong><br>
+            <p style="margin: 10px 0; color:#ddd; font-size:0.9rem;">Sitemizde yalnızca zorunlu teknik çerezler kullanılmaktadır. Reklam veya takip çerezi yoktur.</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button id="btnReject" style="background:transparent; color:#aaa; border:1px solid #555; padding:8px 15px; cursor:pointer; border-radius: 4px;">Kapat</button>
+                <button id="btnAccept" style="background:#D4AF37; color:#000; border:none; padding:8px 20px; font-weight:bold; cursor:pointer; border-radius: 4px;">Anladım</button>
             </div>
         </div>
     </div>
@@ -494,11 +534,7 @@
             <span class="close-btn" data-close="kvkkModal">&times;</span>
             <h2>KVKK Aydınlatma Metni</h2>
             <div class="text-content-box">
-                <p>GıTalks, 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında kişisel verilerinizi yalnızca web sitesinin çalışması ve güvenliğinin sağlanması amacıyla işlemektedir.</p>
-                <h3>Verilerin İşlenme Amacı</h3>
-                <ul><li>Web sitesinin güvenliğinin sağlanması</li><li>Teknik altyapının işletilmesi</li><li>Arama motoru görünürlüğünün izlenmesi</li></ul>
-                <p>Kişisel verileriniz doğrudan GıTalks tarafından depolanmamakta, barındırma ve arama motoru altyapıları kapsamında işlenmektedir.</p>
-                <p>İletişim: <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong></p>
+                <p>Kişisel verileriniz yalnızca site güvenliği için işlenmektedir.</p>
             </div>
         </div>
     </div>
@@ -506,7 +542,7 @@
     <div id="bioModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" data-close="bioModal">&times;</span>
-            <h2 id="modal-title">Sponsor Adı</h2>
+            <h2 id="modal-title">Sponsor</h2>
             <div id="modal-text" class="text-content-box">...</div>
         </div>
     </div>
@@ -514,109 +550,69 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             
-            // --- YAN MENÜ (SIDEBAR) ---
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("menuOverlay");
-            const mainLogo = document.getElementById("mainLogo");
             
-            // Hamburger Buton: Mobilde %80, PC'de 280px
             document.getElementById("openNavBtn").addEventListener("click", function() {
-                if(window.innerWidth <= 600) {
-                    sidebar.style.width = "80%"; 
-                } else {
-                    sidebar.style.width = "280px";
-                }
+                if(window.innerWidth <= 600) { sidebar.style.width = "70%"; } else { sidebar.style.width = "280px"; }
                 overlay.style.display = "block";
             });
 
-            function closeNav() {
-                sidebar.style.width = "0";
-                overlay.style.display = "none";
-            }
-
+            function closeNav() { sidebar.style.width = "0"; overlay.style.display = "none"; }
             document.getElementById("closeNavBtn").addEventListener("click", closeNav);
             overlay.addEventListener("click", closeNav);
 
-            // --- TAB SİSTEMİ ---
             const navLinks = document.querySelectorAll('.nav-link');
             const tabs = document.querySelectorAll('.tab-content');
 
             function switchTab(targetId) {
                 tabs.forEach(tab => tab.style.display = 'none');
-                
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if(link.getAttribute('data-tab') === targetId) {
-                        link.classList.add('active');
-                    }
+                    if(link.getAttribute('data-tab') === targetId) link.classList.add('active');
                 });
-
-                const targetTab = document.getElementById(targetId);
-                if (targetTab) {
-                    targetTab.style.display = 'block';
-                    window.scrollTo(0, 0);
-                }
+                document.getElementById(targetId).style.display = 'block';
+                window.scrollTo(0, 0);
                 closeNav(); 
             }
 
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('data-tab');
-                    switchTab(targetId);
-                });
-            });
-
-            // LOGOYA TIKLAYINCA ANASAYFAYA DÖN + MENÜ KAPAT
-            mainLogo.addEventListener("click", function() {
-                switchTab('home-tab');
-            });
-
-            // Banner linkleri (Tab açar)
-            document.getElementById('linkPrivacy').addEventListener('click', function(e) {
-                e.preventDefault(); switchTab('privacy-tab');
-            });
-            document.getElementById('linkConsent').addEventListener('click', function(e) {
-                e.preventDefault(); switchTab('consent-tab');
-            });
-
-            // Footer linkleri (Tab açar)
-            document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
                     switchTab(this.getAttribute('data-tab'));
                 });
             });
 
-            // --- MODAL YÖNETİMİ ---
-            const modalTriggers = document.querySelectorAll('[data-modal]');
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const modalId = this.getAttribute('data-modal');
-                    const modalEl = document.getElementById(modalId);
-                    if(modalEl) modalEl.style.display = 'block';
-                });
+            document.getElementById("mainLogo").addEventListener("click", function() { switchTab('home-tab'); });
+
+            // Link Handlers
+            document.getElementById('linkPrivacy').addEventListener('click', function(e) { e.preventDefault(); switchTab('privacy-tab'); });
+            document.getElementById('linkConsent').addEventListener('click', function(e) { e.preventDefault(); switchTab('consent-tab'); });
+            
+            document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
+                link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            const closeButtons = document.querySelectorAll('[data-close]');
-            closeButtons.forEach(btn => {
+            // Modals
+            document.querySelectorAll('[data-modal]').forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById(this.getAttribute('data-modal')).style.display = 'block';
+                });
+            });
+            document.querySelectorAll('[data-close]').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.getElementById(this.getAttribute('data-close')).style.display = 'none';
                 });
             });
-
             window.addEventListener('click', function(event) {
-                if (event.target.classList.contains('modal')) {
-                    event.target.style.display = 'none';
-                }
+                if (event.target.classList.contains('modal')) event.target.style.display = 'none';
             });
 
-            // --- ÇEREZ YÖNETİMİ ---
+            // Cookies
             const cookieBanner = document.getElementById("cookieBanner");
-            if (!localStorage.getItem("cookieConsent")) {
-                cookieBanner.style.display = "block";
-            }
+            if (!localStorage.getItem("cookieConsent")) cookieBanner.style.display = "block";
+            
             document.getElementById('btnAccept').addEventListener('click', function() {
                 localStorage.setItem("cookieConsent", "accepted");
                 cookieBanner.style.display = "none";
@@ -626,15 +622,14 @@
                 cookieBanner.style.display = "none";
             });
 
-            // --- SPONSOR DETAYLARI ---
+            // Sponsors
             const bioModal = document.getElementById("bioModal");
-            const sponsorBoxes = document.querySelectorAll('.sponsor-img-box');
             const sponsorData = {
-                'uludag': {title: 'Uludağ İçecek', text: 'Uludağ İçecek, Türkiye’nin önde gelen içecek üreticilerinden biridir. Başta gazlı içecekler ve maden suları olmak üzere geniş bir ürün yelpazesi sunar. Uludağ İçecek, kalite, inovasyon ve sürdürülebilir üretim anlayışıyla sektörde lider konumdadır.'},
-                'ilko': {title: 'İlko İlaç', text: 'İlko İlaç, Türkiye’de farmasötik ürünlerin üretimi ve dağıtımı alanında faaliyet gösteren öncü firmalardan biridir. İlaç sektöründe kalite standartlarına uygun üretim yapan şirket, sağlık alanında güvenilir çözümler sunmaktadır.'},
-                'atiker': {title: 'Atiker', text: 'Atiker, otomotiv sektöründe LPG ve CNG sistemlerinin üretimi ve satışını gerçekleştiren köklü bir şirkettir. Yenilikçi teknoloji ve Ar-Ge yatırımlarıyla sektörde öncü konumda yer alır.'}
+                'uludag': {title: 'Uludağ İçecek', text: 'Uludağ İçecek, Türkiye’nin önde gelen içecek üreticilerinden biridir. Kalite ve inovasyon odaklıdır.'},
+                'ilko': {title: 'İlko İlaç', text: 'İlko İlaç, Türkiye’de farmasötik ürünlerin üretimi ve dağıtımı alanında öncüdür.'},
+                'atiker': {title: 'Atiker', text: 'Atiker, otomotiv sektöründe LPG ve CNG sistemlerinin lider üreticisidir.'}
             };
-            sponsorBoxes.forEach(box => {
+            document.querySelectorAll('.sponsor-img-box').forEach(box => {
                 box.addEventListener('click', function() {
                     const key = this.getAttribute('data-sponsor');
                     if(sponsorData[key]) {
@@ -645,42 +640,37 @@
                 });
             });
 
-            // --- GERİ SAYIMLAR ---
+            // Countdown
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
             function updateCountdowns() {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
                 if (distance < 0) {
-                    const mainCount = document.getElementById("countdown");
-                    if(mainCount) mainCount.innerHTML = "ETKİNLİK BAŞLADI!";
-                    const techCount = document.getElementById("tech-countdown");
-                    if(techCount) techCount.innerHTML = "<span style='color:#D4AF37;'>BAŞLADI</span>";
+                    document.getElementById("countdown").innerHTML = "ETKİNLİK BAŞLADI!";
+                    if(document.getElementById("tech-countdown")) document.getElementById("tech-countdown").innerHTML = "BAŞLADI";
                     return;
                 }
-
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                const dEl = document.getElementById("days");
-                if(dEl) {
-                    dEl.innerText = days;
+                if(document.getElementById("days")) {
+                    document.getElementById("days").innerText = days;
                     document.getElementById("hours").innerText = hours;
                     document.getElementById("minutes").innerText = minutes;
                     document.getElementById("seconds").innerText = seconds;
                 }
-                const tEl = document.getElementById("t-days");
-                if(tEl) {
-                    tEl.innerText = days;
+                if(document.getElementById("t-days")) {
+                    document.getElementById("t-days").innerText = days;
                     document.getElementById("t-hours").innerText = hours;
                     document.getElementById("t-min").innerText = minutes;
                     document.getElementById("t-sec").innerText = seconds;
                 }
             }
             setInterval(updateCountdowns, 1000);
-            updateCountdowns(); 
+            updateCountdowns();
         });
     </script>
 </body>
