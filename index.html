@@ -203,32 +203,49 @@
             font-size: 1.1rem;
         }
 
-        /* --- SPONSOR GÖRSELLERİ --- */
+        /* --- SPONSOR GÖRSELLERİ (DÜZENLENDİ) --- */
         .sponsor-grid {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            align-items: center;
+            gap: 40px; /* Boşluk artırıldı */
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         .sponsor-img-box {
-            background: #fff; 
-            padding: 20px;
-            border-radius: 10px;
-            width: 180px;
-            height: 100px;
+            background: #ffffff; 
+            padding: 10px;
+            border-radius: 8px;
+            width: 220px; /* Genişlik sabitlendi */
+            height: 120px; /* Yükseklik sabitlendi */
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            box-shadow: 0 0 20px rgba(0,0,0,0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+            border: 2px solid #333;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
+        
         .sponsor-img-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            border-color: #D4AF37;
+        }
+
+        /* Resim yüklenemezse metin stili */
+        .sponsor-img-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            display: block;
         }
 
         /* --- TEXT CONTENT (Gizlilik & Rıza için) --- */
@@ -299,6 +316,7 @@
             .time-box span { font-size: 1.4rem; }
             .modal-content { width: 90%; margin: 20% auto; }
             .nav-btn { font-size: 0.75rem; padding: 6px 8px; }
+            .sponsor-img-box { width: 100%; max-width: 250px; }
         }
     </style>
 </head>
@@ -346,24 +364,38 @@
         <h2>Konferans Programı</h2>
         <div class="conf-card">
             <h3>💻 TEKNOLOJİ</h3>
+            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
             <p>Yapay zeka, dijital dönüşüm ve geleceğin yazılım teknolojileri.</p>
         </div>
         <div class="conf-card">
             <h3>🌾 TARIM</h3>
+            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
             <p>Sürdürülebilir tarım teknikleri ve gıda güvenliği.</p>
         </div>
         <div class="conf-card">
             <h3>📈 EKONOMİ</h3>
+            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
             <p>Küresel piyasalar ve girişimcilik ekosistemi.</p>
+        </div>
+        <div class="conf-card">
+            <h3>🤝 YARDIM & SOSYAL ETKİ</h3>
+            <p><strong>Konuk:</strong> <em>Yakında Açıklanacak</em></p>
+            <p>Sosyal sorumluluk projeleri ve toplumsal fayda odaklı çalışmalar.</p>
         </div>
     </div>
 
     <div id="sponsors-tab" class="tab-content">
         <h2>Değerli Sponsorlarımız</h2>
         <div class="sponsor-grid">
-            <div class="sponsor-img-box" onclick="openBio('uludag')"><img src="uludag.png" alt="Uludağ" onerror="this.parentElement.innerText='Uludağ'"></div>
-            <div class="sponsor-img-box" onclick="openBio('ilko')"><img src="ilko.png" alt="İlko" onerror="this.parentElement.innerText='İlko'"></div>
-            <div class="sponsor-img-box" onclick="openBio('atiker')"><img src="atiker.png" alt="Atiker" onerror="this.parentElement.innerText='Atiker'"></div>
+            <div class="sponsor-img-box" onclick="openBio('uludag')">
+                <img src="uludag.png" alt="Uludağ İçecek" onerror="this.style.display='none'; this.parentElement.innerText='Uludağ İçecek'">
+            </div>
+            <div class="sponsor-img-box" onclick="openBio('ilko')">
+                <img src="ilko.png" alt="İlko İlaç" onerror="this.style.display='none'; this.parentElement.innerText='İlko İlaç'">
+            </div>
+            <div class="sponsor-img-box" onclick="openBio('atiker')">
+                <img src="atiker.png" alt="Atiker Yazılım" onerror="this.style.display='none'; this.parentElement.innerText='Atiker Yazılım'">
+            </div>
         </div>
     </div>
 
