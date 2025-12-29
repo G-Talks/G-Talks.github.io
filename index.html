@@ -11,10 +11,13 @@
 
     <meta property="og:title" content="GıTalks | Geleceği Tasarlayan Zirve">
     <meta property="og:description" content="Teknoloji, Akademi ve İnovasyonun kalbi burada atıyor. 16 Şubat 2026'da buluşuyoruz.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/username/repo/main/afis.jpg"> <meta property="og:url" content="https://gtalks.org">
+    <meta property="og:image" content="https://raw.githubusercontent.com/username/repo/main/afis.jpg">
+    <meta property="og:url" content="https://gtalks.org">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="https://raw.githubusercontent.com/username/repo/main/favicon.png" type="image/png"> <meta http-equiv="Content-Security-Policy" content="
+    <link rel="icon" href="https://raw.githubusercontent.com/username/repo/main/favicon.png" type="image/png">
+
+    <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         img-src 'self' data: https:; 
         style-src 'self' 'unsafe-inline'; 
@@ -33,6 +36,7 @@
             --dark-bg: #050505;
             --panel-bg: #111;
             --text-color: #ecf0f1;
+            --sidebar-width: 280px;
         }
 
         body {
@@ -47,54 +51,109 @@
             align-items: center;
             min-height: 100vh;
             line-height: 1.6;
-            padding-top: 110px;
+            padding-top: 80px; /* Navbar yüksekliği kadar boşluk */
         }
 
-        /* --- 2. ÜST MENÜ (NAVBAR) --- */
+        /* --- 2. ÜST MENÜ (NAVBAR & HAMBURGER) --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
+            height: 70px;
             background-color: rgba(0, 0, 0, 0.95);
             border-bottom: 1px solid var(--gold);
             display: flex;
-            justify-content: center;
-            padding: 15px 0;
+            align-items: center;
+            padding: 0 20px;
             z-index: 1000;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-btn {
+        .hamburger-btn {
             background: none;
             border: none;
-            color: #888;
-            font-size: 0.85rem;
-            font-weight: 600;
+            color: var(--gold);
+            font-size: 1.8rem;
             cursor: pointer;
-            transition: all 0.3s;
+            padding: 5px;
+            transition: 0.3s;
+        }
+        .hamburger-btn:hover { color: #fff; text-shadow: 0 0 10px var(--gold); }
+
+        .navbar-logo {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- YAN MENÜ (SIDEBAR) --- */
+        .sidebar {
+            height: 100%;
+            width: 0; /* Başlangıçta kapalı */
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 60px;
+            border-right: 1px solid var(--gold);
+            box-shadow: 5px 0 30px rgba(0,0,0,0.8);
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: #888;
+            display: block;
+            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 8px 12px;
+            border-bottom: 1px solid #1a1a1a;
         }
 
-        .nav-btn:hover, .nav-btn.active {
+        .sidebar a:hover, .sidebar a.active {
             color: var(--gold);
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-            border-bottom: 1px solid var(--gold);
+            background: #111;
+            padding-left: 35px; /* Hover efekti */
         }
 
-        /* --- 3. SEKMELER --- */
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 36px;
+            border-bottom: none;
+            color: #fff;
+        }
+
+        /* Yasal Linkler Alt Grup */
+        .sidebar-legal {
+            margin-top: 30px;
+            border-top: 1px solid #333;
+        }
+        .sidebar-legal a { font-size: 0.85rem; color: #555; padding: 10px 25px; }
+        .sidebar-legal a:hover { color: #aaa; }
+
+        /* Overlay (Menü açılınca arka planı karartma) */
+        #menuOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1500;
+            backdrop-filter: blur(3px);
+        }
+
+        /* --- 3. İÇERİK ALANI --- */
         .tab-content {
             display: none;
             width: 90%;
@@ -402,24 +461,33 @@
             .time-box { width: 50px; padding: 10px; }
             .time-box span { font-size: 1.4rem; }
             .modal-content { width: 90%; margin: 15% auto; padding: 20px; }
-            .nav-btn { font-size: 0.7rem; padding: 10px 5px; letter-spacing: 0.5px; }
             .sponsor-img-box { width: 100%; max-width: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><button class="nav-btn active" data-tab="home-tab">Anasayfa</button></li>
-            <li><button class="nav-btn" data-tab="conferences-tab">Etkinlikler</button></li>
-            <li><button class="nav-btn" data-tab="sponsors-tab">Sponsorlar</button></li>
-            <li><button class="nav-btn" data-tab="about-tab">Hakkında</button></li>
-            <li><button class="nav-btn" data-tab="privacy-tab">Gizlilik</button></li>
-            <li><button class="nav-btn" data-tab="consent-tab">Açık Rıza</button></li>
-            <li><button class="nav-btn" data-tab="terms-tab">Kullanım Koşulları</button></li>
-        </ul>
-    </nav>
+    <div id="menuOverlay"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" id="closeNavBtn">&times;</a>
+        
+        <a href="#" class="nav-link active" data-tab="home-tab">Anasayfa</a>
+        <a href="#" class="nav-link" data-tab="conferences-tab">Etkinlikler</a>
+        <a href="#" class="nav-link" data-tab="sponsors-tab">Sponsorlar</a>
+        <a href="#" class="nav-link" data-tab="about-tab">Hakkında</a>
+        
+        <div class="sidebar-legal">
+            <a href="#" class="nav-link" data-tab="privacy-tab">Gizlilik Politikası</a>
+            <a href="#" class="nav-link" data-tab="consent-tab">Açık Rıza Metni</a>
+            <a href="#" class="nav-link" data-tab="terms-tab">Kullanım Koşulları</a>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <button class="hamburger-btn" id="openNavBtn">&#9776;</button>
+        <div class="navbar-logo">GıTalks</div>
+        <div style="width: 30px;"></div> </div>
 
     <div id="home-tab" class="tab-content">
         <div class="main-logo">
@@ -434,7 +502,7 @@
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
-                <div class="time-box"><span id="minutes">00</span><label>DK</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>DAKİKA</label></div>
                 <div class="time-box"><span id="seconds">00</span><label>SANİYE</label></div>
             </div>
             <p style="color:#D4AF37; font-weight:bold; letter-spacing: 1px;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
@@ -584,9 +652,9 @@
             <p><strong>Yasal Bilgilendirme:</strong> GıTalks, üniversite öğrenci toplulukları tarafından yürütülen, teknoloji, tarım, sosyal sorumluluk ve akademik gelişim alanlarında konferans ve etkinlikler düzenleyen bağımsız bir etkinlik platformudur.</p>
         </div>
         <div class="footer-links" style="text-align: center; margin-bottom: 20px;">
-            <a href="#" class="modal-link" data-modal="privacyModal" style="margin: 0 10px; color:#888;">Gizlilik Politikası</a> | 
+            <a href="#" class="modal-link" data-tab="privacy-tab" style="margin: 0 10px; color:#888;">Gizlilik Politikası</a> | 
             <a href="#" class="modal-link" data-modal="kvkkModal" style="margin: 0 10px; color:#888;">KVKK Aydınlatma Metni</a> | 
-            <a href="#" class="modal-link" data-modal="consentModal" style="margin: 0 10px; color:#888;">Açık Rıza Metni</a>
+            <a href="#" class="modal-link" data-tab="consent-tab" style="margin: 0 10px; color:#888;">Açık Rıza Metni</a>
         </div>
         <p style="text-align: center; color: #666; font-size: 0.85rem;">&copy; 2026 GıTalks Organization. Tüm Hakları Saklıdır.</p>
     </footer>
@@ -604,9 +672,8 @@
                     Reklam veya kullanıcı takibi amacıyla çerez kullanılmamaktadır.
                 </p>
                 <br>
-                <a href="#" class="modal-link" data-modal="privacyModal" style="color:#D4AF37; margin:0 5px;">Gizlilik Politikası</a> | 
-                <a href="#" class="modal-link" data-modal="kvkkModal" style="color:#D4AF37; margin:0 5px;">KVKK Aydınlatma Metni</a> | 
-                <a href="#" class="modal-link" data-modal="consentModal" style="color:#D4AF37; margin:0 5px;">Açık Rıza Metni</a>
+                <a href="#" id="linkPrivacy" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Gizlilik Politikası</a> | 
+                <a href="#" id="linkConsent" style="color:#D4AF37; text-decoration: underline; margin:0 5px;">Açık Rıza Metni</a>
             </div>
             
             <div style="display: flex; gap: 15px;">
@@ -632,31 +699,6 @@
         </div>
     </div>
     
-    <div id="privacyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" data-close="privacyModal">&times;</span>
-            <h2>Gizlilik Politikası</h2>
-            <div class="text-content-box">
-                <p>GıTalks olarak kullanıcılarımızın gizliliğine önem veriyoruz. Bu Gizlilik Politikası, web sitemizi ziyaret eden kişilere ait kişisel verilerin hangi kapsamda işlendiğini açıklamak amacıyla hazırlanmıştır.</p>
-                <h3>Toplanan Veriler</h3>
-                <ul><li>IP adresi ve erişim bilgileri (sunucu logları)</li><li>Siteye erişim zamanı ve teknik kullanım verileri</li></ul>
-                <h3>Veri Güvenliği</h3>
-                <p>Kişisel verileriniz, yetkisiz erişim, kayıp veya kötüye kullanıma karşı teknik ve idari tedbirlerle korunmaktadır. Web sitemiz GitHub Pages altyapısı üzerinden barındırılmaktadır.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="consentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" data-close="consentModal">&times;</span>
-            <h2>Açık Rıza Metni</h2>
-            <div class="text-content-box">
-                <p>GıTalks web sitesini ziyaret etmem sebebiyle, kişisel verilerimin yalnızca web sitesinin teknik işleyişi ve güvenliğinin sağlanması amacıyla işlendiği konusunda bilgilendirildim.</p>
-                <p>Bu kapsamda açık rızamın gerekmediğini, verilerin ilgili mevzuat çerçevesinde işlendiğini kabul ederim.</p>
-            </div>
-        </div>
-    </div>
-
     <div id="bioModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" data-close="bioModal">&times;</span>
@@ -668,36 +710,76 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             
+            // --- YAN MENÜ (SIDEBAR) ---
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("menuOverlay");
+            
+            document.getElementById("openNavBtn").addEventListener("click", function() {
+                sidebar.style.width = "280px";
+                overlay.style.display = "block";
+            });
+
+            function closeNav() {
+                sidebar.style.width = "0";
+                overlay.style.display = "none";
+            }
+
+            document.getElementById("closeNavBtn").addEventListener("click", closeNav);
+            overlay.addEventListener("click", closeNav);
+
             // --- TAB SİSTEMİ ---
-            const buttons = document.querySelectorAll('.nav-btn');
+            const navLinks = document.querySelectorAll('.nav-link');
             const tabs = document.querySelectorAll('.tab-content');
 
             function switchTab(targetId) {
                 tabs.forEach(tab => tab.style.display = 'none');
-                buttons.forEach(btn => btn.classList.remove('active'));
                 
+                // Sidebar linklerini aktif yap
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('data-tab') === targetId) {
+                        link.classList.add('active');
+                    }
+                });
+
                 const targetTab = document.getElementById(targetId);
                 if (targetTab) {
                     targetTab.style.display = 'block';
                     window.scrollTo(0, 0);
-                    // Butonu aktif yap
-                    buttons.forEach(btn => {
-                        if(btn.getAttribute('data-tab') === targetId) {
-                            btn.classList.add('active');
-                        }
-                    });
                 }
+                closeNav(); // Menüyü kapat
             }
 
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const targetId = this.getAttribute('data-tab');
                     switchTab(targetId);
                 });
             });
 
+            // Banner linkleri için event listener (Tab açar)
+            document.getElementById('linkPrivacy').addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('privacy-tab');
+            });
+            document.getElementById('linkConsent').addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('consent-tab');
+            });
+
+            // Footer linkleri için (Tab açar)
+            document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-tab');
+                    switchTab(targetId);
+                });
+            });
+
+
             // --- MODAL YÖNETİMİ (GENEL KAPATMA) ---
-            // data-modal ile açma (Footer & Banner linkleri için)
+            // data-modal ile açma (KVKK vb. popup isteyenler için)
             const modalTriggers = document.querySelectorAll('[data-modal]');
             modalTriggers.forEach(trigger => {
                 trigger.addEventListener('click', function(e) {
@@ -740,7 +822,6 @@
             });
 
             document.getElementById('btnReject').addEventListener('click', function() {
-                // Reddedilse bile bilgi verildiği için localStorage'a işliyoruz ki tekrar sormasın
                 localStorage.setItem("cookieConsent", "rejected");
                 cookieBanner.style.display = "none";
             });
