@@ -203,12 +203,12 @@
             font-size: 1.1rem;
         }
 
-        /* --- SPONSOR GÖRSELLERİ (DÜZENLENDİ) --- */
+        /* --- SPONSOR GÖRSELLERİ --- */
         .sponsor-grid {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 40px; /* Boşluk artırıldı */
+            gap: 40px;
             flex-wrap: wrap;
             margin-top: 40px;
         }
@@ -217,8 +217,8 @@
             background: #ffffff; 
             padding: 10px;
             border-radius: 8px;
-            width: 220px; /* Genişlik sabitlendi */
-            height: 120px; /* Yükseklik sabitlendi */
+            width: 220px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -240,7 +240,6 @@
             border-color: #D4AF37;
         }
 
-        /* Resim yüklenemezse metin stili */
         .sponsor-img-box img {
             max-width: 90%;
             max-height: 90%;
@@ -248,7 +247,7 @@
             display: block;
         }
 
-        /* --- TEXT CONTENT (Gizlilik & Rıza için) --- */
+        /* --- TEXT CONTENT (Gizlilik, Rıza, Hakkımızda) --- */
         .text-content-box {
             text-align: left;
             line-height: 1.8;
@@ -261,6 +260,9 @@
         }
         .text-content-box ul li span {
             color: #ccc;
+        }
+        .text-content-box p {
+            margin-bottom: 15px;
         }
 
         /* --- MODAL (POP-UP) --- */
@@ -400,9 +402,20 @@
     </div>
 
     <div id="about-tab" class="tab-content">
-        <h2>G-Talks Hakkında</h2>
-        <div class="info-box" style="background:transparent; border:none; box-shadow:none;">
-            <p>G-Talks; tarım, teknoloji ve ekonomi dünyasını üniversite gençliği ile bir araya getiren yenilikçi bir konferans serisidir.</p>
+        <h2>Hakkımızda | G-Talks</h2>
+        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none;">
+            <p>
+                <strong>G-Talks</strong>, tarım teknolojileri, yardım ve akademi ekseninde; teknoloji, inovasyon ve toplumsal faydayı bir araya getiren bir konferans ve etkinlik platformudur.
+            </p>
+            <p>
+                Akademisyenler, sektör temsilcileri, girişimciler ve öğrencileri aynı çatı altında buluşturan G-Talks; güncel teknolojik gelişmelerin tarım ve toplumsal destek alanlarındaki etkilerini ele almayı amaçlar. Etkinliklerimizde bilgi paylaşımını teşvik eden, sürdürülebilir çözümler üreten ve geleceğe değer katan fikirler ön plana çıkarılmaktadır.
+            </p>
+            <p>
+                Genç bakış açısı ve dinamik yapısıyla G-Talks, yalnızca etkinlik düzenleyen bir platform değil; aynı zamanda öğrenmeyi, iş birliğini ve yenilikçi düşünceyi destekleyen bir etkileşim alanıdır.
+            </p>
+            <p>
+                G-Talks olarak hedefimiz; teknoloji ile akademiyi buluşturarak, topluma katkı sağlayan projelerin yaygınlaşmasına öncülük etmektir.
+            </p>
         </div>
     </div>
 
