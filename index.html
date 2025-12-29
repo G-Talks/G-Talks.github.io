@@ -321,6 +321,9 @@
 
         .text-content-box { text-align: left; line-height: 1.8; color: #ccc; font-size: 1rem; }
         .text-content-box strong { color: #fff; }
+        .text-content-box h3 { color: var(--gold); font-size: 1.2rem; margin-top: 20px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .text-content-box ul { padding-left: 20px; }
+        .text-content-box li { margin-bottom: 8px; }
         
         /* --- MODAL (POPUP) --- */
         .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); }
@@ -333,6 +336,28 @@
         .close-btn { color: #666; float: right; font-size: 35px; cursor: pointer; line-height: 20px; }
         .close-btn:hover { color: var(--gold); }
         .modal-link { color: var(--gold); text-decoration: none; cursor: pointer; border-bottom: 1px dotted var(--gold); font-size: 0.9rem; }
+
+        /* --- MÜZİK OYNATICI STİLİ --- */
+        .music-player-btn {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 9999;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        .music-player-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+        .music-anim { animation: pulseMusic 1.5s infinite; }
+        @keyframes pulseMusic {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
 
         /* --- MOBİL UYUMLULUK --- */
         @media (max-width: 600px) {
@@ -358,6 +383,7 @@
             .modal-content { width: 90%; margin: 30% auto; padding: 25px; }
             .sponsor-img-box { width: 100%; max-width: 250px; }
             .footer-links { display: flex; flex-direction: column; gap: 12px; }
+            .music-player-btn { width: 40px; height: 40px; font-size: 1.2rem; bottom: 15px; right: 15px; }
         }
     </style>
 </head>
@@ -384,6 +410,14 @@
         </div>
         <div class="navbar-logo" id="mainLogo">GıTalks</div>
         <div class="navbar-spacer"></div> 
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_55940562e2.mp3" type="audio/mpeg">
+        Tarayıcınız ses elementini desteklemiyor.
+    </audio>
+    <div id="musicBtn" class="music-player-btn" title="Müziği Başlat/Durdur">
+        &#9835; 
     </div>
 
     <div id="home-tab" class="tab-content">
@@ -479,18 +513,62 @@
     </div>
 
     <div id="privacy-tab" class="tab-content">
-        <h2>Gizlilik Politikası</h2>
+        <h2>Gizlilik Politikası ve KVKK</h2>
         <div class="info-box text-content-box">
-            <p>GıTalks olarak kullanıcılarımızın gizliliğine önem veriyoruz. Bu Gizlilik Politikası, web sitemizi ziyaret eden kişilere ait kişisel verilerin hangi kapsamda işlendiğini açıklamak amacıyla hazırlanmıştır.</p>
-            <p>İletişim: <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong></p>
+            <p>Bu internet sitesi, GıTalks tarafından yürütülmekte olup GitHub Pages altyapısı kullanılarak yayınlanmaktadır. Siteyi ziyaret eden kullanıcıların kişisel verileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ilgili mevzuat kapsamında işlenmektedir.</p>
+            
+            <h3>1. Veri Sorumlusu</h3>
+            <p>KVKK uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla GıTalks Organizasyonu tarafından işlenmektedir.</p>
+
+            <h3>2. GitHub Altyapısı ve Veri İşleme</h3>
+            <p>GıTalks internet sitesi, GitHub Pages üzerinden barındırılmaktadır. Siteye erişim sırasında;</p>
+            <ul>
+                <li>IP adresi,</li>
+                <li>Tarayıcı ve cihaz bilgileri,</li>
+                <li>Ziyaret tarihi ve saati,</li>
+                <li>Teknik kullanım ve erişim kayıtları</li>
+            </ul>
+            <p>gibi teknik veriler, GitHub’ın sunucu ve güvenlik altyapısı kapsamında otomatik olarak işlenebilmektedir. GıTalks, ziyaretçilerden doğrudan kişisel veri toplamaz, form, üyelik veya kayıt sistemi kullanmaz.</p>
+
+            <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
+            <p>Kişisel veriler;</p>
+            <ul>
+                <li>Web sitesinin teknik işleyişinin sağlanması,</li>
+                <li>Bilgi güvenliğinin temini,</li>
+                <li>Sistem performansının izlenmesi,</li>
+                <li>Yetkisiz erişimlerin önlenmesi</li>
+            </ul>
+            <p>amaçlarıyla sınırlı olarak işlenmektedir.</p>
+
+            <h3>4. Hukuki Sebep</h3>
+            <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca; "Kanunlarda açıkça öngörülmesi", "Veri sorumlusunun hukuki yükümlülüklerini yerine getirmesi" ve "Meşru menfaatler" hukuki sebeplerine dayanılarak işlenmektedir. Bu kapsamda ayrıca açık rızanız aranmamaktadır.</p>
+
+            <h3>5. Kişisel Verilerin Aktarılması</h3>
+            <p>Kişisel verileriniz, doğrudan üçüncü kişilerle paylaşılmamakta olup; barındırma ve teknik altyapı hizmetleri kapsamında GitHub Inc. tarafından işlenebilir.</p>
+
+            <h3>6. Veri Güvenliği ve Saklama</h3>
+            <p>GıTalks, kişisel verileri ayrıca kendi sistemlerinde saklamaz. Veriler, GitHub altyapısında teknik süreler boyunca tutulur ve yetkisiz erişime karşı korunur.</p>
+
+            <h3>7. Çerez Kullanımı</h3>
+            <p>Bu sitede yalnızca sitenin çalışması için gerekli olan zorunlu teknik çerezler kullanılabilir. Kullanıcılar tarayıcı ayarları üzerinden çerezleri kontrol edebilir.</p>
+
+            <h3>8. KVKK Kapsamındaki Haklar</h3>
+            <p>KVKK’nın 11. maddesi kapsamında kullanıcılar; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme ve işlenme amacını öğrenme haklarına sahiptir.</p>
+
+            <h3>9. İletişim</h3>
+            <p>KVKK ve gizlilik uygulamalarına ilişkin her türlü talep için: <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong></p>
         </div>
     </div>
+
     <div id="consent-tab" class="tab-content">
         <h2>Açık Rıza Metni</h2>
         <div class="info-box text-content-box">
-            <p>GıTalks web sitesini ziyaret etmem sebebiyle, kişisel verilerimin yalnızca web sitesinin teknik işleyişi ve güvenliğinin sağlanması amacıyla işlendiği konusunda bilgilendirildim.</p>
+            <p>GıTalks tarafından yürütülen ve GitHub Pages altyapısı üzerinden yayınlanan internet sitesini ziyaret etmem kapsamında; siteye erişim sırasında oluşan IP adresi, tarayıcı ve cihaz bilgileri ile teknik kullanım verilerinin, yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini ve sistem performansının izlenmesi amaçlarıyla işlenebileceği konusunda bilgilendirildim.</p>
+            <p>Söz konusu kişisel verilerin, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun 5. maddesi uyarınca, veri sorumlusunun meşru menfaatleri kapsamında işlendiğini; bu nedenle ayrıca açık rızamın aranmadığını anladım.</p>
+            <p>Bu bilgilendirme doğrultusunda, kişisel verilerimin belirtilen amaçlarla işlenmesini kabul ediyorum.</p>
         </div>
     </div>
+
     <div id="terms-tab" class="tab-content">
         <h2>Kullanım Koşulları</h2>
         <div class="info-box text-content-box">
@@ -505,7 +583,6 @@
         </div>
         <div class="footer-links" style="text-align: center; margin-bottom: 20px;">
             <a href="#" class="modal-link" data-tab="privacy-tab">Gizlilik</a> | 
-            <a href="#" class="modal-link" data-modal="kvkkModal">KVKK</a> | 
             <a href="#" class="modal-link" data-tab="consent-tab">Rıza Metni</a>
         </div>
         <p style="text-align: center; color: #666; font-size: 0.8rem;">&copy; 2026 GıTalks Organization.</p>
@@ -513,21 +590,16 @@
 
     <div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(10, 10, 10, 0.98); border-top:2px solid #D4AF37; color:#ccc; padding:20px; z-index:9999; display:none; box-shadow: 0 -5px 20px rgba(0,0,0,0.8);">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <strong style="color:#D4AF37; font-size: 1rem;">ÇEREZ BİLGİLENDİRMESİ</strong><br>
-            <p style="margin: 10px 0; color:#ddd; font-size:0.9rem;">Sitemizde yalnızca zorunlu teknik çerezler kullanılmaktadır. Reklam veya takip çerezi yoktur.</p>
+            <strong style="color:#D4AF37; font-size: 1rem;">ÇEREZ VE GİZLİLİK BİLGİLENDİRMESİ</strong><br>
+            <p style="margin: 10px 0; color:#ddd; font-size:0.9rem;">
+                Sitemizde KVKK ve Çerez Politikası uyarınca işlem yapılmaktadır. Detaylar için 
+                <a href="#" class="cookie-link" style="color:#D4AF37; text-decoration:underline; cursor:pointer;" data-target="privacy-tab">KVKK Aydınlatma Metni</a> 
+                ve 
+                <a href="#" class="cookie-link" style="color:#D4AF37; text-decoration:underline; cursor:pointer;" data-target="consent-tab">Açık Rıza Metni</a>'ni inceleyebilirsiniz.
+            </p>
             <div style="display: flex; gap: 15px; justify-content: center;">
                 <button id="btnReject" style="background:transparent; color:#aaa; border:1px solid #555; padding:8px 15px; cursor:pointer; border-radius: 4px;">Kapat</button>
-                <button id="btnAccept" style="background:#D4AF37; color:#000; border:none; padding:8px 20px; font-weight:bold; cursor:pointer; border-radius: 4px;">Anladım</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="kvkkModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" data-close="kvkkModal">&times;</span>
-            <h2>KVKK Aydınlatma Metni</h2>
-            <div class="text-content-box">
-                <p>Kişisel verileriniz yalnızca site güvenliği için işlenmektedir.</p>
+                <button id="btnAccept" style="background:#D4AF37; color:#000; border:none; padding:8px 20px; font-weight:bold; cursor:pointer; border-radius: 4px;">Kabul Et ve Devam Et</button>
             </div>
         </div>
     </div>
@@ -543,7 +615,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             
-            // --- 1. MENÜ VE TAB İŞLEMLERİ (ORİJİNAL KOD) ---
+            // --- 1. MENÜ VE TAB İŞLEMLERİ ---
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("menuOverlay");
             
@@ -579,27 +651,12 @@
 
             document.getElementById("mainLogo").addEventListener("click", function() { switchTab('home-tab'); });
 
+            // Footer Linkleri
             document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            // --- 2. MODAL İŞLEMLERİ ---
-            document.querySelectorAll('[data-modal]').forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.getElementById(this.getAttribute('data-modal')).style.display = 'block';
-                });
-            });
-            document.querySelectorAll('[data-close]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.getElementById(this.getAttribute('data-close')).style.display = 'none';
-                });
-            });
-            window.addEventListener('click', function(event) {
-                if (event.target.classList.contains('modal')) event.target.style.display = 'none';
-            });
-
-            // --- 3. ÇEREZ (COOKIE) ---
+            // --- 2. ÇEREZ (COOKIE) İŞLEMLERİ ---
             const cookieBanner = document.getElementById("cookieBanner");
             if (!localStorage.getItem("cookieConsent")) cookieBanner.style.display = "block";
             
@@ -612,7 +669,16 @@
                 cookieBanner.style.display = "none";
             });
 
-            // --- 4. SPONSOR ÖZGEÇMİŞLERİ (YENİ EKLENDİ) ---
+            // Çerez Banner içindeki linklerin tıklanması
+            document.querySelectorAll('.cookie-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Banner'ı gizlemeden ilgili sekmeye git
+                    switchTab(this.getAttribute('data-target'));
+                });
+            });
+
+            // --- 3. SPONSOR ÖZGEÇMİŞLERİ ---
             const bioModal = document.getElementById("bioModal");
             const sponsorData = {
                 'ilko': {
@@ -640,7 +706,17 @@
                 });
             });
 
-            // --- 5. SAYAÇ SİSTEMİ (ONARILDI) ---
+            // Modal Kapatma
+            document.querySelectorAll('[data-close]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.getElementById(this.getAttribute('data-close')).style.display = 'none';
+                });
+            });
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) event.target.style.display = 'none';
+            });
+
+            // --- 4. SAYAÇ SİSTEMİ ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
             
             function updateCountdowns() {
@@ -658,7 +734,6 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Ana Sayaç Güncelleme
                 if(document.getElementById("days")) {
                     document.getElementById("days").innerText = days < 10 ? "0" + days : days;
                     document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
@@ -666,7 +741,6 @@
                     document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
                 }
                 
-                // Mini Sayaç Güncelleme (Etkinlikler Sayfasındaki)
                 if(document.getElementById("t-days")) {
                     document.getElementById("t-days").innerText = days < 10 ? "0" + days : days;
                     document.getElementById("t-hours").innerText = hours < 10 ? "0" + hours : hours;
@@ -675,9 +749,41 @@
                 }
             }
             
-            // Saniyelik döngü
             setInterval(updateCountdowns, 1000);
-            updateCountdowns(); // Sayfa açılır açılmaz bir kez çalıştır
+            updateCountdowns(); 
+
+            // --- 5. MÜZİK OYNATICI ---
+            const bgMusic = document.getElementById("bgMusic");
+            const musicBtn = document.getElementById("musicBtn");
+            let isPlaying = false;
+
+            bgMusic.volume = 0.5; 
+            
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    isPlaying = true;
+                    musicBtn.innerHTML = "||"; 
+                    musicBtn.classList.add('music-anim');
+                }).catch(error => {
+                    isPlaying = false;
+                    musicBtn.innerHTML = "&#9835;"; 
+                });
+            }
+
+            musicBtn.addEventListener("click", function() {
+                if(isPlaying) {
+                    bgMusic.pause();
+                    musicBtn.innerHTML = "&#9835;";
+                    musicBtn.classList.remove('music-anim');
+                    isPlaying = false;
+                } else {
+                    bgMusic.play();
+                    musicBtn.innerHTML = "||";
+                    musicBtn.classList.add('music-anim');
+                    isPlaying = true;
+                }
+            });
         });
     </script>
 </body>
