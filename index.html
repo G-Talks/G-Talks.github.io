@@ -21,7 +21,7 @@
             align-items: center;
             min-height: 100vh;
             line-height: 1.6;
-            padding-top: 110px; /* Navbar arttığı için biraz daha boşluk */
+            padding-top: 110px;
         }
 
         /* --- 2. ÜST MENÜ (NAVBAR) --- */
@@ -203,40 +203,6 @@
             font-size: 1.1rem;
         }
 
-        /* --- FORM STİLİ (CHECKBOX İÇİN) --- */
-        .form-group {
-            margin-top: 20px;
-            text-align: left;
-            background: #111;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #333;
-        }
-        .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.85rem;
-            color: #aaa;
-            cursor: pointer;
-        }
-        .checkbox-label input {
-            margin-top: 4px;
-            accent-color: #D4AF37; /* Altın rengi checkbox */
-        }
-        .submit-btn {
-            margin-top: 15px;
-            width: 100%;
-            padding: 10px;
-            background-color: #D4AF37;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        .submit-btn:hover { background-color: #f1c40f; }
-
         /* --- SPONSOR GÖRSELLERİ --- */
         .sponsor-grid {
             display: flex;
@@ -283,29 +249,31 @@
         .modal {
             display: none; 
             position: fixed; 
-            z-index: 2000; 
+            z-index: 20000; /* Çerez banner'ından (9999) daha yüksek olsun ki üstte açılsın */
             left: 0;
             top: 0;
             width: 100%; 
             height: 100%; 
             overflow: auto; 
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.9);
             backdrop-filter: blur(5px);
             animation: fadeIn 0.3s;
         }
 
         .modal-content {
             background-color: #111;
-            margin: 10% auto; 
+            margin: 5% auto; 
             padding: 30px;
             border: 2px solid #D4AF37;
             width: 80%;
-            max-width: 600px;
+            max-width: 700px;
             border-radius: 10px;
             color: #ecf0f1;
             position: relative;
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
             text-align: left;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .close-btn {
@@ -314,6 +282,15 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+        }
+        
+        /* Modal içi linkler */
+        .modal-link {
+            color: #D4AF37;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0 5px;
         }
 
         @media (max-width: 600px) {
@@ -359,24 +336,9 @@
         </div>
 
         <div class="contact-home">
-            <h3>Bize Ulaşın & Kayıt</h3>
+            <h3>Bize Ulaşın</h3>
             <p>Resmi İletişim:</p>
-            <a href="mailto:info@gtalks.org">info@gtalks.org</a>
-            <a href="mailto:gitalks.official@gmail.com" style="font-size:0.9rem; color:#888;">gitalks.official@gmail.com</a>
-            
-            <div class="form-group">
-                <p style="margin:0 0 10px 0; color:#D4AF37; font-weight:bold;">Bülten Aboneliği</p>
-                <input type="email" placeholder="E-posta adresiniz" style="width:90%; padding:8px; margin-bottom:10px; background:#222; border:1px solid #444; color:#fff;">
-                
-                <label class="checkbox-label">
-                    <input type="checkbox" required>
-                    <span>
-                        KVKK Aydınlatma Metni’ni okudum, kişisel verilerimin işlenmesine açık rıza veriyorum.
-                    </span>
-                </label>
-                <button class="submit-btn">KAYDOL</button>
-            </div>
-
+            <a href="mailto:gitalks.official@gmail.com" style="font-size:1.1rem; color:#D4AF37;">gitalks.official@gmail.com</a>
         </div>
     </div>
 
@@ -467,15 +429,19 @@
     background:rgba(10, 10, 10, 0.98); border-top:2px solid #D4AF37;
     color:#ccc; padding:15px; z-index:9999; display:none; font-size:0.9rem;
     box-shadow: 0 -5px 20px rgba(0,0,0,0.5); box-sizing: border-box;">
-        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px;">
             <div style="text-align: center;">
                 <strong style="color:#D4AF37; font-size: 1.1rem;">KVKK & Çerez Bilgilendirmesi</strong><br>
-                Bu sitede zorunlu çerezler kullanılmaktadır. Analitik çerezler yalnızca onayınızla aktif olur.
-                <a href="javascript:void(0)" onclick="openKvkkModal()" style="color:#D4AF37; text-decoration: underline;">Detaylı Bilgi</a>
+                Bu sitede zorunlu çerezler kullanılmaktadır. Sitemizi kullanmaya devam etmeden önce aşağıdaki metinleri inceleyebilirsiniz:
+                <br><br>
+                <a href="javascript:void(0)" onclick="openKvkkModal()" class="modal-link">📄 KVKK Aydınlatma Metni</a>
+                <span style="color:#555;">|</span>
+                <a href="javascript:void(0)" onclick="openConsentModal()" class="modal-link">📄 Açık Rıza Metni</a>
             </div>
+            
             <div style="display: flex; gap: 10px;">
                 <button onclick="rejectCookies()" style="background:transparent; color:#e74c3c; border:1px solid #e74c3c; padding:8px 20px; cursor:pointer; border-radius: 4px;">Reddet</button>
-                <button onclick="acceptCookies()" style="background:#D4AF37; color:#000; border:none; padding:8px 25px; font-weight:bold; cursor:pointer; border-radius: 4px;">Kabul Et</button>
+                <button onclick="acceptCookies()" style="background:#D4AF37; color:#000; border:none; padding:8px 25px; font-weight:bold; cursor:pointer; border-radius: 4px;">Okudum, Kabul Ediyorum</button>
             </div>
         </div>
     </div>
@@ -486,8 +452,36 @@
             <h2 class="modal-title">KVKK Aydınlatma Metni</h2>
             <div class="kvkk-modal-text">
                 <p>G-Talks olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında kişisel verilerinizi işlemekteyiz.</p>
-                <p>Veriler yalnızca hukuki yükümlülükler çerçevesinde saklanır.</p>
-                <p>İletişim: gitalks.official@gmail.com</p>
+                <p>Verileriniz, etkinlik süreçlerinin yürütülmesi ve güvenliğin sağlanması amacıyla yalnızca hukuki yükümlülükler çerçevesinde saklanır.</p>
+                
+                <h3>Toplanan Veriler</h3>
+                <ul>
+                    <li>IP adresi ve site kullanım bilgileri (Log kayıtları)</li>
+                    <li>Varsa iletişim formundan iletilen bilgiler</li>
+                </ul>
+                
+                <h3>Haklarınız</h3>
+                <p>Verilerinizin silinmesini veya düzeltilmesini talep etme hakkına sahipsiniz.</p>
+                <p>İletişim: <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="consentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeConsentModal()">&times;</span>
+            <h2 class="modal-title">Açık Rıza Metni</h2>
+            <div class="kvkk-modal-text">
+                <p>
+                    6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında;
+                    G-Talks tarafından, kişisel verilerimin etkinlik süreçleri,
+                    iletişim faaliyetleri ve bilgilendirme amacıyla işlenmesine
+                    <strong style="color:#D4AF37;">özgür irademle açık rıza verdiğimi</strong> kabul ederim.
+                </p>
+                <p>
+                    Bu rıza, zorunlu olmayıp dilediğim zaman geri alınabilir.
+                    Geri alma taleplerimi <strong style="color:#D4AF37;">gitalks.official@gmail.com</strong> adresi üzerinden iletebilirim.
+                </p>
             </div>
         </div>
     </div>
@@ -541,9 +535,15 @@
         }
 
         // --- 3. MODAL YÖNETİMİ ---
+        // KVKK Modalı
         function openKvkkModal() { document.getElementById("kvkkModal").style.display = "block"; }
         function closeKvkkModal() { document.getElementById("kvkkModal").style.display = "none"; }
         
+        // Açık Rıza Modalı
+        function openConsentModal() { document.getElementById("consentModal").style.display = "block"; }
+        function closeConsentModal() { document.getElementById("consentModal").style.display = "none"; }
+
+        // Sponsor Modalı
         function openBio(key) {
             const data = {
                 'uludag': {title: 'Uludağ İçecek', text: 'G-Talks ana içecek sponsoru.'},
@@ -558,6 +558,7 @@
         }
         function closeBio() { document.getElementById("bioModal").style.display = "none"; }
 
+        // Modalların dışına tıklayınca kapatma
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
