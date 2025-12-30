@@ -247,6 +247,30 @@
             #ai-chat-interface { width: 90vw; height: 65vh; right: 5vw; bottom: 100px; }
             #gitalks-ai-container { right: 20px; bottom: 20px; }
         }
+
+        /* --- MOBİL DÜZELTME KODU (BURASI EKLENDİ) --- */
+        @media (max-width: 600px) {
+            .countdown-container {
+                gap: 10px; /* Mobilde boşluğu azalt */
+                width: 100%;
+                padding: 0 10px; /* Kenarlardan boşluk */
+            }
+            .time-box {
+                width: auto;
+                min-width: auto;
+                flex: 1; /* Kutuları eşit dağıt */
+                padding: 15px 5px; /* İç boşluğu küçült */
+            }
+            .time-box span {
+                font-size: 1.5rem; /* Yazı boyutunu küçült */
+            }
+            .time-box label {
+                font-size: 0.6rem;
+            }
+            .info-box {
+                padding: 30px 20px; /* Mobilde info kutusunu da daralt */
+            }
+        }
     </style>
 </head>
 <body>
