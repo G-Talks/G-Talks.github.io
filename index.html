@@ -106,11 +106,32 @@
             background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
             border-left: 3px solid var(--gold-primary);
         }
+        
+        /* GÜNCELLENEN KAPATMA BUTONU STİLİ (FIXED) */
         .sidebar .closebtn {
-            position: absolute; top: 25px; right: 25px; font-size: 35px; border: none; background: none;
-            color: var(--gold-primary); opacity: 0.8; transition: 0.3s; cursor: pointer; z-index: 2001;
+            position: absolute; 
+            top: 20px; 
+            right: 25px; 
+            font-size: 45px; /* Daha büyük */
+            border: none; 
+            background: transparent;
+            color: var(--gold-primary); 
+            opacity: 1; 
+            transition: 0.3s; 
+            cursor: pointer; 
+            z-index: 2005; /* Sidebar'dan daha yüksek katman */
+            width: 50px; 
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
         }
-        .sidebar .closebtn:hover { opacity: 1; transform: rotate(90deg); text-shadow: 0 0 15px var(--gold-primary); }
+        .sidebar .closebtn:hover { 
+            opacity: 1; 
+            transform: rotate(90deg); 
+            text-shadow: 0 0 15px var(--gold-primary); 
+        }
 
         #menuOverlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -529,35 +550,88 @@
     <script>
         // --- GITALKS YEREL YAPAY ZEKA MOTORU (NO-API) ---
         
-        // 1. EĞİTİM VERİ SETİ (BİLGİ BANKASI)
+        // 1. GENİŞLETİLMİŞ EĞİTİM VERİ SETİ (BİLGİ BANKASI V2)
         const knowledgeBase = [
+            // --- SELAMLAŞMA & HAL HATIR ---
             {
-                keywords: ["merhaba", "selam", "hi", "hey", "naber"],
-                response: "Merhaba! 👋 Ben GıTalks asistanıyım. Zirve tarihi, konumu, ulaşım veya konular hakkında bana soru sorabilirsin."
+                keywords: ["merhaba", "selam", "hi", "hey", "naber", "günaydın", "iyi akşamlar"],
+                response: "Merhaba! 👋 Ben GıTalks asistanıyım. Enerjim yerinde! 🚀 Zirve hakkında merak ettiğin her şeyi bana sorabilirsin."
             },
             {
-                keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim"],
-                response: "📅 GıTalks Global Teknoloji Zirvesi, **16 Şubat 2026** tarihinde gerçekleşecek. Kapılar sabah saat **09:00'da** açılıyor."
+                keywords: ["nasılsın", "iyi misin", "nasıl gidiyor"],
+                response: "Ben bir yapay zekayım ama kodlarım tıkırında çalışıyor! 😄 Zirve için hazırlık yapıyorum. Sen nasılsın?"
             },
             {
-                keywords: ["nerede", "konum", "yer", "adres", "lokasyon", "nasıl gidilir", "ulaşım", "konya"],
-                response: "📍 Etkinliğimiz **Konya Gıda ve Tarım Üniversitesi (KGTÜ) Konferans Salonu'nda** düzenlenecek. Konya merkezden toplu taşıma veya özel araçla kolayca ulaşabilirsin."
+                keywords: ["seni kim", "kim yaptı", "geliştirici", "kodladı", "sahibin"],
+                response: "🤖 Ben **GıTalks Yazılım Ekibi** tarafından, katılımcılara yardımcı olmak için özel olarak tasarlandım. API kullanmam, tamamen yerel çalışırım!"
+            },
+
+            // --- TARİH & KONUM ---
+            {
+                keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim", "hangi gün"],
+                response: "📅 Not al: **16 Şubat 2026, Pazartesi**. Kapılar sabah **09:00'da** açılıyor, ilk oturum 09:30'da başlıyor. Sakın geç kalma!"
             },
             {
-                keywords: ["kim", "konuşmacı", "konuk", "davetli", "katılımcı"],
-                response: "🎙️ Ana konuklarımız ve konuşmacı listemiz şu an **'Yakında Açıklanacak'** statüsündedir. Sektörün öncü isimleriyle görüşmelerimiz sürüyor, takipte kal!"
+                keywords: ["nerede", "konum", "yer", "adres", "lokasyon", "hangi salon"],
+                response: "📍 Zirve, **Konya Gıda ve Tarım Üniversitesi (KGTÜ)** Ana Konferans Salonu'nda gerçekleşecek. Meram, Melikşah Mahallesi'nde."
+            },
+
+            // --- ULAŞIM & OTOPARK (KONYA ÖZEL) ---
+            {
+                keywords: ["nasıl gidilir", "ulaşım", "otobüs", "tramvay", "dolmuş", "vasıta"],
+                response: "🚌 **Ulaşım Çok Kolay:**\n🚊 **Tramvay:** Alaaddin-Adliye hattını kullanıp 'Kültürpark' veya 'Zafer' durağında inebilirsin, oradan otobüs aktarması yapabilirsin.\n🚌 **Otobüs:** 1, 2, 4 numaralı hatlar üniversitenin çok yakınından geçer."
             },
             {
-                keywords: ["ücret", "bilet", "fiyat", "para", "kayıt", "başvuru"],
-                response: "🎫 Etkinlik katılım detayları ve kayıt süreçleri çok yakında web sitemiz ve sosyal medya hesaplarımızdan duyurulacaktır."
+                keywords: ["otopark", "araba", "park", "araç"],
+                response: "🚗 Evet, üniversite kampüsü içerisinde ve çevresinde katılımcılar için ayrılmış **ücretsiz otopark** alanlarımız mevcut."
+            },
+
+            // --- KATILIM & BELGE ---
+            {
+                keywords: ["sertifika", "belge", "katılım belgesi", "cv"],
+                response: "🎓 Evet! Zirve sonunda tüm oturumlara katılanlara, isme özel, QR kodlu ve **dijital onaylı Katılım Sertifikası** (e-Sertifika) gönderilecektir. CV'in için harika bir detay! ✨"
             },
             {
-                keywords: ["konu", "içerik", "tema", "ne hakkında", "teknoloji", "tarım"],
-                response: "GıTalks 2026'nın ana temaları şunlardır:\n🔹 **Teknoloji:** Yapay Zeka ve Dijital Dönüşüm\n🔹 **Tarım:** Sürdürülebilir Tarım Teknolojileri\n🔹 **Akademi:** Bilimsel Araştırmalar\n🔹 **Sosyal Etki:** Toplumsal Fayda Projeleri"
+                keywords: ["ücret", "bilet", "fiyat", "para", "kaç tl", "paralı mı"],
+                response: "🎫 GıTalks 2026, öğrencilere ve akademisyenlere **tamamen ÜCRETSİZDİR**. Ancak kontenjan sınırlı olduğu için kayıt yaptırmak zorunludur."
             },
             {
-                keywords: ["sponsor", "destek", "marka"],
-                response: "🤝 Sponsorluk görüşmelerimiz devam etmektedir. Vizyoner markalar çok yakında 'Sponsorlar' sekmesinde yerini alacak."
+                keywords: ["kayıt", "başvuru", "form", "link"],
+                response: "📝 Kayıtlar çok yakında bu web sitesi üzerinden açılacak. 'Bilet Al' butonu aktif olduğunda kaçırmamak için bizi takip et!"
+            },
+            {
+                keywords: ["online", "uzaktan", "yayın", "canlı", "zoom", "youtube"],
+                response: "🎥 Ana salon kapasitesi dolduğunda veya şehir dışından katılmak isteyenler için **YouTube üzerinden canlı yayın** yapılması planlanıyor."
+            },
+
+            // --- İÇERİK & PROGRAM ---
+            {
+                keywords: ["konuşmacı", "konuk", "kimler var", "davetli"],
+                response: "🎙️ Bu sene çıtayı yükseltiyoruz! Tarım teknolojileri (AgriTech) devleri ve Yapay Zeka uzmanları bizimle olacak. İsimler **gizlilik anlaşması gereği** lansmanda açıklanacak. 🤫"
+            },
+            {
+                keywords: ["konu", "içerik", "tema", "ne anlatılacak"],
+                response: "🧠 **Ana Başlıklar:**\n1. Tarımda Yapay Zeka ve Drone Teknolojileri\n2. Sürdürülebilir Gıda Ekosistemi\n3. Girişimcilik ve Start-up Dünyası\n4. Sosyal Sorumluluk Projeleri"
+            },
+
+            // --- YEMEK & DİĞER ---
+            {
+                keywords: ["yemek", "ikram", "kahve", "çay", "su", "öğle arası", "açlık"],
+                response: "☕ Endişelenme, aç kalmayacaksın! :) Aralarda **kahve/çay ve atıştırmalık** ikramlarımız olacak. Öğle arası için kampüs yemekhanesi ve kafeterya kullanıma açık."
+            },
+            {
+                keywords: ["wifi", "internet", "bağlantı"],
+                response: "📶 Etkinlik alanında tüm misafirlerimiz için **ücretsiz GıTalks_Guest** Wi-Fi ağı açık olacaktır. Şifre etkinlik günü panolarda yazacak."
+            },
+            
+            // --- GÜVENLİK & YASAL ---
+            {
+                keywords: ["kvkk", "gizlilik", "veri", "çerez"],
+                response: "🔒 Verilerin güvende. Bu site statik bir yapıda (GitHub Pages) çalışır ve arka planda kişisel verini veritabanına kaydetmez. Sadece tarayıcı bazlı çalışıyoruz."
+            },
+            {
+                keywords: ["sponsor", "destek", "reklam"],
+                response: "🤝 Vizyoner markalarla görüşmelerimiz sürüyor. Sponsorluk dosyası için lütfen **gitalks.official@gmail.com** adresine mail atın."
             },
             {
                 keywords: ["iletişim", "mail", "eposta", "bize ulaş", "telefon"],
@@ -567,9 +641,15 @@
                 keywords: ["vizyon", "misyon", "amaç", "nedir"],
                 response: "🚀 **GıTalks;** teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, üniversite öğrencileri tarafından yürütülen bağımsız bir platformdur."
             },
+            
+            // --- MİZAH & HATA YAKALAMA ---
             {
-                keywords: ["kvkk", "gizlilik", "veri", "çerez", "güvenlik"],
-                response: "🔒 Sitemiz GitHub Pages altyapısını kullanır. Herhangi bir kişisel veri kaydı tutmuyoruz (form, üyelik yok). Sadece teknik çerezler çalışır."
+                keywords: ["mal", "aptal", "gerizekalı", "salak"],
+                response: "🚫 Lütfen nazik olalım. Ben sadece yardımcı olmaya çalışan bir kod parçasıyım. 😔"
+            },
+            {
+                keywords: ["teşekkür", "sağ ol", "eyvallah", "süper", "harika"],
+                response: "Rica ederim! 🌟 Zirvede görüşmek üzere! Başka sorun var mı?"
             }
         ];
 
@@ -645,8 +725,20 @@
                 overlay.style.display = "block";
             });
 
-            function closeNav() { sidebar.style.width = "0"; overlay.style.display = "none"; }
-            document.getElementById("closeNavBtn").addEventListener("click", closeNav);
+            function closeNav() { 
+                sidebar.style.width = "0"; 
+                overlay.style.display = "none"; 
+            }
+            
+            // Güncellenmiş "X" Butonu Kapatma Mantığı
+            const closeBtn = document.getElementById("closeNavBtn");
+            if(closeBtn) {
+                closeBtn.onclick = function(e) {
+                    e.preventDefault();
+                    closeNav();
+                };
+            }
+            
             overlay.addEventListener("click", closeNav);
 
             const navLinks = document.querySelectorAll('.nav-link');
