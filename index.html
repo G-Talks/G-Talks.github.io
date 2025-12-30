@@ -42,7 +42,7 @@
 
         * { box-sizing: border-box; }
 
-        /* Arka Plan Noise */
+        /* Arka Plan Dokusu (Noise) */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.04;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -60,7 +60,7 @@
             line-height: 1.6; padding-top: 80px; overflow-x: hidden;
         }
 
-        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span {
+        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title {
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -213,7 +213,7 @@
         .text-content-box strong { color: #fff; }
         .text-content-box h3 { color: var(--gold-primary); font-size: 1.3rem; margin-top: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         
-        /* --- AI STYLES (Entegre Edildi) --- */
+        /* --- AI STYLES --- */
         #gitalks-ai-container { position: fixed; bottom: 30px; right: 30px; z-index: 20000; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: flex-end; }
         
         #ai-btn-trigger {
@@ -432,8 +432,45 @@
         <h2>Gizlilik Politikası ve KVKK</h2>
         <div class="info-box text-content-box">
             <p>Bu internet sitesi, GıTalks tarafından yürütülmekte olup GitHub Pages altyapısı kullanılarak yayınlanmaktadır. Siteyi ziyaret eden kullanıcıların kişisel verileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ilgili mevzuat kapsamında işlenmektedir.</p>
+            
             <h3>1. Veri Sorumlusu</h3>
             <p>KVKK uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla GıTalks Organizasyonu tarafından işlenmektedir.</p>
+
+            <h3>2. GitHub Altyapısı ve Veri İşleme</h3>
+            <p>GıTalks internet sitesi, GitHub Pages üzerinden barındırılmaktadır. Siteye erişim sırasında;</p>
+            <ul>
+                <li>IP adresi,</li>
+                <li>Tarayıcı ve cihaz bilgileri,</li>
+                <li>Ziyaret tarihi ve saati,</li>
+                <li>Teknik kullanım ve erişim kayıtları</li>
+            </ul>
+            <p>gibi teknik veriler, GitHub’ın sunucu ve güvenlik altyapısı kapsamında otomatik olarak işlenebilmektedir. GıTalks, ziyaretçilerden doğrudan kişisel veri toplamaz, form, üyelik veya kayıt sistemi kullanmaz.</p>
+
+            <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
+            <p>Kişisel veriler;</p>
+            <ul>
+                <li>Web sitesinin teknik işleyişinin sağlanması,</li>
+                <li>Bilgi güvenliğinin temini,</li>
+                <li>Sistem performansının izlenmesi,</li>
+                <li>Yetkisiz erişimlerin önlenmesi</li>
+            </ul>
+            <p>amaçlarıyla sınırlı olarak işlenmektedir.</p>
+
+            <h3>4. Hukuki Sebep</h3>
+            <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca; "Kanunlarda açıkça öngörülmesi", "Veri sorumlusunun hukuki yükümlülüklerini yerine getirmesi" ve "Meşru menfaatler" hukuki sebeplerine dayanılarak işlenmektedir. Bu kapsamda ayrıca açık rızanız aranmamaktadır.</p>
+
+            <h3>5. Kişisel Verilerin Aktarılması</h3>
+            <p>Kişisel verileriniz, doğrudan üçüncü kişilerle paylaşılmamakta olup; barındırma ve teknik altyapı hizmetleri kapsamında GitHub Inc. tarafından işlenebilir.</p>
+
+            <h3>6. Veri Güvenliği ve Saklama</h3>
+            <p>GıTalks, kişisel verileri ayrıca kendi sistemlerinde saklamaz. Veriler, GitHub altyapısında teknik süreler boyunca tutulur ve yetkisiz erişime karşı korunur.</p>
+
+            <h3>7. Çerez Kullanımı</h3>
+            <p>Bu sitede yalnızca sitenin çalışması için gerekli olan zorunlu teknik çerezler kullanılabilir. Kullanıcılar tarayıcı ayarları üzerinden çerezleri kontrol edebilir.</p>
+
+            <h3>8. KVKK Kapsamındaki Haklar</h3>
+            <p>KVKK’nın 11. maddesi kapsamında kullanıcılar; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme ve işlenme amacını öğrenme haklarına sahiptir.</p>
+
             <h3>9. İletişim</h3>
             <p>KVKK ve gizlilik uygulamalarına ilişkin her türlü talep için: <strong style="color:var(--gold-primary);">gitalks.official@gmail.com</strong></p>
         </div>
@@ -442,7 +479,9 @@
     <div id="consent-tab" class="tab-content">
         <h2>Açık Rıza Metni</h2>
         <div class="info-box text-content-box">
-            <p>GıTalks tarafından yürütülen ve GitHub Pages altyapısı üzerinden yayınlanan internet sitesini ziyaret etmem kapsamında... bilgilendirildim.</p>
+            <p>GıTalks tarafından yürütülen ve GitHub Pages altyapısı üzerinden yayınlanan internet sitesini ziyaret etmem kapsamında; siteye erişim sırasında oluşan IP adresi, tarayıcı ve cihaz bilgileri ile teknik kullanım verilerinin, yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini ve sistem performansının izlenmesi amaçlarıyla işlenebileceği konusunda bilgilendirildim.</p>
+            <p>Söz konusu kişisel verilerin, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun 5. maddesi uyarınca, veri sorumlusunun meşru menfaatleri kapsamında işlendiğini; bu nedenle ayrıca açık rızamın aranmadığını anladım.</p>
+            <p>Bu bilgilendirme doğrultusunda, kişisel verilerimin belirtilen amaçlarla işlenmesini kabul ediyorum.</p>
         </div>
     </div>
 
@@ -461,7 +500,10 @@
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <strong style="color:var(--gold-primary); font-size: 1.1rem; letter-spacing: 1px;">ÇEREZ VE GİZLİLİK BİLGİLENDİRMESİ</strong><br>
             <p style="margin: 15px 0; color:#ddd; font-size:0.9rem; line-height: 1.6;">
-                Sitemizde KVKK ve Çerez Politikası uyarınca işlem yapılmaktadır.
+                Sitemizde KVKK ve Çerez Politikası uyarınca işlem yapılmaktadır. Detaylar için 
+                <a href="#" class="cookie-link" style="color:var(--gold-light); text-decoration:underline; cursor:pointer;" data-target="privacy-tab">KVKK Aydınlatma Metni</a> 
+                ve 
+                <a href="#" class="cookie-link" style="color:var(--gold-light); text-decoration:underline; cursor:pointer;" data-target="consent-tab">Açık Rıza Metni</a>'ni inceleyebilirsiniz.
             </p>
             <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
                 <button id="btnReject" style="background:transparent; color:#aaa; border:1px solid #444; padding:10px 20px; cursor:pointer; border-radius: 6px; transition:0.3s;">Kapat</button>
@@ -501,10 +543,12 @@
             
             BİLGİ BANKASI:
             - Etkinlik Adı: GıTalks 2026 Global Teknoloji Zirvesi.
+            - Slogan: "Geleceği Şekillendiren Sesler".
             - Tarih: 16 Şubat 2026. Saat 09:00'da kapılar açılır.
             - Konum: KGTÜ (Konya Gıda ve Tarım Üniversitesi) Konferans Salonu.
             - Ana Temalar: Teknoloji, Tarım, Akademi ve Sosyal Etki.
-            - Vizyon: Teknoloji ve bilginin toplumsal faydaya dönüşmesini desteklemek.
+            - Vizyon: Teknoloji ve bilginin toplumsal faydaya dönüşmesini desteklemek, gençler ve sektörü buluşturmak.
+            - Web Sitesi Altyapısı: GitHub Pages (Statik site), KVKK uyumlu, log tutmaz.
             
             SPONSORLAR HAKKINDA BİLGİ:
             - Şu an için sponsorlar açıklanmadı. "Çok Yakında Katılacaklar".
