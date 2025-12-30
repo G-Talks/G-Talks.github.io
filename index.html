@@ -43,7 +43,7 @@
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
-        /* Arka Plan Dokusu (Noise) */
+        /* Arka Plan Dokusu */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.04;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -53,7 +53,6 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary)); border-radius: 10px; border: 2px solid #050505; }
-        /* Firefox Scrollbar */
         * { scrollbar-width: thin; scrollbar-color: var(--gold-dark) #050505; }
 
         body {
@@ -107,31 +106,31 @@
             border-left: 3px solid var(--gold-primary);
         }
         
-        /* --- DÜZELTİLMİŞ X BUTONU --- */
+        /* --- DÜZELTİLMİŞ X BUTONU (KESİN ÇÖZÜM) --- */
         .sidebar .closebtn {
             position: absolute; 
-            top: 20px; 
-            right: 25px; 
-            font-size: 45px; 
+            top: 15px; 
+            right: 20px; 
+            font-size: 50px; 
             border: none; 
             background: transparent;
             color: var(--gold-primary); 
             opacity: 1; 
             transition: 0.3s; 
-            cursor: pointer !important; /* Önemli: İmleci zorla */
-            z-index: 2147483647; /* En üst katman */
-            width: 50px; 
-            height: 50px;
+            cursor: pointer !important;
+            z-index: 2147483647; /* En yüksek Z-index */
+            width: 60px; 
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 1;
-            pointer-events: auto; /* Tıklamayı zorla */
+            padding-bottom: 5px;
         }
         .sidebar .closebtn:hover { 
             opacity: 1; 
             transform: rotate(90deg); 
-            text-shadow: 0 0 15px var(--gold-primary); 
+            text-shadow: 0 0 20px var(--gold-primary); 
         }
 
         #menuOverlay {
@@ -227,7 +226,7 @@
         .contact-home a { color: var(--gold-primary); text-decoration: none; font-weight: bold; font-size: 1.4rem; transition: 0.3s; }
         .contact-home a:hover { color: #fff; text-shadow: 0 0 20px var(--gold-primary); }
 
-        /* --- YENİLENMİŞ SPONSOR ALANI (COMING SOON) --- */
+        /* --- YENİLENMİŞ SPONSOR ALANI --- */
         .coming-soon-box {
             background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 12px; padding: 60px 40px; text-align: center;
             max-width: 600px; margin: 40px auto; position: relative; overflow: hidden; backdrop-filter: blur(10px);
@@ -292,7 +291,7 @@
     <div id="menuOverlay"></div>
 
     <div id="mySidebar" class="sidebar">
-        <button class="closebtn" id="closeNavBtn">&times;</button>
+        <button class="closebtn" id="closeNavBtn" onclick="closeNav()">&times;</button>
         
         <a href="#" class="nav-link active" data-tab="home-tab">Anasayfa</a>
         <a href="#" class="nav-link" data-tab="conferences-tab">Etkinlikler</a>
@@ -549,11 +548,18 @@
     </div>
 
     <script>
-        // --- GITALKS YEREL YAPAY ZEKA MOTORU (NO-API) ---
+        // --- GLOBAL FONKSİYONLAR (GARANTİ ÇALIŞMA) ---
         
-        // 1. GENİŞLETİLMİŞ EĞİTİM VERİ SETİ (BİLGİ BANKASI V2)
+        // Bu fonksiyon artık global, HTML'den direkt çağrılabilir.
+        function closeNav() { 
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("menuOverlay");
+            if(sidebar) sidebar.style.width = "0"; 
+            if(overlay) overlay.style.display = "none"; 
+        }
+
+        // --- GITALKS YEREL YAPAY ZEKA MOTORU (NO-API) ---
         const knowledgeBase = [
-            // --- SELAMLAŞMA & HAL HATIR ---
             {
                 keywords: ["merhaba", "selam", "hi", "hey", "naber", "günaydın", "iyi akşamlar"],
                 response: "Merhaba! 👋 Ben GıTalks asistanıyım. Enerjim yerinde! 🚀 Zirve hakkında merak ettiğin her şeyi bana sorabilirsin."
@@ -566,8 +572,6 @@
                 keywords: ["seni kim", "kim yaptı", "geliştirici", "kodladı", "sahibin"],
                 response: "🤖 Ben **GıTalks Yazılım Ekibi** tarafından, katılımcılara yardımcı olmak için özel olarak tasarlandım. API kullanmam, tamamen yerel çalışırım!"
             },
-
-            // --- TARİH & KONUM ---
             {
                 keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim", "hangi gün"],
                 response: "📅 Not al: **16 Şubat 2026, Pazartesi**. Kapılar sabah **09:00'da** açılıyor, ilk oturum 09:30'da başlıyor. Sakın geç kalma!"
@@ -576,8 +580,6 @@
                 keywords: ["nerede", "konum", "yer", "adres", "lokasyon", "hangi salon"],
                 response: "📍 Zirve, **Konya Gıda ve Tarım Üniversitesi (KGTÜ)** Ana Konferans Salonu'nda gerçekleşecek. Meram, Melikşah Mahallesi'nde."
             },
-
-            // --- ULAŞIM & OTOPARK (KONYA ÖZEL) ---
             {
                 keywords: ["nasıl gidilir", "ulaşım", "otobüs", "tramvay", "dolmuş", "vasıta"],
                 response: "🚌 **Ulaşım Çok Kolay:**\n🚊 **Tramvay:** Alaaddin-Adliye hattını kullanıp 'Kültürpark' veya 'Zafer' durağında inebilirsin, oradan otobüs aktarması yapabilirsin.\n🚌 **Otobüs:** 1, 2, 4 numaralı hatlar üniversitenin çok yakınından geçer."
@@ -586,8 +588,6 @@
                 keywords: ["otopark", "araba", "park", "araç"],
                 response: "🚗 Evet, üniversite kampüsü içerisinde ve çevresinde katılımcılar için ayrılmış **ücretsiz otopark** alanlarımız mevcut."
             },
-
-            // --- KATILIM & BELGE ---
             {
                 keywords: ["sertifika", "belge", "katılım belgesi", "cv"],
                 response: "🎓 Evet! Zirve sonunda tüm oturumlara katılanlara, isme özel, QR kodlu ve **dijital onaylı Katılım Sertifikası** (e-Sertifika) gönderilecektir. CV'in için harika bir detay! ✨"
@@ -604,8 +604,6 @@
                 keywords: ["online", "uzaktan", "yayın", "canlı", "zoom", "youtube"],
                 response: "🎥 Ana salon kapasitesi dolduğunda veya şehir dışından katılmak isteyenler için **YouTube üzerinden canlı yayın** yapılması planlanıyor."
             },
-
-            // --- İÇERİK & PROGRAM ---
             {
                 keywords: ["konuşmacı", "konuk", "kimler var", "davetli"],
                 response: "🎙️ Bu sene çıtayı yükseltiyoruz! Tarım teknolojileri (AgriTech) devleri ve Yapay Zeka uzmanları bizimle olacak. İsimler **gizlilik anlaşması gereği** lansmanda açıklanacak. 🤫"
@@ -614,8 +612,6 @@
                 keywords: ["konu", "içerik", "tema", "ne anlatılacak"],
                 response: "🧠 **Ana Başlıklar:**\n1. Tarımda Yapay Zeka ve Drone Teknolojileri\n2. Sürdürülebilir Gıda Ekosistemi\n3. Girişimcilik ve Start-up Dünyası\n4. Sosyal Sorumluluk Projeleri"
             },
-
-            // --- YEMEK & DİĞER ---
             {
                 keywords: ["yemek", "ikram", "kahve", "çay", "su", "öğle arası", "açlık"],
                 response: "☕ Endişelenme, aç kalmayacaksın! :) Aralarda **kahve/çay ve atıştırmalık** ikramlarımız olacak. Öğle arası için kampüs yemekhanesi ve kafeterya kullanıma açık."
@@ -624,8 +620,6 @@
                 keywords: ["wifi", "internet", "bağlantı"],
                 response: "📶 Etkinlik alanında tüm misafirlerimiz için **ücretsiz GıTalks_Guest** Wi-Fi ağı açık olacaktır. Şifre etkinlik günü panolarda yazacak."
             },
-            
-            // --- GÜVENLİK & YASAL ---
             {
                 keywords: ["kvkk", "gizlilik", "veri", "çerez"],
                 response: "🔒 Verilerin güvende. Bu site statik bir yapıda (GitHub Pages) çalışır ve arka planda kişisel verini veritabanına kaydetmez. Sadece tarayıcı bazlı çalışıyoruz."
@@ -642,8 +636,6 @@
                 keywords: ["vizyon", "misyon", "amaç", "nedir"],
                 response: "🚀 **GıTalks;** teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, üniversite öğrencileri tarafından yürütülen bağımsız bir platformdur."
             },
-            
-            // --- MİZAH & HATA YAKALAMA ---
             {
                 keywords: ["mal", "aptal", "gerizekalı", "salak"],
                 response: "🚫 Lütfen nazik olalım. Ben sadece yardımcı olmaya çalışan bir kod parçasıyım. 😔"
@@ -654,7 +646,6 @@
             }
         ];
 
-        // 2. YEREL ZEKA FONKSİYONLARI
         function findAnswer(userText) {
             const cleanText = userText.toLowerCase();
             for (let item of knowledgeBase) {
@@ -714,33 +705,18 @@
             area.scrollTop = area.scrollHeight;
         }
 
-        // --- 3. SİTE GENEL JS (NAVBAR, TAB, COUNTDOWN) ---
+        // --- DOM LOAD EVENTS ---
         document.addEventListener("DOMContentLoaded", function () {
             
-            // Menü ve Tab İşlemleri
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("menuOverlay");
             
-            // SIDEBAR KAPATMA FONKSİYONU
-            function closeNav() { 
-                sidebar.style.width = "0"; 
-                overlay.style.display = "none"; 
-            }
-
             document.getElementById("openNavBtn").addEventListener("click", function() {
                 if(window.innerWidth <= 600) { sidebar.style.width = "85%"; } else { sidebar.style.width = "320px"; }
                 overlay.style.display = "block";
             });
 
-            // GÜNCELLENMİŞ X BUTONU DİNLEYİCİSİ (GARANTİ ÇÖZÜM)
-            const closeBtn = document.getElementById("closeNavBtn");
-            if(closeBtn) {
-                closeBtn.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    closeNav();
-                });
-            }
-            
+            // Overlay click closes nav (closeNav is now global)
             overlay.addEventListener("click", closeNav);
 
             const navLinks = document.querySelectorAll('.nav-link');
@@ -783,7 +759,7 @@
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            // Accordion Logic (Global)
+            // Accordion Logic
             const acc = document.getElementsByClassName("accordion-btn");
             for (let i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
@@ -793,7 +769,7 @@
                         panel.style.maxHeight = null;
                         panel.classList.remove('open');
                     } else {
-                        panel.style.maxHeight = (panel.scrollHeight + 60) + "px"; // +60 padding payı
+                        panel.style.maxHeight = (panel.scrollHeight + 60) + "px"; 
                         panel.classList.add('open');
                     }
                 });
