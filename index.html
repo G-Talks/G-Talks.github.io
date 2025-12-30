@@ -41,6 +41,7 @@
         }
 
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         /* Arka Plan Dokusu (Noise) */
         .noise-overlay {
@@ -48,16 +49,19 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        ::-webkit-scrollbar { width: 6px; }
+        /* Scrollbar Design */
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary)); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary)); border-radius: 10px; border: 2px solid #050505; }
+        /* Firefox Scrollbar */
+        * { scrollbar-width: thin; scrollbar-color: var(--gold-dark) #050505; }
 
         body {
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at center top, #1a1a1a 0%, #000000 80%);
             color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            line-height: 1.6; padding-top: 80px; overflow-x: hidden;
+            line-height: 1.7; padding-top: 80px; overflow-x: hidden;
         }
 
         h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title {
@@ -67,7 +71,7 @@
         /* --- NAVBAR --- */
         .navbar {
             position: fixed; top: 0; width: 100%; height: 80px;
-            background: rgba(3, 3, 3, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(3, 3, 3, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center;
             justify-content: space-between; padding: 0 40px; z-index: 1000; transition: all 0.3s ease;
         }
@@ -91,7 +95,7 @@
         .sidebar {
             height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0;
             background-color: #050505; overflow-x: hidden; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            padding-top: 100px; border-right: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 100px; border-right: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 10px 0 50px rgba(0,0,0,0.8);
         }
         .sidebar a {
             padding: 20px 40px; text-decoration: none; font-size: 1rem; color: var(--text-muted); display: block;
@@ -120,7 +124,7 @@
 
         /* --- TEXT STYLES --- */
         h1 { 
-            font-size: clamp(3.5rem, 9vw, 6rem); margin: 40px 0 10px 0; text-transform: uppercase; letter-spacing: -2px; font-weight: 900; line-height: 1;
+            font-size: clamp(3rem, 8vw, 6rem); margin: 40px 0 10px 0; text-transform: uppercase; letter-spacing: -2px; font-weight: 900; line-height: 1;
             background: linear-gradient(to right, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: liquidGold 6s linear infinite; filter: drop-shadow(0px 0px 20px rgba(212, 175, 55, 0.4));
@@ -138,11 +142,11 @@
 
         /* --- ACCORDION --- */
         .accordion-btn {
-            background: var(--glass-bg); backdrop-filter: blur(10px); color: var(--gold-light); cursor: pointer; padding: 25px; width: 100%; text-align: left;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); backdrop-filter: blur(10px); color: var(--gold-light); cursor: pointer; padding: 25px; width: 100%; text-align: left;
             border: 1px solid var(--glass-border); border-radius: 8px; outline: none; transition: all 0.4s ease; font-size: 1rem; font-weight: 600; margin-top: 20px;
             display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 1px;
         }
-        .accordion-btn:hover, .accordion-btn.active-acc { background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .accordion-btn:hover, .accordion-btn.active-acc { background: rgba(212, 175, 55, 0.08); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 5px 20px rgba(0,0,0,0.5); transform: translateY(-2px); }
         .accordion-btn span { font-size: 0.8rem; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .accordion-btn.active-acc span { transform: rotate(180deg); color: #fff; }
         .accordion-panel {
@@ -243,9 +247,19 @@
         #chat-send { background: #D4AF37; color: #000; border: none; border-radius: 8px; width: 45px; cursor: pointer; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
         #chat-send:hover { background: #fff; box-shadow: 0 0 15px #D4AF37; }
         
-        @media (max-width: 480px) {
-            #ai-chat-interface { width: 90vw; height: 65vh; right: 5vw; bottom: 100px; }
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .info-box { padding: 30px 20px; margin-top: 20px; }
+            .navbar { padding: 0 20px; }
+            h1 { font-size: 3rem; margin-top: 20px; }
+            .coming-soon-box { padding: 40px 20px; }
+            .countdown-container { gap: 10px; }
+            .time-box { width: 65px; padding: 15px 5px; }
+            .time-box span { font-size: 1.8rem; }
+            
+            #ai-chat-interface { width: 92vw; height: 70vh; right: 4vw; bottom: 90px; }
             #gitalks-ai-container { right: 20px; bottom: 20px; }
+            .sidebar { width: 85% !important; }
         }
     </style>
 </head>
@@ -429,59 +443,39 @@
     </div>
 
     <div id="privacy-tab" class="tab-content">
-        <h2>Gizlilik Politikası ve KVKK</h2>
-        <div class="info-box text-content-box">
-            <p>Bu internet sitesi, GıTalks tarafından yürütülmekte olup GitHub Pages altyapısı kullanılarak yayınlanmaktadır. Siteyi ziyaret eden kullanıcıların kişisel verileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ilgili mevzuat kapsamında işlenmektedir.</p>
+        <h2>Gizlilik ve Güvenlik</h2>
+        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
+            <p style="margin-bottom:20px;">GıTalks olarak verilerinize önem veriyoruz. Aşağıdaki başlıklara tıklayarak detaylı bilgilendirme metinlerini okuyabilirsiniz.</p>
             
-            <h3>1. Veri Sorumlusu</h3>
-            <p>KVKK uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla GıTalks Organizasyonu tarafından işlenmektedir.</p>
-
-            <h3>2. GitHub Altyapısı ve Veri İşleme</h3>
-            <p>GıTalks internet sitesi, GitHub Pages üzerinden barındırılmaktadır. Siteye erişim sırasında;</p>
-            <ul>
-                <li>IP adresi,</li>
-                <li>Tarayıcı ve cihaz bilgileri,</li>
-                <li>Ziyaret tarihi ve saati,</li>
-                <li>Teknik kullanım ve erişim kayıtları</li>
-            </ul>
-            <p>gibi teknik veriler, GitHub’ın sunucu ve güvenlik altyapısı kapsamında otomatik olarak işlenebilmektedir. GıTalks, ziyaretçilerden doğrudan kişisel veri toplamaz, form, üyelik veya kayıt sistemi kullanmaz.</p>
-
-            <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
-            <p>Kişisel veriler;</p>
-            <ul>
-                <li>Web sitesinin teknik işleyişinin sağlanması,</li>
-                <li>Bilgi güvenliğinin temini,</li>
-                <li>Sistem performansının izlenmesi,</li>
-                <li>Yetkisiz erişimlerin önlenmesi</li>
-            </ul>
-            <p>amaçlarıyla sınırlı olarak işlenmektedir.</p>
-
-            <h3>4. Hukuki Sebep</h3>
-            <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca; "Kanunlarda açıkça öngörülmesi", "Veri sorumlusunun hukuki yükümlülüklerini yerine getirmesi" ve "Meşru menfaatler" hukuki sebeplerine dayanılarak işlenmektedir. Bu kapsamda ayrıca açık rızanız aranmamaktadır.</p>
-
-            <h3>5. Kişisel Verilerin Aktarılması</h3>
-            <p>Kişisel verileriniz, doğrudan üçüncü kişilerle paylaşılmamakta olup; barındırma ve teknik altyapı hizmetleri kapsamında GitHub Inc. tarafından işlenebilir.</p>
-
-            <h3>6. Veri Güvenliği ve Saklama</h3>
-            <p>GıTalks, kişisel verileri ayrıca kendi sistemlerinde saklamaz. Veriler, GitHub altyapısında teknik süreler boyunca tutulur ve yetkisiz erişime karşı korunur.</p>
-
-            <h3>7. Çerez Kullanımı</h3>
-            <p>Bu sitede yalnızca sitenin çalışması için gerekli olan zorunlu teknik çerezler kullanılabilir. Kullanıcılar tarayıcı ayarları üzerinden çerezleri kontrol edebilir.</p>
-
-            <h3>8. KVKK Kapsamındaki Haklar</h3>
-            <p>KVKK’nın 11. maddesi kapsamında kullanıcılar; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme ve işlenme amacını öğrenme haklarına sahiptir.</p>
-
-            <h3>9. İletişim</h3>
-            <p>KVKK ve gizlilik uygulamalarına ilişkin her türlü talep için: <strong style="color:var(--gold-primary);">gitalks.official@gmail.com</strong></p>
+            <button class="accordion-btn">GİZLİLİK POLİTİKASI & KVKK <span>&#9660;</span></button>
+            <div class="accordion-panel">
+                <p>Bu internet sitesi, GıTalks tarafından yürütülmekte olup GitHub Pages altyapısı kullanılarak yayınlanmaktadır. Siteyi ziyaret eden kullanıcıların kişisel verileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ilgili mevzuat kapsamında işlenmektedir.</p>
+                
+                <h3>1. Veri Sorumlusu</h3>
+                <p>KVKK uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla GıTalks Organizasyonu tarafından işlenmektedir.</p>
+    
+                <h3>2. GitHub Altyapısı ve Veri İşleme</h3>
+                <p>GıTalks internet sitesi, GitHub Pages üzerinden barındırılmaktadır. Siteye erişim sırasında; IP adresi, tarayıcı ve cihaz bilgileri, ziyaret tarihi ve saati, teknik kullanım kayıtları gibi teknik veriler, GitHub’ın sunucu ve güvenlik altyapısı kapsamında otomatik olarak işlenebilmektedir. GıTalks, ziyaretçilerden doğrudan kişisel veri toplamaz, form, üyelik veya kayıt sistemi kullanmaz.</p>
+    
+                <h3>3. Hukuki Sebep ve Haklar</h3>
+                <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca; "Kanunlarda açıkça öngörülmesi", "Veri sorumlusunun hukuki yükümlülüklerini yerine getirmesi" ve "Meşru menfaatler" hukuki sebeplerine dayanılarak işlenmektedir. KVKK kapsamındaki haklarınız için bizimle iletişime geçebilirsiniz.</p>
+                
+                <p><strong>İletişim:</strong> gitalks.official@gmail.com</p>
+            </div>
         </div>
     </div>
 
     <div id="consent-tab" class="tab-content">
-        <h2>Açık Rıza Metni</h2>
-        <div class="info-box text-content-box">
-            <p>GıTalks tarafından yürütülen ve GitHub Pages altyapısı üzerinden yayınlanan internet sitesini ziyaret etmem kapsamında; siteye erişim sırasında oluşan IP adresi, tarayıcı ve cihaz bilgileri ile teknik kullanım verilerinin, yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini ve sistem performansının izlenmesi amaçlarıyla işlenebileceği konusunda bilgilendirildim.</p>
-            <p>Söz konusu kişisel verilerin, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun 5. maddesi uyarınca, veri sorumlusunun meşru menfaatleri kapsamında işlendiğini; bu nedenle ayrıca açık rızamın aranmadığını anladım.</p>
-            <p>Bu bilgilendirme doğrultusunda, kişisel verilerimin belirtilen amaçlarla işlenmesini kabul ediyorum.</p>
+        <h2>Rıza Beyanı</h2>
+        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
+            <p style="margin-bottom:20px;">Site kullanımı kapsamındaki açık rıza onay metni aşağıdadır.</p>
+
+            <button class="accordion-btn">AÇIK RIZA METNİNİ GÖRÜNTÜLE <span>&#9660;</span></button>
+            <div class="accordion-panel">
+                <p>GıTalks tarafından yürütülen ve GitHub Pages altyapısı üzerinden yayınlanan internet sitesini ziyaret etmem kapsamında; siteye erişim sırasında oluşan IP adresi, tarayıcı ve cihaz bilgileri ile teknik kullanım verilerinin, yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini ve sistem performansının izlenmesi amaçlarıyla işlenebileceği konusunda bilgilendirildim.</p>
+                <p>Söz konusu kişisel verilerin, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun 5. maddesi uyarınca, veri sorumlusunun meşru menfaatleri kapsamında işlendiğini; bu nedenle ayrıca açık rızamın aranmadığını anladım.</p>
+                <p>Bu bilgilendirme doğrultusunda, kişisel verilerimin belirtilen amaçlarla işlenmesini kabul ediyorum.</p>
+            </div>
         </div>
     </div>
 
@@ -647,7 +641,7 @@
             const overlay = document.getElementById("menuOverlay");
             
             document.getElementById("openNavBtn").addEventListener("click", function() {
-                if(window.innerWidth <= 600) { sidebar.style.width = "80%"; } else { sidebar.style.width = "320px"; }
+                if(window.innerWidth <= 600) { sidebar.style.width = "85%"; } else { sidebar.style.width = "320px"; }
                 overlay.style.display = "block";
             });
 
@@ -695,7 +689,7 @@
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
             });
 
-            // Accordion
+            // Accordion Logic (Global)
             const acc = document.getElementsByClassName("accordion-btn");
             for (let i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
@@ -705,7 +699,7 @@
                         panel.style.maxHeight = null;
                         panel.classList.remove('open');
                     } else {
-                        panel.style.maxHeight = (panel.scrollHeight + 40) + "px";
+                        panel.style.maxHeight = (panel.scrollHeight + 60) + "px"; // +60 padding payı
                         panel.classList.add('open');
                     }
                 });
