@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="manifest" href="manifest.json">
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js');
-      }
-    </script>
     <meta name="description" content="GıTalks | Teknoloji, tarım, akademi ve sosyal sorumluluk alanlarında konferans ve etkinlik platformu.">
     <meta name="keywords" content="Teknoloji Konferansı, GıTalks, Tarım Teknolojileri, Yapay Zeka, KGTÜ, Konya, Zirve">
     <meta name="author" content="GıTalks Organization">
@@ -20,10 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <meta name="theme-color" content="#030303">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    
     <title>GıTalks | Global Teknoloji Zirvesi</title>
     <style>
         /* --- 1. PREMIUM DEĞİŞKENLER --- */
@@ -697,16 +687,9 @@
         <div id="ai-btn-trigger" onclick="toggleChat()">🤖</div>
     </div>
 
-    <button id="installAppBtn" style="display: none; position: fixed; bottom: 20px; left: 20px; z-index: 10000; background: #D4AF37; color: #000; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); cursor: pointer; font-family: 'Montserrat', sans-serif;">
-        📲 UYGULAMAYI YÜKLE
-    </button>
-
     <script>
-        // --- GITALKS YEREL YAPAY ZEKA MOTORU (GELİŞMİŞ SÜRÜM 2.0 - EĞİTİLMİŞ) ---
-        
-        // 1. EĞİTİM VERİ SETİ (KAPSAMLI VE GÜNCEL)
+        // --- GITALKS YEREL YAPAY ZEKA MOTORU ---
         const knowledgeBase = [
-            // --- GENEL SOHBET & SELAMLAŞMA ---
             {
                 keywords: ["merhaba", "selam", "hi", "hey", "naber", "günaydın", "iyi akşamlar"],
                 response: "Merhaba! 👋 Enerjim yerinde, sana nasıl yardımcı olabilirim? Sponsorluklar, konferans detayları, genel kültür veya üniversite hakkında konuşabiliriz!"
@@ -715,8 +698,6 @@
                 keywords: ["nasılsın", "nasıl gidiyor", "ne haber"],
                 response: "Ben bir yapay zeka botuyum, sistemlerim %100 performansla ve hatasız çalışıyor! 🚀 Sen nasılsın?"
             },
-            
-            // --- YAPAY ZEKA YETENEKLERİ (İSTENEN ÖZELLİKLER) ---
             {
                 keywords: ["neler yapabiliyorsun", "yeteneklerin", "ne yaparsın", "ne işe yararsın", "özelliklerin"],
                 response: "🤖 **GıTalks AI Yeteneklerim:**\n\n1. 📅 **Etkinlik Rehberi:** Zirve tarihi, saati ve yeri hakkında bilgi veririm.\n2. 🤝 **Sponsorluk:** Nasıl sponsor olunacağını anlatırım.\n3. 🧠 **Genel Kültür:** Tarih, coğrafya ve bilimsel konularda sohbet edebilirim.\n4. ℹ️ **Site Bilgisi:** GıTalks vizyonu ve misyonunu açıklayabilirim.\n5. ☕ **Tarifler:** Kahve ve basit yemek tarifleri verebilirim.\n\nNeyi merak ediyorsun?"
@@ -725,8 +706,6 @@
                 keywords: ["napıyorsun", "ne yapıyorsun", "şu an ne yapıyorsun", "durumun ne"],
                 response: "Şu anda GıTalks web sitesini saniye saniye izliyor, ziyaretçilere rehberlik etmek için veri tabanımı tarıyorum. Senin sorularını yanıtlamak için hazırım! 🚀"
             },
-
-            // --- SITE SCRAPED DATA (GITALKS HAKKINDA) ---
             {
                 keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim"],
                 response: "📅 GıTalks Global Teknoloji Zirvesi, **16 Şubat 2026** tarihinde gerçekleşecek. Kapılar sabah saat **09:00'da** açılıyor."
@@ -747,8 +726,6 @@
                 keywords: ["kim", "konuşmacı", "konuk", "davetli", "katılımcı"],
                 response: "🎙️ Ana konuklarımız ve konuşmacı listemiz şu an **'Yakında Açıklanacak'** statüsündedir. Sektörün dev isimleriyle görüşüyoruz, sürprizlere hazır ol!"
             },
-
-            // --- SPONSORLUK VE İLETİŞİM ---
             {
                 keywords: ["sponsor", "destekçi", "platin", "gold", "silver", "bronze", "marka"],
                 response: "🤝 **Sponsorluk Yapısı:**\nGıTalks sponsorları 4 ana kategoride (Platinum, Gold, Silver, Bronze) yer almaktadır. Markanızla yer almak isterseniz bizimle iletişime geçebilirsiniz."
@@ -757,8 +734,6 @@
                 keywords: ["iletişim", "mail", "adres", "telefon", "ulaş", "dosya", "sponsor olmak"],
                 response: "📩 Bizimle iletişime geçmek veya sponsorluk dosyasını talep etmek için: **gitalks.official@gmail.com** adresine mail atabilirsin."
             },
-
-            // --- GENEL KÜLTÜR & BİLGİ (YENİ EKLENDİ) ---
             {
                 keywords: ["başkent", "şehir", "nüfus"],
                 response: "🌍 **Coğrafya Bilgisi:** Türkiye'nin başkenti Ankara'dır. Fransa'nınki Paris, İtalya'nınki Roma'dır. Başka bir ülkeyi merak ediyorsan sorabilirsin!"
@@ -787,8 +762,6 @@
                 keywords: ["kgtü", "üniversite", "kampüs"],
                 response: "🎓 **KGTÜ (Konya Gıda ve Tarım Üniversitesi):** Türkiye'nin tarım ve gıda odaklı ilk ihtisas üniversitesidir. Kampüsümüz Konya Meram'da yer almaktadır."
             },
-
-            // --- EĞLENCE & TARİFLER ---
             {
                 keywords: ["kahve", "latte", "espresso"],
                 response: "☕ **Basit Latte Tarifi:** <br>1. Bir shot espresso hazırla. <br>2. Sütü 65°C'ye kadar ısıt ve köpürt. <br>3. Sütü yavaşça kahvenin üzerine dök. Afiyet olsun!"
@@ -869,10 +842,10 @@
             area.scrollTop = area.scrollHeight;
         }
 
-        // --- 3. SİTE GENEL JS (NAVBAR, TAB, COUNTDOWN) ---
+        // --- 3. SİTE GENEL JS (NAVBAR, TAB, COUNTDOWN, ACCORDION) ---
         document.addEventListener("DOMContentLoaded", function () {
             
-            // Menü ve Tab İşlemleri
+            // --- Menü ve Tab İşlemleri ---
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("menuOverlay");
             
@@ -909,7 +882,56 @@
                 });
             });
 
-            // Geri Sayım (Countdown)
+            // --- YENİ EKLENEN: Logo Yönlendirmesi ---
+            const mainLogo = document.getElementById('mainLogo');
+            if (mainLogo) {
+                mainLogo.addEventListener('click', function() {
+                    switchTab('home-tab');
+                });
+            }
+
+            // --- YENİ EKLENEN: GıTalks Teknoloji Yönlendirmesi ---
+            const techTitleBtn = document.getElementById('tech-title-btn');
+            if (techTitleBtn) {
+                techTitleBtn.addEventListener('click', function() {
+                    switchTab('conferences-tab'); // Önce sekmeyi aç
+                    
+                    // Sekme açıldıktan hemen sonra karta kaydır
+                    setTimeout(() => {
+                        const techCard = document.getElementById('target-tech-card');
+                        if (techCard) {
+                            techCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Görsel efekt: Kenarlık parlasın
+                            techCard.style.borderColor = "#D4AF37";
+                            techCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.4)";
+                            setTimeout(() => {
+                                techCard.style.borderColor = "";
+                                techCard.style.boxShadow = "";
+                            }, 1500);
+                        }
+                    }, 100);
+                });
+            }
+
+            // --- YENİ EKLENEN: Accordion (Akordiyon) Menü Çalıştırma Kodu ---
+            const acc = document.getElementsByClassName("accordion-btn");
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active-acc");
+                    var panel = this.nextElementSibling;
+                    
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                        panel.classList.remove("open"); // CSS'deki padding'i kaldırmak için
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                        panel.classList.add("open"); // CSS'deki padding'i eklemek için
+                    }
+                });
+            }
+
+            // --- Geri Sayım (Countdown) ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
             function updateCountdowns() {
                 const now = new Date().getTime();
@@ -939,28 +961,6 @@
             }
             setInterval(updateCountdowns, 1000);
             updateCountdowns();
-
-            // --- PWA YÜKLEME BUTONU MANTIĞI (SONDAN EKLENDİ) ---
-            let deferredPrompt;
-            const installBtn = document.getElementById('installAppBtn');
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                if(installBtn) installBtn.style.display = 'block';
-            });
-
-            if(installBtn) {
-                installBtn.addEventListener('click', async () => {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        console.log(`Kullanıcı seçimi: ${outcome}`);
-                        deferredPrompt = null;
-                        installBtn.style.display = 'none';
-                    }
-                });
-            }
         });
     </script>
 </body>
