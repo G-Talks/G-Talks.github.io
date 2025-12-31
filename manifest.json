@@ -1,7 +1,9 @@
 {
   "name": "GıTalks 2026 Zirvesi",
   "short_name": "GıTalks",
+  "description": "Teknoloji, tarım ve akademi zirvesi.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#030303",
   "theme_color": "#D4AF37",
@@ -10,7 +12,8 @@
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "logo.png",
