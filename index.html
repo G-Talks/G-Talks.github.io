@@ -31,6 +31,12 @@
             --gold-light: #F2E2A6;
             --gold-dark: #8E7020;
             --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            
+            /* Sponsor Renkleri */
+            --platinum-gradient: linear-gradient(135deg, #e0e0e0 0%, #ffffff 50%, #a0a0a0 100%);
+            --silver-gradient: linear-gradient(135deg, #8c8c8c 0%, #d6d6d6 50%, #757575 100%);
+            --bronze-gradient: linear-gradient(135deg, #cd7f32 0%, #ffcba4 50%, #8b4513 100%);
+
             --bg-dark: #030303;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
@@ -60,7 +66,7 @@
             line-height: 1.6; padding-top: 80px; overflow-x: hidden;
         }
 
-        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title {
+        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title, .tier-header {
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -201,13 +207,39 @@
         .contact-home a { color: var(--gold-primary); text-decoration: none; font-weight: bold; font-size: 1.4rem; transition: 0.3s; }
         .contact-home a:hover { color: #fff; text-shadow: 0 0 20px var(--gold-primary); }
 
-        /* --- YENİLENMİŞ SPONSOR ALANI (COMING SOON) --- */
-        .coming-soon-box {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 12px; padding: 60px 40px; text-align: center;
-            max-width: 600px; margin: 40px auto; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+        /* --- SPONSOR SAYFASI YENİ STİL --- */
+        .tier-section { margin-bottom: 60px; width: 100%; }
+        .tier-header { 
+            font-size: 1.8rem; font-weight: 800; letter-spacing: 5px; text-transform: uppercase; 
+            margin-bottom: 30px; text-align: center; position: relative; padding-bottom: 15px; 
+            display: inline-block;
         }
-        .coming-soon-box h3 { font-size: 2rem; color: #fff; margin-bottom: 10px; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .coming-soon-box p { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 1px; }
+        .tier-header::after { content:''; position: absolute; bottom:0; left:50%; transform:translateX(-50%); width: 60%; height: 2px; background: rgba(255,255,255,0.1); }
+
+        .text-platinum { background: var(--platinum-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4)); }
+        .text-gold { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px rgba(212,175,55,0.3)); }
+        .text-silver { background: var(--silver-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(192,192,192,0.3)); }
+        .text-bronze { background: var(--bronze-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(205,127,50,0.3)); }
+
+        .sponsor-grid { display: grid; gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
+        .grid-1 { grid-template-columns: 1fr; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .sponsor-box-new {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 40px; text-align: center; transition: 0.3s; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+        }
+        .sponsor-box-new:hover { background: rgba(255,255,255,0.04); transform: translateY(-5px); }
+        
+        .box-platinum { height: 250px; border-color: rgba(255,255,255,0.15); box-shadow: 0 0 30px rgba(255,255,255,0.05); }
+        .box-gold { height: 180px; border-color: rgba(212,175,55,0.15); box-shadow: 0 0 20px rgba(212,175,55,0.05); }
+        .box-silver { height: 140px; border-color: rgba(192,192,192,0.1); }
+        .box-bronze { height: 120px; border-color: rgba(205,127,50,0.1); }
+
+        .soon-text { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.6; margin-top: 10px; }
+        .logo-placeholder { font-size: 2rem; opacity: 0.3; margin-bottom: 10px; }
 
         .text-content-box { text-align: left; line-height: 1.8; color: #ccc; font-size: 1.05rem; }
         .text-content-box strong { color: #fff; }
@@ -410,10 +442,78 @@
     </div>
 
     <div id="sponsors-tab" class="tab-content">
-        <h2>Sponsorlarımız</h2>
-        <div class="coming-soon-box">
-            <h3>ÇOK YAKINDA KATILACAKLAR</h3>
-            <p>Sektörün öncüleri ve vizyoner markaları burada yerini alacak.</p>
+        <h2 style="margin-bottom: 60px;">SPONSORLARIMIZ</h2>
+
+        <div class="tier-section">
+            <div class="tier-header text-platinum">PLATINUM SPONSORLAR</div>
+            <div class="sponsor-grid grid-1">
+                <div class="sponsor-box-new box-platinum">
+                    <div class="logo-placeholder">💎</div>
+                    <div class="soon-text" style="color:#fff;">YAKINDA BURADA</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header text-gold">GOLD SPONSORLAR</div>
+            <div class="sponsor-grid grid-2">
+                <div class="sponsor-box-new box-gold">
+                    <div class="logo-placeholder">👑</div>
+                    <div class="soon-text" style="color:var(--gold-light);">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-gold">
+                    <div class="logo-placeholder">👑</div>
+                    <div class="soon-text" style="color:var(--gold-light);">YAKINDA BURADA</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header text-silver">SILVER SPONSORLAR</div>
+            <div class="sponsor-grid grid-4">
+                <div class="sponsor-box-new box-silver">
+                    <div class="logo-placeholder">⚖️</div>
+                    <div class="soon-text" style="color:#ccc;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-silver">
+                    <div class="logo-placeholder">⚖️</div>
+                    <div class="soon-text" style="color:#ccc;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-silver">
+                    <div class="logo-placeholder">⚖️</div>
+                    <div class="soon-text" style="color:#ccc;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-silver">
+                    <div class="logo-placeholder">⚖️</div>
+                    <div class="soon-text" style="color:#ccc;">YAKINDA BURADA</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section">
+            <div class="tier-header text-bronze">BRONZE SPONSORLAR</div>
+            <div class="sponsor-grid grid-4">
+                <div class="sponsor-box-new box-bronze">
+                    <div class="logo-placeholder">🍂</div>
+                    <div class="soon-text" style="color:#cd7f32;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-bronze">
+                    <div class="logo-placeholder">🍂</div>
+                    <div class="soon-text" style="color:#cd7f32;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-bronze">
+                    <div class="logo-placeholder">🍂</div>
+                    <div class="soon-text" style="color:#cd7f32;">YAKINDA BURADA</div>
+                </div>
+                <div class="sponsor-box-new box-bronze">
+                    <div class="logo-placeholder">🍂</div>
+                    <div class="soon-text" style="color:#cd7f32;">YAKINDA BURADA</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; opacity: 0.7;">
+            <p>Sponsorluk dosyasını talep etmek için: <a href="mailto:gitalks.official@gmail.com" style="color:var(--gold-primary);">gitalks.official@gmail.com</a></p>
         </div>
     </div>
 
@@ -583,7 +683,7 @@
             <div class="chat-body" id="messages-area">
                 <div class="bubble bubble-bot">
                     Merhaba! 🤖 Ben <strong>GıTalks AI</strong>. <br><br>
-                    Zirve detayları, tarih, ulaşım veya vizyonumuz hakkında sorularını cevaplamak için eğitildim.
+                    Sponsorluklar, zirve detayları, tarih, ulaşım veya vizyonumuz hakkında sorularını cevaplamak için kapsamlı şekilde eğitildim.
                 </div>
             </div>
             <div class="chat-footer">
@@ -595,18 +695,18 @@
     </div>
 
     <script>
-        // --- GITALKS YEREL YAPAY ZEKA MOTORU (GELİŞMİŞ SÜRÜM) ---
+        // --- GITALKS YEREL YAPAY ZEKA MOTORU (GELİŞMİŞ SÜRÜM 2.0) ---
         
-        // 1. EĞİTİM VERİ SETİ (GENİŞLETİLMİŞ)
+        // 1. EĞİTİM VERİ SETİ (KAPSAMLI VE GÜNCEL)
         const knowledgeBase = [
             // --- GENEL SOHBET & SELAMLAŞMA ---
             {
                 keywords: ["merhaba", "selam", "hi", "hey", "naber", "günaydın", "iyi akşamlar"],
-                response: "Merhaba! 👋 Enerjim yerinde, sana nasıl yardımcı olabilirim? Konferans detayları, kahve tarifleri veya sadece sohbet için buradayım!"
+                response: "Merhaba! 👋 Enerjim yerinde, sana nasıl yardımcı olabilirim? Sponsorluklar, konferans detayları veya kahve tarifleri hakkında konuşabiliriz!"
             },
             {
                 keywords: ["nasılsın", "nasıl gidiyor", "ne haber"],
-                response: "Ben bir yapay zeka botuyum, bu yüzden duygularım yok ama sistemlerim %100 performansla çalışıyor! 🚀 Sen nasılsın?"
+                response: "Ben bir yapay zeka botuyum, sistemlerim %100 performansla ve hatasız çalışıyor! 🚀 Sen nasılsın?"
             },
             {
                 keywords: ["iyiyim", "süper", "harika", "bomba gibi"],
@@ -617,7 +717,7 @@
                 response: "Üzüldüm... 😔 Bazen en iyi çözüm derin bir nefes almak ve kendine zaman ayırmaktır. Belki sana komik bir şey anlatmamı istersin?"
             },
             {
-                keywords: ["sen kimsin", "adın ne", "nesin sen"],
+                keywords: ["sen kimsin", "adın ne", "nesin sen", "görevin ne"],
                 response: "🤖 Ben **GıTalks AI Asistanıyım!** Bu web sitesinde rehberlik yapmak, sorularını yanıtlamak ve bazen de kahve tarifi vermek için tasarlandım."
             },
             {
@@ -625,10 +725,60 @@
                 response: "Rica ederim! 😊 Yardımcı olabildiysem ne mutlu bana. Başka bir sorun olursa buradayım!"
             },
 
+            // --- YENİ SPONSORLUK BİLGİLERİ (GÜNCELLENDİ) ---
+            {
+                keywords: ["sponsor", "destekçi", "platin", "gold", "silver", "bronze", "marka"],
+                response: "🤝 **Sponsorluk Yapısı:**\nGıTalks sponsorları 4 ana kategoride (Platinum, Gold, Silver, Bronze) yer almaktadır. Şu an görüşmelerimiz sürüyor ve markalar çok yakında sitemizdeki **'Sponsorlar'** sekmesinde 'Yakında Burada' statüsünden çıkarak listelenecek."
+            },
+            {
+                keywords: ["sponsor olmak istiyorum", "nasıl sponsor olunur", "dosya", "şartlar", "reklam"],
+                response: "💼 **İş Birliği İçin:** Markanızla GıTalks'ta yer almak isterseniz, detaylı sponsorluk dosyamızı talep edebilirsiniz. Lütfen **gitalks.official@gmail.com** adresine mail atın."
+            },
+
+            // --- ETKİNLİK DETAYLARI & LOJİSTİK ---
+            {
+                keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim"],
+                response: "📅 GıTalks Global Teknoloji Zirvesi, **16 Şubat 2026** tarihinde gerçekleşecek. Kapılar sabah saat **09:00'da** açılıyor."
+            },
+            {
+                keywords: ["nerede", "konum", "yer", "adres", "lokasyon", "nasıl gidilir", "ulaşım", "konya"],
+                response: "📍 Etkinliğimiz **Konya Gıda ve Tarım Üniversitesi (KGTÜ) Konferans Salonu'nda** düzenlenecek. Meram bölgesinde yer alır, toplu taşıma ve özel araçla ulaşım kolaydır."
+            },
+            {
+                keywords: ["otopark", "park", "araba"],
+                response: "🚗 KGTÜ kampüsü çevresinde ve yakın lokasyonlarda otopark alanları mevcuttur."
+            },
+            {
+                keywords: ["internet", "wifi", "bağlantı"],
+                response: "📶 Etkinlik alanında katılımcılar için ücretsiz Wi-Fi erişimi sağlanması planlanmaktadır."
+            },
+            {
+                keywords: ["sertifika", "katılım belgesi", "belge"],
+                response: "📜 Evet! Etkinliğe katılanlara dijital veya basılı **Katılım Sertifikası** verilmesi planlanmaktadır. Detaylar etkinlik günü duyurulacak."
+            },
+            {
+                keywords: ["yemek", "ikram", "yiyecek", "aç", "öğle yemeği"],
+                response: "🥪 Etkinlik aralarında kahve molaları ve atıştırmalık ikramlarımız olacaktır."
+            },
+
+            // --- İÇERİK & KONUŞMACILAR ---
+            {
+                keywords: ["kim", "konuşmacı", "konuk", "davetli", "katılımcı"],
+                response: "🎙️ Ana konuklarımız ve konuşmacı listemiz şu an **'Yakında Açıklanacak'** statüsündedir. Sektörün dev isimleriyle görüşüyoruz, sürprizlere hazır ol!"
+            },
+            {
+                keywords: ["konu", "içerik", "tema", "ne hakkında", "teknoloji", "tarım"],
+                response: "GıTalks 2026'nın ana temaları:\n🔹 **Teknoloji:** Yapay Zeka, Dijital Dönüşüm\n🔹 **Tarım:** Akıllı Tarım, Gıda Güvenliği\n🔹 **Akademi:** Bilimsel Kariyer\n🔹 **Sosyal Etki:** Toplumsal Fayda"
+            },
+            {
+                keywords: ["vizyon", "misyon", "amaç", "nedir"],
+                response: "🚀 **GıTalks;** teknoloji, akademi, tarım ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, üniversite öğrencileri tarafından yürütülen bağımsız bir platformdur."
+            },
+
             // --- YEMEK & KAHVE TARİFLERİ ---
             {
                 keywords: ["kahve", "filtre", "latte", "espresso", "americano"],
-                response: "☕ **Kahve Molası!** Basit bir Latte tarifi vereyim: <br>1. Bir shot espresso hazırla. <br>2. Sütü 65°C'ye kadar ısıt ve köpürt. <br>3. Sütü yavaşça kahvenin üzerine dök. Afiyet olsun!"
+                response: "☕ **Kahve Molası!** Basit bir Latte tarifi: <br>1. Bir shot espresso hazırla. <br>2. Sütü 65°C'ye kadar ısıt ve köpürt. <br>3. Sütü yavaşça kahvenin üzerine dök. Afiyet olsun!"
             },
             {
                 keywords: ["türk kahvesi", "türk kahve"],
@@ -636,75 +786,40 @@
             },
             {
                 keywords: ["yemek", "ne yesem", "açım", "tarif", "makarna"],
-                response: "🍝 **Hızlı Makarna Önerisi:** <br>Makarnayı haşla. Ayrı bir tavada zeytinyağı, ezilmiş sarımsak ve kiraz domatesleri sotele. Makarnayla karıştır, üzerine taze fesleğen ve parmesan ekle. Bitti bile! 😋"
-            },
-            {
-                keywords: ["tatlı", "çikolata", "kek"],
-                response: "🍫 **Kriz Anı İçin:** Mikrodalgada kupa kek yapabilirsin! <br>4 kaşık un, 4 kaşık şeker, 2 kaşık kakao, 1 yumurta, 3 kaşık süt ve yağı karıştır. Kupaya dök, mikrodalgada 2-3 dk pişir. Efsane oluyor!"
+                response: "🍝 **Hızlı Makarna:** <br>Makarnayı haşla. Ayrı bir tavada zeytinyağı, sarımsak ve domatesleri sotele. Makarnayla karıştır, üzerine fesleğen ve parmesan ekle. Bitti bile! 😋"
             },
 
-            // --- EĞLENCE & CART CURT ---
+            // --- EĞLENCE & CURIOSITY ---
             {
                 keywords: ["şaka", "komik", "güldür"],
                 response: "😄 Bir yazılımcı diğerine ne demiş? <br>- 'Hadi gidip biraz hava alalım.' <br>- 'Olmaz, o kütüphaneyi henüz import etmedim!' 🤓"
             },
             {
-                keywords: ["motivasyon", "söz", "ilham"],
-                response: "✨ *'Başlamak için mükemmel olmak zorunda değilsin, ama mükemmel olmak için başlamak zorundasın.'* – Zig Ziglar. Hadi, bugün o gün olsun! 💪"
+                keywords: ["kurucu", "kim yaptı", "geliştirici", "sahibi"],
+                response: "👨‍💻 GıTalks, KGTÜ İletişim ve Tanıtım Topluluğu bünyesindeki vizyoner öğrenciler tarafından geliştirilmekte ve organize edilmektedir."
             },
             {
-                keywords: ["sıkıldım", "yapacak bir şey yok"],
-                response: "Sıkılmak yaratıcılığın başlangıcıdır! 🎨 Belki GıTalks etkinliklerini inceleyebilir, yeni bir kod öğrenebilir veya mutfağa girip bir şeyler deneyebilirsin."
-            },
-
-            // --- KONFERANS BİLGİLERİ (ESKİ VERİLER KORUNDU) ---
-            {
-                keywords: ["ne zaman", "tarih", "saat", "gün", "zaman", "takvim"],
-                response: "📅 GıTalks Global Teknoloji Zirvesi, **16 Şubat 2026** tarihinde gerçekleşecek. Kapılar sabah saat **09:00'da** açılıyor."
-            },
-            {
-                keywords: ["nerede", "konum", "yer", "adres", "lokasyon", "nasıl gidilir", "ulaşım", "konya"],
-                response: "📍 Etkinliğimiz **Konya Gıda ve Tarım Üniversitesi (KGTÜ) Konferans Salonu'nda** düzenlenecek. Konya merkezden toplu taşıma veya özel araçla kolayca ulaşabilirsin."
-            },
-            {
-                keywords: ["kim", "konuşmacı", "konuk", "davetli", "katılımcı"],
-                response: "🎙️ Ana konuklarımız ve konuşmacı listemiz şu an **'Yakında Açıklanacak'** statüsündedir. Sektörün öncü isimleriyle görüşmelerimiz sürüyor, takipte kal!"
-            },
-            {
-                keywords: ["ücret", "bilet", "fiyat", "para", "kayıt", "başvuru"],
-                response: "🎫 Etkinlik katılım detayları ve kayıt süreçleri çok yakında web sitemiz ve sosyal medya hesaplarımızdan duyurulacaktır."
-            },
-            {
-                keywords: ["konu", "içerik", "tema", "ne hakkında", "teknoloji", "tarım"],
-                response: "GıTalks 2026'nın ana temaları şunlardır:\n🔹 **Teknoloji:** Yapay Zeka ve Dijital Dönüşüm\n🔹 **Tarım:** Sürdürülebilir Tarım Teknolojileri\n🔹 **Akademi:** Bilimsel Araştırmalar\n🔹 **Sosyal Etki:** Toplumsal Fayda Projeleri"
-            },
-            {
-                keywords: ["sponsor", "destek", "marka"],
-                response: "🤝 Sponsorluk görüşmelerimiz devam etmektedir. Vizyoner markalar çok yakında 'Sponsorlar' sekmesinde yerini alacak."
-            },
-            {
-                keywords: ["iletişim", "mail", "eposta", "bize ulaş", "telefon"],
-                response: "📩 Bizimle resmi iletişim için **gitalks.official@gmail.com** adresini kullanabilirsin."
-            },
-            {
-                keywords: ["vizyon", "misyon", "amaç", "nedir"],
-                response: "🚀 **GıTalks;** teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, üniversite öğrencileri tarafından yürütülen bağımsız bir platformdur."
-            },
-            {
-                keywords: ["kvkk", "gizlilik", "veri", "çerez", "güvenlik"],
-                response: "🔒 Sitemiz GitHub Pages altyapısını kullanır. Herhangi bir kişisel veri kaydı tutmuyoruz (form, üyelik yok). Sadece teknik çerezler çalışır."
+                keywords: ["kvkk", "gizlilik", "veri", "güvenlik"],
+                response: "🔒 Sitemiz GitHub Pages altyapısını kullanır. Kişisel veri kaydı tutmuyoruz (form, üyelik yok). Sadece teknik çerezler çalışır."
             }
         ];
 
         // 2. YEREL ZEKA FONKSİYONLARI
         function findAnswer(userText) {
             const cleanText = userText.toLowerCase();
+            // Basit kelime eşleşmesi yerine biraz daha akıllı bir skorlama (İleride geliştirilebilir)
+            let bestMatch = null;
+            
             for (let item of knowledgeBase) {
                 if (item.keywords.some(keyword => cleanText.includes(keyword))) {
-                    return item.response;
+                    bestMatch = item.response;
+                    break; // İlk eşleşmede çık
                 }
             }
-            return "🤔 Hımm, bu konuda henüz bir bilgim yok. Ama sana kahve tarifi verebilirim veya zirve tarihi hakkında konuşabiliriz! 😊";
+            
+            if (bestMatch) return bestMatch;
+            
+            return "🤔 Hımm, bu konuda henüz veritabanımda bilgi yok. Ama sana kahve tarifi verebilirim, zirve tarihi hakkında konuşabiliriz veya sponsorluk süreçlerini anlatabilirim! 😊";
         }
 
         function toggleChat() {
