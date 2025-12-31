@@ -6,14 +6,17 @@
     
     <link rel="manifest" href="manifest.json">
     
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
-          .then(function(reg) { console.log('Service Worker kayıt edildi:', reg); })
-          .catch(function(err) { console.log('Service Worker hatası:', err); });
+         .then(reg => console.log('Service Worker Kayıtlı', reg))
+         .catch(err => console.log('Service Worker Hatası', err));
       }
     </script>
-
+    
     <meta name="description" content="GıTalks | Teknoloji, tarım, akademi ve sosyal sorumluluk alanlarında konferans ve etkinlik platformu.">
     <meta name="keywords" content="Teknoloji Konferansı, GıTalks, Tarım Teknolojileri, Yapay Zeka, KGTÜ, Konya, Zirve">
     <meta name="author" content="GıTalks Organization">
@@ -72,8 +75,7 @@
             margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
             line-height: 1.6; padding-top: 80px; overflow-x: hidden;
-            /* Mobilde kaydırma hissiyatını iyileştirir */
-            -webkit-overflow-scrolling: touch;
+            -webkit-overflow-scrolling: touch; /* Mobil kaydırma yumuşatma */
         }
 
         h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title, .tier-header {
