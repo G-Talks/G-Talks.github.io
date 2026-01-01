@@ -144,9 +144,13 @@
         .accordion-btn:hover, .accordion-btn.active-acc { background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .accordion-btn span { font-size: 0.8rem; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .accordion-btn.active-acc span { transform: rotate(180deg); color: #fff; }
+        
         .accordion-panel {
             padding: 0 25px; background-color: rgba(0, 0, 0, 0.4); max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.4s ease;
             border-radius: 0 0 8px 8px; border: 1px solid transparent; border-top: none; text-align: left;
+            /* Uzun kelimeler için taşma koruması */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         .accordion-panel.open { padding: 30px 25px; border-color: var(--glass-border); }
 
@@ -273,7 +277,7 @@
             #gitalks-ai-container { right: 20px; bottom: 20px; }
         }
 
-        /* --- MOBİL DÜZELTME KODU (SAYAÇLAR İÇİN) --- */
+        /* --- MOBİL DÜZELTME KODU (SAYAÇLAR VE AKORDİYON İÇİN) --- */
         @media (max-width: 600px) {
             .countdown-container {
                 gap: 10px; /* Mobilde boşluğu azalt */
@@ -294,6 +298,16 @@
             }
             .info-box {
                 padding: 30px 20px; /* Mobilde info kutusunu da daralt */
+            }
+            
+            /* -- YENİ EKLENEN AKORDİYON DÜZELTMESİ -- */
+            /* Mobilde paddingleri 25px'ten 15px'e indiriyoruz ve fontu rahatlatıyoruz */
+            .accordion-panel.open {
+                padding: 20px 15px; 
+            }
+            .accordion-btn {
+                padding: 20px 15px;
+                font-size: 0.9rem; /* Başlık fontunu biraz küçült */
             }
         }
     </style>
@@ -860,15 +874,18 @@
             if(document.getElementById("closeNavBtn")) document.getElementById("closeNavBtn").addEventListener("click", closeNav);
             overlay.addEventListener("click", closeNav);
 
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('.nav-link, .modal-link'); // Footer linkleri de dahil edildi
             const tabs = document.querySelectorAll('.tab-content');
 
             function switchTab(targetId) {
                 tabs.forEach(tab => tab.style.display = 'none');
-                navLinks.forEach(link => {
+                
+                // Sidebar linklerinin aktifliğini güncelle
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                     if(link.getAttribute('data-tab') === targetId) link.classList.add('active');
                 });
+
                 const target = document.getElementById(targetId);
                 if(target) target.style.display = 'block';
                 window.scrollTo(0, 0);
@@ -930,6 +947,46 @@
                     }
                 });
             }
+
+            // --- YENİ ÇEREZ MANTIĞI (SADECE KABUL EDİLİNCE YOK OLUR) ---
+            const cookieBanner = document.getElementById('cookieBanner');
+            const btnAccept = document.getElementById('btnAccept');
+            const btnReject = document.getElementById('btnReject');
+            
+            // 1. Site açıldığında kontrol et: 'cookieConsent' true mu?
+            if (!localStorage.getItem('cookieConsent')) {
+                // Eğer true değilse (yoksa veya false ise), banner'ı GÖSTER
+                setTimeout(() => {
+                    cookieBanner.style.display = 'block';
+                }, 1000); // 1 saniye sonra nazikçe çıkar
+            }
+
+            // 2. Kabul Et Butonu
+            if(btnAccept){
+                btnAccept.addEventListener('click', function() {
+                    localStorage.setItem('cookieConsent', 'true'); // Kalıcı olarak kaydet
+                    cookieBanner.style.display = 'none'; // Kapat
+                });
+            }
+
+            // 3. Kapat (Reddet) Butonu
+            if(btnReject){
+                btnReject.addEventListener('click', function() {
+                    // localStorage'a 'true' YAZMIYORUZ.
+                    // Sadece o anlık kapatıyoruz. Sayfa yenilenince if(!localStorage...) yine çalışacak ve banner yine çıkacak.
+                    cookieBanner.style.display = 'none';
+                });
+            }
+
+            // 4. Banner içindeki linklere tıklanınca ilgili sekmeye git
+            const cookieLinks = document.querySelectorAll('.cookie-link');
+            cookieLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-target');
+                    switchTab(target);
+                });
+            });
 
             // --- Geri Sayım (Countdown) ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
