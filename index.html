@@ -9,6 +9,7 @@
     <meta name="author" content="GıTalks Organization">
     <meta name="robots" content="index, follow">
 
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -714,7 +715,7 @@
             },
             {
                 keywords: ["neler yapabiliyorsun", "yeteneklerin", "ne yaparsın", "ne işe yararsın", "özelliklerin"],
-                response: "🤖 **GıTalks AI Yeteneklerim:**\n\n1. 📅 **Etkinlik Rehberi:** Zirve tarihi, saati ve yeri hakkında bilgi veririm.\n2. 🤝 **Sponsorluk:** Nasıl sponsor olunacağını anlatırım.\n3. 🧠 **Genel Kültür:** Tarih, coğrafya ve bilimsel konularda sohbet edebilirim.\n4. ℹ️ **Site Bilgisi:** GıTalks vizyonu ve misyonunu açıklayabilirim.\n5. ☕ **Tarifler:** Kahve ve basit yemek tarifleri verebilirim.\n\nNeyi merak ediyorsun?"
+                response: "🤖 **GıTalks AI Yeteneklerim:**\n\n1. 📅 **Etkinlik Rehberi:** Zirve tarihi, saati ve yeri hakkında bilgi veririm.\n2. 🤝 **Sponsorluk:** Nasıl sponsor olunacağını anlatırım.\n3. 🧠 **Genel Kültür:** Tarih, coğrafya ve bilimsel konularda sohbet edebilirim.\n4. ℹ **Site Bilgisi:** GıTalks vizyonu ve misyonunu açıklayabilirim.\n5. ☕ **Tarifler:** Kahve ve basit yemek tarifleri verebilirim.\n\nNeyi merak ediyorsun?"
             },
             {
                 keywords: ["napıyorsun", "ne yapıyorsun", "şu an ne yapıyorsun", "durumun ne"],
@@ -1019,6 +1020,16 @@
             setInterval(updateCountdowns, 1000);
             updateCountdowns();
         });
+    </script>
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('Uygulama hazır!'))
+            .catch((err) => console.log('Hata:', err));
+        });
+      }
     </script>
 </body>
 </html>
