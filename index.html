@@ -342,6 +342,20 @@
 
     <div class="noise-overlay"></div>
 
+    <div id="pwaInstallToast" class="pwa-install-toast">
+        <div class="pwa-content">
+            <div class="pwa-icon-box">📱</div>
+            <div class="pwa-info">
+                <h4>GıTalks'u Yükle</h4>
+                <p>Bildirimler ve hızlı erişim için uygulamayı kur</p>
+            </div>
+        </div>
+        <div class="pwa-actions">
+            <button class="btn-pwa-install" id="pwaInstallBtn">YÜKLE</button>
+            <button class="btn-pwa-close" id="pwaCloseBtn">✕</button>
+        </div>
+    </div>
+
     <div id="menuOverlay"></div>
 
     <div id="mySidebar" class="sidebar">
@@ -712,6 +726,28 @@
             const mainLogo = document.getElementById('mainLogo');
             if (mainLogo) mainLogo.addEventListener('click', function() { switchTab('home-tab'); });
 
+            // --- EKSİK OLAN TEKNOLOJİ BUTONU KODU EKLENDİ ---
+            const techTitleBtn = document.getElementById('tech-title-btn');
+            if (techTitleBtn) {
+                techTitleBtn.addEventListener('click', function() {
+                    switchTab('conferences-tab'); // Önce sekmeyi aç
+                    // Sekme açıldıktan hemen sonra karta kaydır
+                    setTimeout(() => {
+                        const techCard = document.getElementById('target-tech-card');
+                        if (techCard) {
+                            techCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            // Görsel efekt: Kenarlık parlasın
+                            techCard.style.borderColor = "#D4AF37";
+                            techCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.4)";
+                            setTimeout(() => {
+                                techCard.style.borderColor = "";
+                                techCard.style.boxShadow = "";
+                            }, 1500);
+                        }
+                    }, 100);
+                });
+            }
+
             // YENİLENEN AKORDİYON JS
             const acc = document.getElementsByClassName("accordion-btn");
             for (let i = 0; i < acc.length; i++) {
@@ -736,7 +772,7 @@
                 }
             }, 1000);
 
-            // Cookie Banner
+            // Cookie Banner (Süre 2 saniyeye ayarlı)
             const cookieBanner = document.getElementById('cookieBanner');
             if (!localStorage.getItem('cookieConsent')) {
                 setTimeout(() => { cookieBanner.style.display = 'block'; }, 2000);
@@ -745,6 +781,13 @@
             if(document.getElementById('btnReject')) document.getElementById('btnReject').addEventListener('click', () => { cookieBanner.style.display = 'none'; });
         });
         
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(() => { document.getElementById('pwaInstallToast').style.display = 'flex'; }, 3000);
+        });
     </script>
 </body>
 </html>
