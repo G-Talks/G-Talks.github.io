@@ -1,11 +1,10 @@
 {
-  "name": "GıTalks | Global Teknoloji Zirvesi",
-  "short_name": "GıTalks",
-  "start_url": "./index.html",
+  "name": "Benim Uygulamam",
+  "short_name": "Uygulama",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#030303",
-  "theme_color": "#D4AF37",
-  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "icon-192.png",
