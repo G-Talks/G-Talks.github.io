@@ -135,13 +135,13 @@
         }
         h3 { color: #fff; font-size: 1.4rem; letter-spacing: 1px; margin-top:0; font-weight: 600; }
 
-        /* --- YENİLENMİŞ ESNEK AKORDİYON (TEXT WRAPPING FIX) --- */
+        /* --- YENİLENMİŞ ESNEK AKORDİYON (TEXT WRAPPING FIX - FINAL) --- */
         .accordion-btn {
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(10px); 
             color: var(--gold-light); 
             cursor: pointer; 
-            padding: 20px 25px; 
+            padding: 30px 25px; /* Yüksek padding PC için daha iyi */
             width: 100%; 
             text-align: left;
             border: 1px solid rgba(212, 175, 55, 0.2); 
@@ -149,7 +149,7 @@
             border-radius: 4px; 
             outline: none; 
             transition: all 0.4s ease; 
-            font-size: 1.05rem; 
+            font-size: 1.1rem; 
             font-weight: 600; 
             margin-top: 15px;
             
@@ -160,11 +160,13 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             
-            /* Metin Kaydırma Ayarları */
-            height: auto; /* Yükseklik içeriğe göre değişsin */
-            min-height: 60px; 
-            white-space: normal; /* Alt satıra geçiş serbest */
-            line-height: 1.5;
+            /* Kritik Düzeltme: Overflow visible ve Height Auto */
+            height: auto !important; 
+            min-height: auto !important;
+            overflow: visible !important;
+            white-space: normal !important; 
+            word-break: break-word; 
+            line-height: 1.6;
         }
         
         .accordion-btn:hover, .accordion-btn.active-acc { 
@@ -176,10 +178,11 @@
             padding-left: 30px;
         }
 
-        /* Başlık metni için özel kapsayıcı */
+        /* Başlık metni */
         .acc-text {
             flex: 1; /* Mevcut boşluğu doldur */
-            padding-right: 15px; /* İkon ile araya mesafe */
+            padding-right: 20px; /* İkon ile araya mesafe */
+            display: block; /* Blok davranışı göster */
         }
 
         /* İkon */
@@ -187,7 +190,9 @@
             font-size: 0.9rem; 
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             color: var(--gold-primary);
-            flex-shrink: 0; /* Asla küçülme/ezilme */
+            flex-shrink: 0; /* Asla küçülme */
+            width: 20px; /* Sabit genişlik */
+            text-align: right;
         }
         
         .accordion-btn.active-acc .acc-icon { transform: rotate(180deg); color: #fff; }
@@ -211,7 +216,7 @@
 
         @media (max-width: 600px) {
             .accordion-btn { 
-                padding: 18px 20px; 
+                padding: 20px 20px; 
                 font-size: 0.9rem; 
                 border-left-width: 4px;
             }
@@ -762,7 +767,6 @@
         });
         
         // --- TERMINATOR KODU: ESKİ PWA'YI ZORLA SİL ---
-        // Bu kod tarayıcıdaki tüm eski "Service Worker" kalıntılarını bulur ve yok eder.
         if(window.navigator && navigator.serviceWorker) {
             navigator.serviceWorker.getRegistrations()
             .then(function(registrations) {
