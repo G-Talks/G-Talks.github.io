@@ -311,11 +311,72 @@
                 font-size: 0.9rem; /* Başlık fontunu biraz küçült */
             }
         }
+
+        /* --- PWA YÜKLEME BARI (PREMIUM) --- */
+        .pwa-install-toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 450px;
+            background: rgba(5, 5, 5, 0.95);
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 15px 20px;
+            z-index: 11000; /* Navbar'ın üstünde */
+            display: none; /* JS ile açılacak */
+            align-items: center; justify-content: space-between;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            animation: slideDownFade 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideDownFade {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+        .pwa-content { display: flex; align-items: center; gap: 15px; }
+        .pwa-icon-box {
+            width: 40px; height: 40px; background: var(--gold-gradient);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        .pwa-info h4 { margin: 0; color: #fff; font-size: 0.95rem; font-weight: 700; }
+        .pwa-info p { margin: 2px 0 0 0; color: #aaa; font-size: 0.75rem; }
+
+        .pwa-actions { display: flex; align-items: center; gap: 10px; }
+        
+        .btn-pwa-install {
+            background: var(--gold-primary); color: #000; border: none;
+            padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.8rem;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn-pwa-install:hover { background: #fff; box-shadow: 0 0 15px var(--gold-primary); }
+
+        .btn-pwa-close {
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; width: 30px; height: 30px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .btn-pwa-close:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="noise-overlay"></div>
+
+    <div id="pwaInstallToast" class="pwa-install-toast">
+        <div class="pwa-content">
+            <div class="pwa-icon-box">📱</div>
+            <div class="pwa-info">
+                <h4>Uygulamayı Yükle</h4>
+                <p>Daha hızlı erişim için ana ekrana ekle</p>
+            </div>
+        </div>
+        <div class="pwa-actions">
+            <button class="btn-pwa-install" id="pwaInstallBtn">YÜKLE</button>
+            <button class="btn-pwa-close" id="pwaCloseBtn">✕</button>
+        </div>
+    </div>
 
     <div id="menuOverlay"></div>
 
@@ -1020,6 +1081,44 @@
             setInterval(updateCountdowns, 1000);
             updateCountdowns();
         });
+
+        // --- PWA YÜKLEME MANTIĞI (PREMIUM TOAST) ---
+        let deferredPrompt;
+        const pwaToast = document.getElementById('pwaInstallToast');
+        const installBtn = document.getElementById('pwaInstallBtn');
+        const closeBtn = document.getElementById('pwaCloseBtn');
+
+        // Tarayıcı yüklemeye uygun olduğunda bu olay tetiklenir
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // 1. Varsayılan tarayıcı uyarısını engelle
+            e.preventDefault();
+            // 2. Olayı daha sonra kullanmak üzere sakla
+            deferredPrompt = e;
+            // 3. Kendi özel tasarımımızı göster
+            if (pwaToast) pwaToast.style.display = 'flex';
+        });
+
+        if(installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    // Yükleme penceresini aç
+                    deferredPrompt.prompt();
+                    // Kullanıcının ne seçtiğini bekle
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`Kullanıcı yanıtı: ${outcome}`);
+                    // Promotu temizle
+                    deferredPrompt = null;
+                    // Kutuyu gizle
+                    if (pwaToast) pwaToast.style.display = 'none';
+                }
+            });
+        }
+
+        if(closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                if (pwaToast) pwaToast.style.display = 'none';
+            });
+        }
     </script>
     
     <script>
