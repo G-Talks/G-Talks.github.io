@@ -734,39 +734,51 @@
             }
 
             // --- AKORDİYON DÜZELTİLMİŞ JS ---
-            // Yüksekliği "panel-inner" class'ına göre hesaplıyoruz.
             const acc = document.getElementsByClassName("accordion-btn");
             for (let i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
                     this.classList.toggle("active-acc");
                     var panel = this.nextElementSibling;
-                    
-                    // İçerik boyutunu bulmak için içteki div'i seç
                     var inner = panel.querySelector('.panel-inner');
                     
                     if (panel.style.maxHeight) { 
                         panel.style.maxHeight = null; 
                     } else { 
-                        // İçteki div'in yüksekliği kadar aç (padding dahil)
                         panel.style.maxHeight = inner.offsetHeight + "px"; 
                     }
                 });
             }
 
-            // Countdown
+            // --- COUNTDOWN (HER İKİSİNİ DE GÜNCELLER) ---
             const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
+            
             setInterval(function() {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
+
+                // Hesaplamaları tek seferde yap
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // 1. Ana Sayfa Sayacı Güncellemesi
                 if(document.getElementById("days")) {
-                    document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
+                }
+
+                // 2. Etkinlikler Sayfası (KÜÇÜK SAYAÇ) Güncellemesi
+                if(document.getElementById("t-days")) {
+                    document.getElementById("t-days").innerText = days;
+                    document.getElementById("t-hours").innerText = hours;
+                    document.getElementById("t-min").innerText = minutes;
                 }
             }, 1000);
 
-            // Cookie Banner (Süre 2 saniyeye ayarlı)
+            // Cookie Banner
             const cookieBanner = document.getElementById('cookieBanner');
             if (!localStorage.getItem('cookieConsent')) {
                 setTimeout(() => { cookieBanner.style.display = 'block'; }, 2000);
