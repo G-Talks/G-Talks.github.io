@@ -329,7 +329,7 @@
         }
 
         /* ========================================= */
-        /* --- NETFLIX STYLE INTRO CSS (HIZLANDIRILDI) --- */
+        /* --- NETFLIX STYLE INTRO CSS (MOBİL OPTİMİZE) --- */
         /* ========================================= */
         #intro-overlay {
             position: fixed;
@@ -343,7 +343,6 @@
             align-items: center;
             z-index: 99999;
             opacity: 1;
-            /* Tıklamaları engellememesi için pointer-events ayarlandı */
             transition: opacity 0.4s ease-out;
         }
 
@@ -357,19 +356,32 @@
             opacity: 0;
             letter-spacing: 5px;
             transform: scale(1);
-            /* Animasyon süresi 2.5 saniyeye düşürüldü */
+            will-change: transform, opacity; /* Performans için hint */
             animation: netflixZoom 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
         }
 
-        @media (max-width: 600px) {
-            .intro-text { font-size: 2.5rem; }
-        }
-
+        /* MASAÜSTÜ ANİMASYONU (FULL EFEKT) */
         @keyframes netflixZoom {
             0% { opacity: 0; transform: scale(1); letter-spacing: 5px; text-shadow: none; }
             20% { opacity: 1; transform: scale(1); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
             85% { opacity: 1; transform: scale(1.5); letter-spacing: 15px; text-shadow: 0 0 50px rgba(212, 175, 55, 1), 0 0 20px rgba(255, 255, 255, 0.5); }
             100% { opacity: 0; transform: scale(30); letter-spacing: 50px; }
+        }
+
+        /* MOBİL İÇİN ÖZEL OPTİMİZASYON */
+        @media (max-width: 600px) {
+            .intro-text { 
+                font-size: 2.5rem; 
+                /* Mobilde daha hafif animasyon kullan */
+                animation-name: netflixZoomMobile; 
+            }
+        }
+
+        /* MOBİL ANİMASYONU (SADECE SCALE - KASMA YAPMAZ) */
+        @keyframes netflixZoomMobile {
+            0% { opacity: 0; transform: scale(1); }
+            30% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(20); } /* Gölge ve letter-spacing hesaplaması yok */
         }
         /* --- NETFLIX STYLE INTRO CSS BİTİŞİ --- */
 
@@ -426,6 +438,8 @@
         <div class="contact-home">
             <p style="color:#777; font-size:0.85rem; letter-spacing:3px; margin-bottom:15px; font-weight: 600;">RESMİ İLETİŞİM & BASIN</p>
             <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a>
+            <br><br>
+            <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1.1rem; text-decoration: none; color: #fff; transition: 0.3s;">📷 @gitalks.official</a>
         </div>
     </div>
 
@@ -594,7 +608,8 @@
             <div class="accordion-panel">
                 <div class="panel-inner">
                     <p>Her türlü soru ve talepleriniz için:<br>
-                    📧 E-posta: <a href="mailto:gitalks@gmail.com" style="color:var(--gold-primary)">gitalks@gmail.com</a><br>
+                    📧 E-posta: <a href="mailto:gitalks.official@gmail.com" style="color:var(--gold-primary)">gitalks.official@gmail.com</a><br>
+                    📷 Instagram: <a href="https://instagram.com/gitalks.official" target="_blank" style="color:var(--gold-primary)">@gitalks.official</a><br>
                     🌐 Web: https://g-talks.github.io</p>
                     <p style="font-size:0.8rem; opacity:0.7;">Son güncelleme: Ocak 2026</p>
                 </div>
@@ -690,7 +705,7 @@
 
     <script>
         window.addEventListener('load', function() {
-            // 2.2 saniye sonra overlay'i kaldırmaya başla (Animasyon 2.5 saniye)
+            // 2.3 saniye sonra overlay'i kaldırmaya başla (Animasyon 2.5 saniye)
             setTimeout(function() {
                 var overlay = document.getElementById('intro-overlay');
                 if(overlay) {
