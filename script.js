@@ -234,8 +234,8 @@ const Chatbot = {
         const text = textOverride || this.elements.input.value.trim();
         if (!text) return;
 
-        // Kullanıcı balonunu ekle
-        this.addBubble(text, "bubble-user");
+        // Kullanıcı balonunu güvenli şekilde (metin olarak) ekle
+        this.addTextBubble(text, "bubble-user");
         this.elements.input.value = "";
         this.scrollToBottom();
 
@@ -263,6 +263,13 @@ const Chatbot = {
             
             this.scrollToBottom();
         }, delay);
+    },
+
+    addTextBubble: function(text, className) {
+        const div = document.createElement("div");
+        div.className = `bubble ${className}`;
+        div.textContent = text;
+        this.elements.area.appendChild(div);
     },
 
     addBubble: function(html, className) {
