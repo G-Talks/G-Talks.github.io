@@ -329,7 +329,7 @@
         }
 
         /* ========================================= */
-        /* --- NETFLIX STYLE INTRO CSS BAŞLANGICI --- */
+        /* --- NETFLIX STYLE INTRO CSS (HIZLANDIRILDI) --- */
         /* ========================================= */
         #intro-overlay {
             position: fixed;
@@ -343,7 +343,8 @@
             align-items: center;
             z-index: 99999;
             opacity: 1;
-            transition: opacity 0.5s ease-out;
+            /* Tıklamaları engellememesi için pointer-events ayarlandı */
+            transition: opacity 0.4s ease-out;
         }
 
         .intro-text {
@@ -356,7 +357,8 @@
             opacity: 0;
             letter-spacing: 5px;
             transform: scale(1);
-            animation: netflixZoom 4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+            /* Animasyon süresi 2.5 saniyeye düşürüldü */
+            animation: netflixZoom 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
         }
 
         @media (max-width: 600px) {
@@ -688,18 +690,17 @@
 
     <script>
         window.addEventListener('load', function() {
-            // 3.8 saniye sonra (Animasyon bitmek üzereyken)
+            // 2.2 saniye sonra overlay'i kaldırmaya başla (Animasyon 2.5 saniye)
             setTimeout(function() {
                 var overlay = document.getElementById('intro-overlay');
                 if(overlay) {
-                    overlay.style.opacity = '0'; // Yavaşça görünmez yap
-                    
-                    // Yarım saniye sonra da tamamen sil (Tıklamaları engellememesi için)
+                    overlay.style.opacity = '0'; // Görünmez yap
+                    // Tıklamaları engellememesi için tamamen sil
                     setTimeout(function() {
                         overlay.style.display = 'none';
-                    }, 500);
+                    }, 400);
                 }
-            }, 3800); 
+            }, 2300); 
         });
     </script>
 
