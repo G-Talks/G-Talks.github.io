@@ -329,7 +329,7 @@
         }
 
         /* ========================================= */
-        /* --- YENİ AKIŞKAN & ÇARPIŞAN INTRO CSS --- */
+        /* --- YENİ KESKİN & AKIŞKAN INTRO CSS --- */
         /* ========================================= */
         #intro-overlay {
             position: fixed;
@@ -342,7 +342,7 @@
             justify-content: center;
             align-items: center;
             z-index: 99999;
-            /* Fade out background after text animation handles the heavy lifting */
+            /* Arka planı yazı bittikten sonra sil */
             animation: fadeOutBg 0.5s ease-out 2.8s forwards;
             pointer-events: all;
         }
@@ -350,45 +350,41 @@
         .intro-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: clamp(3rem, 15vw, 7rem); /* Mobilde ve PC'de akışkan boyut */
+            font-size: clamp(3rem, 15vw, 7rem); /* Akışkan boyutlandırma */
             color: #D4AF37;
             text-transform: uppercase;
             margin: 0;
             opacity: 0;
+            /* Blur KULLANILMIYOR, sadece harf aralığı ve ölçekleme */
             letter-spacing: 5px;
             white-space: nowrap;
             will-change: transform, letter-spacing, opacity;
             
-            /* Tek animasyon, tüm cihazlarda aynı çalışır */
-            animation: fluidImplosion 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: sharpImplosion 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Bu animasyon G ve S harflerinin (en dıştakiler) birbirine doğru hareket edip yok olmasını simüle eder */
-        @keyframes fluidImplosion {
+        /* BLUR KULLANMADAN ÇAKIŞMA EFEKTİ */
+        @keyframes sharpImplosion {
             0% {
                 opacity: 0;
-                letter-spacing: 5px;
+                letter-spacing: 10px; /* Biraz açık başla */
                 transform: scale(0.9);
-                filter: blur(10px);
             }
             20% {
                 opacity: 1;
-                letter-spacing: 5px;
+                letter-spacing: 5px; /* Normal halini al */
                 transform: scale(1);
-                filter: blur(0);
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
             }
             60% {
                 opacity: 1;
                 letter-spacing: 5px;
-                transform: scale(1.05); /* Hafif büyüme */
+                transform: scale(1.1); /* Hafif nefes alma efekti */
                 color: #D4AF37;
             }
             100% {
                 opacity: 0;
-                letter-spacing: -50px; /* HARFLERİ İÇ İÇE GEÇİRİP YOK EDER (G ve S birbirine çarpar) */
-                transform: scale(0.1); /* Merkeze doğru çökme */
-                filter: blur(20px);
+                letter-spacing: -0.5em; /* HARFLERİ BİRBİRİNE ÇARPTIR (Negatif boşluk) */
+                transform: scale(0); /* Merkeze çök */
                 color: #fff;
             }
         }
@@ -720,11 +716,10 @@
 
     <script>
         window.addEventListener('load', function() {
-            // CSS animasyonu 2.8s sürüyor. Biz 3s sonra DOM'dan tamamen temizliyoruz.
             setTimeout(function() {
                 var overlay = document.getElementById('intro-overlay');
                 if(overlay) {
-                    overlay.style.display = 'none'; // DOM'dan gizle
+                    overlay.style.display = 'none'; 
                 }
             }, 3200); 
         });
