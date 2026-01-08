@@ -329,7 +329,7 @@
         }
 
         /* ========================================= */
-        /* --- NETFLIX STYLE INTRO CSS (MOBİL OPTİMİZE) --- */
+        /* --- YENİ AKIŞKAN & ÇARPIŞAN INTRO CSS --- */
         /* ========================================= */
         #intro-overlay {
             position: fixed;
@@ -342,49 +342,61 @@
             justify-content: center;
             align-items: center;
             z-index: 99999;
-            opacity: 1;
-            transition: opacity 0.4s ease-out;
+            /* Fade out background after text animation handles the heavy lifting */
+            animation: fadeOutBg 0.5s ease-out 2.8s forwards;
+            pointer-events: all;
         }
 
         .intro-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: 5rem;
+            font-size: clamp(3rem, 15vw, 7rem); /* Mobilde ve PC'de akışkan boyut */
             color: #D4AF37;
             text-transform: uppercase;
             margin: 0;
             opacity: 0;
             letter-spacing: 5px;
-            transform: scale(1);
-            will-change: transform, opacity; /* Performans için hint */
-            animation: netflixZoom 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+            white-space: nowrap;
+            will-change: transform, letter-spacing, opacity;
+            
+            /* Tek animasyon, tüm cihazlarda aynı çalışır */
+            animation: fluidImplosion 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* MASAÜSTÜ ANİMASYONU (FULL EFEKT) */
-        @keyframes netflixZoom {
-            0% { opacity: 0; transform: scale(1); letter-spacing: 5px; text-shadow: none; }
-            20% { opacity: 1; transform: scale(1); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-            85% { opacity: 1; transform: scale(1.5); letter-spacing: 15px; text-shadow: 0 0 50px rgba(212, 175, 55, 1), 0 0 20px rgba(255, 255, 255, 0.5); }
-            100% { opacity: 0; transform: scale(30); letter-spacing: 50px; }
-        }
-
-        /* MOBİL İÇİN ÖZEL OPTİMİZASYON */
-        @media (max-width: 600px) {
-            .intro-text { 
-                font-size: 2.5rem; 
-                /* Mobilde daha hafif animasyon kullan */
-                animation-name: netflixZoomMobile; 
+        /* Bu animasyon G ve S harflerinin (en dıştakiler) birbirine doğru hareket edip yok olmasını simüle eder */
+        @keyframes fluidImplosion {
+            0% {
+                opacity: 0;
+                letter-spacing: 5px;
+                transform: scale(0.9);
+                filter: blur(10px);
+            }
+            20% {
+                opacity: 1;
+                letter-spacing: 5px;
+                transform: scale(1);
+                filter: blur(0);
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            }
+            60% {
+                opacity: 1;
+                letter-spacing: 5px;
+                transform: scale(1.05); /* Hafif büyüme */
+                color: #D4AF37;
+            }
+            100% {
+                opacity: 0;
+                letter-spacing: -50px; /* HARFLERİ İÇ İÇE GEÇİRİP YOK EDER (G ve S birbirine çarpar) */
+                transform: scale(0.1); /* Merkeze doğru çökme */
+                filter: blur(20px);
+                color: #fff;
             }
         }
 
-        /* MOBİL ANİMASYONU (SADECE SCALE - KASMA YAPMAZ) */
-        @keyframes netflixZoomMobile {
-            0% { opacity: 0; transform: scale(1); }
-            20% { opacity: 1; transform: scale(1); } /* PC ile aynı bekleme */
-            85% { opacity: 1; transform: scale(1.5); } /* PC ile aynı yavaş büyüme */
-            100% { opacity: 0; transform: scale(30); } /* PC ile aynı hızlı çıkış */
+        @keyframes fadeOutBg {
+            to { opacity: 0; visibility: hidden; }
         }
-        /* --- NETFLIX STYLE INTRO CSS BİTİŞİ --- */
+        /* --- INTRO BİTİŞİ --- */
 
     </style>
 </head>
@@ -440,7 +452,9 @@
             <p style="color:#777; font-size:0.85rem; letter-spacing:3px; margin-bottom:15px; font-weight: 600;">RESMİ İLETİŞİM & BASIN</p>
             <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a>
             <br><br>
-            <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1.1rem; text-decoration: none; color: #fff; transition: 0.3s;">📷 @gitalks.official</a>
+            <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1.1rem; text-decoration: none; color: #fff; transition: 0.3s; display: inline-block; border: 1px solid rgba(212,175,55,0.3); padding: 10px 20px; border-radius: 30px;">
+                📷 Instagram: gitalks.official
+            </a>
         </div>
     </div>
 
@@ -706,17 +720,13 @@
 
     <script>
         window.addEventListener('load', function() {
-            // 2.3 saniye sonra overlay'i kaldırmaya başla (Animasyon 2.5 saniye)
+            // CSS animasyonu 2.8s sürüyor. Biz 3s sonra DOM'dan tamamen temizliyoruz.
             setTimeout(function() {
                 var overlay = document.getElementById('intro-overlay');
                 if(overlay) {
-                    overlay.style.opacity = '0'; // Görünmez yap
-                    // Tıklamaları engellememesi için tamamen sil
-                    setTimeout(function() {
-                        overlay.style.display = 'none';
-                    }, 400);
+                    overlay.style.display = 'none'; // DOM'dan gizle
                 }
-            }, 2300); 
+            }, 3200); 
         });
     </script>
 
