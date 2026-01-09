@@ -128,13 +128,71 @@
         @keyframes liquidGold { to { background-position: 200% center; } }
         
         .sub-header { font-size: clamp(0.9rem, 2.5vw, 1.2rem); color: #e0e0e0; font-weight: 300; letter-spacing: 6px; margin-bottom: 30px; text-transform: uppercase; opacity: 0.8; }
-        .guest-info { font-size: 1rem; color: var(--text-muted); margin-bottom: 50px; font-weight: 300; letter-spacing: 1px; }
-
+        
         h2 { 
             color: #fff; display: inline-block; margin-top: 50px; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 4px; font-size: 2rem; font-weight: 700;
             background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         h3 { color: #fff; font-size: 1.4rem; letter-spacing: 1px; margin-top:0; font-weight: 600; }
+
+        /* --- YENİ DAVETLİLER KARTLARI (GRID) --- */
+        .guests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 50px;
+            padding: 0 10px;
+        }
+
+        .guest-card-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .guest-card-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .guest-logo-box {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: #000;
+            border: 2px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .guest-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guest-bio {
+            font-size: 0.9rem;
+            color: #bbb;
+            line-height: 1.6;
+            font-weight: 300;
+        }
 
         /* --- AKORDİYON --- */
         .accordion-btn {
@@ -431,7 +489,32 @@
             <h1>GıTalks 2026</h1>
         </div>
         <div class="sub-header">Geleceği Şekillendiren Sesler</div>
-        <div class="guest-info">Davetliler: <span style="font-weight:600; color:#D4AF37; text-shadow: 0 0 10px rgba(212,175,55,0.3);">Aiteker Yazılım, İlko İlaç Sanayi, Yazgan Mimarlık</span></div>
+        
+        <h2 style="font-size: 1.5rem; margin-bottom: 25px; letter-spacing: 3px;">ONUR KONUKLARI & DAVETLİLER</h2>
+        <div class="guests-grid">
+            
+            <div class="guest-card-item">
+                <div class="guest-logo-box">💻</div> <div class="guest-name">Atiker Yazılım</div>
+                <div class="guest-bio">
+                    Konya merkezli, Türkiye'nin önde gelen yerli yazılım firmalarından biri. ERP, MRP ve dijital dönüşüm çözümleriyle endüstriye yön veriyor.
+                </div>
+            </div>
+
+            <div class="guest-card-item">
+                <div class="guest-logo-box">💊</div> <div class="guest-name">İlko İlaç Sanayi</div>
+                <div class="guest-bio">
+                    50 yılı aşkın tecrübesiyle, küresel ölçekte Ar-Ge çalışmaları yürüten, biyoteknoloji ve ilaç sektörünün öncü kuruluşu.
+                </div>
+            </div>
+
+            <div class="guest-card-item">
+                <div class="guest-logo-box">🏛️</div> <div class="guest-name">Yazgan Mimarlık</div>
+                <div class="guest-bio">
+                    Ulusal ve uluslararası ödüllere sahip, sürdürülebilir ve yenilikçi tasarım anlayışıyla tanınan prestijli mimarlık ofisi.
+                </div>
+            </div>
+
+        </div>
         <div class="info-box">
             <h3 id="tech-title-btn" class="clickable-title">GıTalks Teknoloji</h3>
             <div class="countdown-container" id="countdown">
