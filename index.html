@@ -128,71 +128,121 @@
         @keyframes liquidGold { to { background-position: 200% center; } }
         
         .sub-header { font-size: clamp(0.9rem, 2.5vw, 1.2rem); color: #e0e0e0; font-weight: 300; letter-spacing: 6px; margin-bottom: 30px; text-transform: uppercase; opacity: 0.8; }
-        
+        .guest-info { font-size: 1rem; color: var(--text-muted); margin-bottom: 50px; font-weight: 300; letter-spacing: 1px; }
+
         h2 { 
             color: #fff; display: inline-block; margin-top: 50px; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 4px; font-size: 2rem; font-weight: 700;
             background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         h3 { color: #fff; font-size: 1.4rem; letter-spacing: 1px; margin-top:0; font-weight: 600; }
 
-        /* --- YENİ DAVETLİLER KARTLARI (GRID) --- */
+        /* --- INFO BOX & CLICKABLE --- */
+        .info-box {
+            background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 60px;
+            border-radius: 20px; margin: 40px auto; width: 100%; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.6); position: relative; overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .info-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .info-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-primary), transparent); }
+
+        .clickable-title { 
+            cursor: pointer; 
+            transition: all 0.4s; 
+            display: inline-block; 
+            font-size: 1.6rem; 
+            color: #fff; 
+            padding-bottom: 5px; 
+            border-bottom: 2px solid transparent; 
+            animation: pulseTitle 3s infinite;
+        }
+        .clickable-title:hover { 
+            color: var(--gold-primary); 
+            text-shadow: 0 0 25px var(--gold-primary); 
+            border-bottom: 2px solid var(--gold-primary);
+        }
+        
+        @keyframes pulseTitle {
+            0% { text-shadow: 0 0 10px rgba(212,175,55,0); }
+            50% { text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+            100% { text-shadow: 0 0 10px rgba(212,175,55,0); }
+        }
+
+        .click-hint {
+            font-size: 0.75rem; 
+            color: var(--gold-light); 
+            opacity: 0.7; 
+            margin-top: 5px; 
+            letter-spacing: 1px; 
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* --- POPUP / MODAL CSS --- */
+        .modal-overlay {
+            display: none; /* Javascript ile flex yapılacak */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: linear-gradient(145deg, #111 0%, #050505 100%);
+            border: 1px solid var(--gold-primary);
+            padding: 40px;
+            width: 90%; max-width: 900px;
+            max-height: 90vh; overflow-y: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+            position: relative;
+            transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .close-modal-btn {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 2.5rem; color: #fff; cursor: pointer; transition: 0.3s;
+            line-height: 0.8;
+        }
+        .close-modal-btn:hover { color: var(--gold-primary); transform: rotate(90deg); }
+
         .guests-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
-            width: 100%;
-            margin-bottom: 50px;
-            padding: 0 10px;
+            margin-top: 30px;
         }
 
         .guest-card-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 30px 20px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
             text-align: center;
+            transition: 0.3s;
         }
-
-        .guest-card-item:hover {
+        .guest-card-item:hover { 
+            border-color: var(--gold-primary); 
+            background: rgba(212, 175, 55, 0.05); 
             transform: translateY(-5px);
-            border-color: var(--gold-primary);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            background: rgba(255, 255, 255, 0.04);
         }
 
         .guest-logo-box {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;
-            background: #000;
+            width: 80px; height: 80px; margin: 0 auto 15px auto;
+            border-radius: 50%; background: #000;
             border: 2px solid var(--gold-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
-
-        .guest-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .guest-bio {
-            font-size: 0.9rem;
-            color: #bbb;
-            line-height: 1.6;
-            font-weight: 300;
-        }
+        .guest-name { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .guest-bio { font-size: 0.9rem; color: #bbb; line-height: 1.6; font-weight: 300; }
 
         /* --- AKORDİYON --- */
         .accordion-btn {
@@ -262,15 +312,6 @@
         .time-box span { display: block; font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 5px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .time-box label { font-size: 0.65rem; color: #777; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
 
-        .info-box {
-            background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 60px;
-            border-radius: 20px; margin: 40px auto; width: 100%; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.6); position: relative; overflow: hidden;
-        }
-        .info-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-primary), transparent); }
-
-        .clickable-title { cursor: pointer; transition: all 0.4s; display: inline-block; font-size: 1.6rem; color: #fff; padding-bottom: 5px; border-bottom: 1px solid transparent; }
-        .clickable-title:hover { color: var(--gold-primary); text-shadow: 0 0 20px var(--gold-primary); border-bottom: 1px solid var(--gold-primary); }
-
         .conf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; text-align: left; margin-top: 30px; }
         .conf-card {
             background: linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid var(--glass-border); border-radius: 16px; padding: 35px;
@@ -297,10 +338,6 @@
         .mini-time { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 25px; }
         .mini-time span { font-size: 0.9rem; color: var(--gold-light); font-weight: bold; line-height: 1; }
         .mini-time label { font-size: 0.45rem; color: #666; margin-top: 2px; }
-
-        .contact-home { margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; }
-        .contact-home a { color: var(--gold-primary); text-decoration: none; font-weight: bold; font-size: 1.4rem; transition: 0.3s; }
-        .contact-home a:hover { color: #fff; text-shadow: 0 0 20px var(--gold-primary); }
 
         /* --- SPONSOR SAYFASI --- */
         .tier-section { margin-bottom: 60px; width: 100%; }
@@ -400,7 +437,6 @@
             justify-content: center;
             align-items: center;
             z-index: 99999;
-            /* Arka planı yazı bittikten sonra sil */
             animation: fadeOutBg 0.5s ease-out 2.8s forwards;
             pointer-events: all;
         }
@@ -413,45 +449,22 @@
             text-transform: uppercase;
             margin: 0;
             opacity: 0;
-            /* Blur KULLANILMIYOR, sadece harf aralığı ve ölçekleme */
             letter-spacing: 5px;
             white-space: nowrap;
             will-change: transform, letter-spacing, opacity;
-            
             animation: sharpImplosion 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* BLUR KULLANMADAN ÇAKIŞMA EFEKTİ */
         @keyframes sharpImplosion {
-            0% {
-                opacity: 0;
-                letter-spacing: 10px; /* Biraz açık başla */
-                transform: scale(0.9);
-            }
-            20% {
-                opacity: 1;
-                letter-spacing: 5px; /* Normal halini al */
-                transform: scale(1);
-            }
-            60% {
-                opacity: 1;
-                letter-spacing: 5px;
-                transform: scale(1.1); /* Hafif nefes alma efekti */
-                color: #D4AF37;
-            }
-            100% {
-                opacity: 0;
-                letter-spacing: -0.5em; /* HARFLERİ BİRBİRİNE ÇARPTIR (Negatif boşluk) */
-                transform: scale(0); /* Merkeze çök */
-                color: #fff;
-            }
+            0% { opacity: 0; letter-spacing: 10px; transform: scale(0.9); }
+            20% { opacity: 1; letter-spacing: 5px; transform: scale(1); }
+            60% { opacity: 1; letter-spacing: 5px; transform: scale(1.1); color: #D4AF37; }
+            100% { opacity: 0; letter-spacing: -0.5em; transform: scale(0); color: #fff; }
         }
 
         @keyframes fadeOutBg {
             to { opacity: 0; visibility: hidden; }
         }
-        /* --- INTRO BİTİŞİ --- */
-
     </style>
 </head>
 <body>
@@ -490,33 +503,12 @@
         </div>
         <div class="sub-header">Geleceği Şekillendiren Sesler</div>
         
-        <h2 style="font-size: 1.5rem; margin-bottom: 25px; letter-spacing: 3px;">ONUR KONUKLARI & DAVETLİLER</h2>
-        <div class="guests-grid">
-            
-            <div class="guest-card-item">
-                <div class="guest-logo-box">💻</div> <div class="guest-name">Atiker Yazılım</div>
-                <div class="guest-bio">
-                    Konya merkezli, Türkiye'nin önde gelen yerli yazılım firmalarından biri. ERP, MRP ve dijital dönüşüm çözümleriyle endüstriye yön veriyor.
-                </div>
-            </div>
-
-            <div class="guest-card-item">
-                <div class="guest-logo-box">💊</div> <div class="guest-name">İlko İlaç Sanayi</div>
-                <div class="guest-bio">
-                    50 yılı aşkın tecrübesiyle, küresel ölçekte Ar-Ge çalışmaları yürüten, biyoteknoloji ve ilaç sektörünün öncü kuruluşu.
-                </div>
-            </div>
-
-            <div class="guest-card-item">
-                <div class="guest-logo-box">🏛️</div> <div class="guest-name">Yazgan Mimarlık</div>
-                <div class="guest-bio">
-                    Ulusal ve uluslararası ödüllere sahip, sürdürülebilir ve yenilikçi tasarım anlayışıyla tanınan prestijli mimarlık ofisi.
-                </div>
-            </div>
-
-        </div>
-        <div class="info-box">
+        <div class="guest-info">Davetliler: <span style="font-weight:600; color:#D4AF37; text-shadow: 0 0 10px rgba(212,175,55,0.3);">Atiker Yazılım, İlko İlaç Sanayi, Yazgan Mimarlık</span></div>
+        
+        <div class="info-box" id="openGuestModalBtn" style="cursor: pointer;">
             <h3 id="tech-title-btn" class="clickable-title">GıTalks Teknoloji</h3>
+            <div class="click-hint">(Davetlileri Görmek İçin Tıklayın)</div>
+            
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
@@ -527,6 +519,7 @@
             <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin:30px 0;">
             <p style="font-size:0.95rem; color:var(--text-muted); font-style:italic; font-weight: 300;">GıTalks, 2026 ve sonrası için sürdürülebilir etkinlik vizyonu ile planlanmaktadır.</p>
         </div>
+
         <div class="contact-home">
             <p style="color:#777; font-size:0.85rem; letter-spacing:3px; margin-bottom:15px; font-weight: 600;">RESMİ İLETİŞİM & BASIN</p>
             <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a>
@@ -534,6 +527,40 @@
             <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1.1rem; text-decoration: none; color: #fff; transition: 0.3s; display: inline-block; border: 1px solid rgba(212,175,55,0.3); padding: 10px 20px; border-radius: 30px;">
                 📷 Instagram: gitalks.official
             </a>
+        </div>
+    </div>
+
+    <div id="guestModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal-btn" id="closeGuestModalBtn">&times;</span>
+            <h2 style="margin-top:0;">ONUR KONUKLARI & DAVETLİLER</h2>
+            <div class="guests-grid">
+                
+                <div class="guest-card-item">
+                    <div class="guest-logo-box">💻</div>
+                    <div class="guest-name">Atiker Yazılım</div>
+                    <div class="guest-bio">
+                        Konya merkezli, Türkiye'nin önde gelen yerli yazılım firmalarından biri. ERP, MRP ve dijital dönüşüm çözümleriyle endüstriye yön veriyor.
+                    </div>
+                </div>
+
+                <div class="guest-card-item">
+                    <div class="guest-logo-box">💊</div>
+                    <div class="guest-name">İlko İlaç Sanayi</div>
+                    <div class="guest-bio">
+                        50 yılı aşkın tecrübesiyle, küresel ölçekte Ar-Ge çalışmaları yürüten, biyoteknoloji ve ilaç sektörünün öncü kuruluşu.
+                    </div>
+                </div>
+
+                <div class="guest-card-item">
+                    <div class="guest-logo-box">🏛️</div>
+                    <div class="guest-name">Yazgan Mimarlık</div>
+                    <div class="guest-bio">
+                        Ulusal ve uluslararası ödüllere sahip, sürdürülebilir ve yenilikçi tasarım anlayışıyla tanınan prestijli mimarlık ofisi.
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -548,7 +575,7 @@
                 <h3>GıTalks 2026 AKADEMİ</h3>
                 <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
                 <div class="card-footer">
-                    <div class="guest-pill"><span>Davetliler: <strong>Aiteker, İlko, Yazgan</strong></span></div>
+                    <div class="guest-pill"><span>Davetliler: <strong>Atiker, İlko, Yazgan</strong></span></div>
                     <div class="mini-countdown" id="tech-countdown">
                         <div class="mini-time"><span id="t-days">00</span><label>G</label></div>
                         <div class="mini-time"><span id="t-hours">00</span><label>S</label></div>
@@ -805,6 +832,31 @@
                     overlay.style.display = 'none'; 
                 }
             }, 3200); 
+        });
+
+        // POPUP İŞLEMLERİ İÇİN EK SCRIPT
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal Elements
+            const guestModal = document.getElementById('guestModal');
+            const openModalBtn = document.getElementById('openGuestModalBtn');
+            const closeModalBtn = document.getElementById('closeGuestModalBtn');
+
+            // Open Modal
+            openModalBtn.addEventListener('click', function() {
+                guestModal.classList.add('active');
+            });
+
+            // Close Modal
+            closeModalBtn.addEventListener('click', function() {
+                guestModal.classList.remove('active');
+            });
+
+            // Close on Outside Click
+            window.addEventListener('click', function(e) {
+                if (e.target == guestModal) {
+                    guestModal.classList.remove('active');
+                }
+            });
         });
     </script>
 
