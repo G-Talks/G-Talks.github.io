@@ -182,7 +182,7 @@
 
         /* --- POPUP / MODAL CSS --- */
         .modal-overlay {
-            display: none; /* Javascript ile flex yapılacak */
+            display: none;
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
@@ -338,6 +338,10 @@
         .mini-time { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 25px; }
         .mini-time span { font-size: 0.9rem; color: var(--gold-light); font-weight: bold; line-height: 1; }
         .mini-time label { font-size: 0.45rem; color: #666; margin-top: 2px; }
+
+        .contact-home { margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; }
+        .contact-home a { color: var(--gold-primary); text-decoration: none; font-weight: bold; font-size: 1.4rem; transition: 0.3s; }
+        .contact-home a:hover { color: #fff; text-shadow: 0 0 20px var(--gold-primary); }
 
         /* --- SPONSOR SAYFASI --- */
         .tier-section { margin-bottom: 60px; width: 100%; }
@@ -575,7 +579,7 @@
                 <h3>GıTalks 2026 AKADEMİ</h3>
                 <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
                 <div class="card-footer">
-                    <div class="guest-pill"><span>Davetliler: <strong>Atiker, İlko, Yazgan</strong></span></div>
+                    <div class="guest-pill"><span>Davetliler: <strong>Atiker Yazılım, İlko İlaç Sanayi, Yazgan Mimarlık</strong></span></div>
                     <div class="mini-countdown" id="tech-countdown">
                         <div class="mini-time"><span id="t-days">00</span><label>G</label></div>
                         <div class="mini-time"><span id="t-hours">00</span><label>S</label></div>
@@ -842,14 +846,18 @@
             const closeModalBtn = document.getElementById('closeGuestModalBtn');
 
             // Open Modal
-            openModalBtn.addEventListener('click', function() {
-                guestModal.classList.add('active');
-            });
+            if(openModalBtn) {
+                openModalBtn.addEventListener('click', function() {
+                    guestModal.classList.add('active');
+                });
+            }
 
             // Close Modal
-            closeModalBtn.addEventListener('click', function() {
-                guestModal.classList.remove('active');
-            });
+            if(closeModalBtn) {
+                closeModalBtn.addEventListener('click', function() {
+                    guestModal.classList.remove('active');
+                });
+            }
 
             // Close on Outside Click
             window.addEventListener('click', function(e) {
