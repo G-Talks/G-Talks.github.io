@@ -236,13 +236,38 @@
 
         .guest-logo-box {
             width: 80px; height: 80px; margin: 0 auto 15px auto;
-            border-radius: 50%; background: #000;
+            border-radius: 50%; background: #fff; /* Logolar için beyaz zemin */
             border: 2px solid var(--gold-primary);
             display: flex; align-items: center; justify-content: center;
             font-size: 2rem; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            overflow: hidden;
         }
+        .guest-logo-box img { width: 70%; height: 70%; object-fit: contain; }
+        .guest-logo-box.icon-only { background: #000; } /* İkon olanlar siyah kalsın */
+
         .guest-name { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .guest-bio { font-size: 0.9rem; color: #bbb; line-height: 1.6; font-weight: 300; }
+
+        /* --- KART İÇİ KONUK LİSTESİ --- */
+        .card-guest-list { margin-top: 25px; text-align: left; }
+        .card-guest-row {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+            background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+        }
+        .card-guest-row:hover { background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.3); }
+        
+        .card-guest-img {
+            width: 50px; height: 50px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; border: 1px solid var(--gold-dark);
+        }
+        .card-guest-img img { width: 35px; height: 35px; object-fit: contain; }
+        .card-guest-img.icon { background: #111; font-size: 1.5rem; }
+
+        .card-guest-text h4 { margin: 0 0 4px 0; color: var(--gold-primary); font-size: 0.95rem; font-weight: 700; }
+        .card-guest-text p { margin: 0; color: #ccc; font-size: 0.8rem; line-height: 1.4; }
+
 
         /* --- AKORDİYON --- */
         .accordion-btn {
@@ -541,7 +566,7 @@
             <div class="guests-grid">
                 
                 <div class="guest-card-item">
-                    <div class="guest-logo-box">💻</div>
+                    <div class="guest-logo-box"><img src="atiker.png" alt="Atiker Yazılım Logo"></div>
                     <div class="guest-name">Atiker Yazılım</div>
                     <div class="guest-bio">
                         Konya merkezli, Türkiye'nin önde gelen yerli yazılım firmalarından biri. ERP, MRP ve dijital dönüşüm çözümleriyle endüstriye yön veriyor.
@@ -549,7 +574,7 @@
                 </div>
 
                 <div class="guest-card-item">
-                    <div class="guest-logo-box">💊</div>
+                    <div class="guest-logo-box"><img src="ilko.png" alt="İlko İlaç Logo"></div>
                     <div class="guest-name">İlko İlaç Sanayi</div>
                     <div class="guest-bio">
                         50 yılı aşkın tecrübesiyle, küresel ölçekte Ar-Ge çalışmaları yürüten, biyoteknoloji ve ilaç sektörünün öncü kuruluşu.
@@ -557,7 +582,7 @@
                 </div>
 
                 <div class="guest-card-item">
-                    <div class="guest-logo-box">🏛️</div>
+                    <div class="guest-logo-box icon-only">🏛️</div>
                     <div class="guest-name">Yazgan Mimarlık</div>
                     <div class="guest-bio">
                         Ulusal ve uluslararası ödüllere sahip, sürdürülebilir ve yenilikçi tasarım anlayışıyla tanınan prestijli mimarlık ofisi.
@@ -576,10 +601,35 @@
                     <div class="card-icon"></div>
                     <div class="conf-date-badge">16 ŞUBAT 2026</div>
                 </div>
-                <h3>GıTalks 2026 AKADEMİ</h3>
-                <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
+                <h3>GıTalks 2026 TEKNOLOJİ</h3>
+                <p>Yapay zekâ, yazılım ekosistemleri ve dijital dönüşümün geleceğini sektörün öncüleriyle konuşuyoruz.</p>
+                
+                <div class="card-guest-list">
+                    <div class="card-guest-row">
+                        <div class="card-guest-img"><img src="atiker.png" alt="Atiker"></div>
+                        <div class="card-guest-text">
+                            <h4>ATİKER YAZILIM</h4>
+                            <p>Yerli ERP ve Dijital Dönüşüm Çözümleri</p>
+                        </div>
+                    </div>
+                    <div class="card-guest-row">
+                        <div class="card-guest-img"><img src="ilko.png" alt="İlko"></div>
+                        <div class="card-guest-text">
+                            <h4>İLKO İLAÇ SANAYİ</h4>
+                            <p>Biyoteknoloji ve Ar-Ge Üssü</p>
+                        </div>
+                    </div>
+                    <div class="card-guest-row">
+                        <div class="card-guest-img icon">🏛️</div>
+                        <div class="card-guest-text">
+                            <h4>YAZGAN MİMARLIK</h4>
+                            <p>Sürdürülebilir ve Yenilikçi Tasarım</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card-footer">
-                    <div class="guest-pill"><span>Davetliler: <strong>Atiker Yazılım, İlko İlaç Sanayi, Yazgan Mimarlık</strong></span></div>
+                    <div class="guest-pill"><span>Davetliler: <strong>Atiker, İlko, Yazgan</strong></span></div>
                     <div class="mini-countdown" id="tech-countdown">
                         <div class="mini-time"><span id="t-days">00</span><label>G</label></div>
                         <div class="mini-time"><span id="t-hours">00</span><label>S</label></div>
@@ -595,8 +645,26 @@
                 <div class="conf-grid" style="margin-top:0;">
                     <div class="conf-card">
                         <div class="card-header"><div class="card-icon" style="background: #555; box-shadow:none;"></div></div>
-                        <h3>GıTalks 2026 TEKNOLOJİ</h3>
-                        <p>Yapay zekâ, yazılım ekosistemleri ve dijital dönüşümün geleceğini sektörün öncüleriyle konuşuyoruz.</p>
+                        <h3>GıTalks AKADEMİ</h3>
+                        <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
+                        <div class="card-footer"><div class="guest-pill">Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span></div></div>
+                    </div>
+                    <div class="conf-card">
+                        <div class="card-header"><div class="card-icon" style="background: #555; box-shadow:none;"></div></div>
+                        <h3>GıTalks EKONOMİ</h3>
+                        <p>Sürdürülebilir kalkınma, tarım ekonomisi ve küresel piyasalardaki son trendler.</p>
+                        <div class="card-footer"><div class="guest-pill">Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span></div></div>
+                    </div>
+                    <div class="conf-card">
+                        <div class="card-header"><div class="card-icon" style="background: #555; box-shadow:none;"></div></div>
+                        <h3>GıTalks YARDIM</h3>
+                        <p>Sosyal sorumluluk projeleri, insani yardım organizasyonları ve gönüllülük esasları.</p>
+                        <div class="card-footer"><div class="guest-pill">Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span></div></div>
+                    </div>
+                    <div class="conf-card">
+                        <div class="card-header"><div class="card-icon" style="background: #555; box-shadow:none;"></div></div>
+                        <h3>GıTalks TARIM</h3>
+                        <p>Akıllı tarım teknolojileri, gıda güvenliği ve geleceğin tarım modelleri.</p>
                         <div class="card-footer"><div class="guest-pill">Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span></div></div>
                     </div>
                 </div>
