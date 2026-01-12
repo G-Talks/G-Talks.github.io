@@ -180,74 +180,6 @@
             font-weight: 400;
         }
 
-        /* --- POPUP / MODAL CSS --- */
-        .modal-overlay {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            justify-content: center; align-items: center;
-            opacity: 0; transition: opacity 0.4s ease;
-        }
-        .modal-overlay.active { display: flex; opacity: 1; }
-
-        .modal-content {
-            background: linear-gradient(145deg, #111 0%, #050505 100%);
-            border: 1px solid var(--gold-primary);
-            padding: 40px;
-            width: 90%; max-width: 900px;
-            max-height: 90vh; overflow-y: auto;
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
-            position: relative;
-            transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
-        }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .close-modal-btn {
-            position: absolute; top: 15px; right: 20px;
-            font-size: 2.5rem; color: #fff; cursor: pointer; transition: 0.3s;
-            line-height: 0.8;
-        }
-        .close-modal-btn:hover { color: var(--gold-primary); transform: rotate(90deg); }
-
-        .guests-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .guest-card-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .guest-card-item:hover { 
-            border-color: var(--gold-primary); 
-            background: rgba(212, 175, 55, 0.05); 
-            transform: translateY(-5px);
-        }
-
-        .guest-logo-box {
-            width: 80px; height: 80px; margin: 0 auto 15px auto;
-            border-radius: 50%; background: #fff; /* Logolar için beyaz zemin */
-            border: 2px solid var(--gold-primary);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            overflow: hidden;
-        }
-        .guest-logo-box img { width: 70%; height: 70%; object-fit: contain; }
-        .guest-logo-box.icon-only { background: #000; } /* İkon olanlar siyah kalsın */
-
-        .guest-name { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .guest-bio { font-size: 0.9rem; color: #bbb; line-height: 1.6; font-weight: 300; }
-
         /* --- KART İÇİ KONUK LİSTESİ --- */
         .card-guest-list { margin-top: 25px; text-align: left; }
         .card-guest-row {
@@ -534,9 +466,9 @@
         
         <div class="guest-info">Davetliler: <span style="font-weight:600; color:#D4AF37; text-shadow: 0 0 10px rgba(212,175,55,0.3);">Atiker Yazılım, İlko İlaç Sanayi, Yazgan Mimarlık</span></div>
         
-        <div class="info-box" id="openGuestModalBtn" style="cursor: pointer;">
+        <div class="info-box" id="goToConfBtn" style="cursor: pointer;">
             <h3 id="tech-title-btn" class="clickable-title">GıTalks Teknoloji</h3>
-            <div class="click-hint">(Davetlileri Görmek İçin Tıklayın)</div>
+            <div class="click-hint">(Detaylar İçin Tıklayın)</div>
             
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
@@ -556,40 +488,6 @@
             <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1.1rem; text-decoration: none; color: #fff; transition: 0.3s; display: inline-block; border: 1px solid rgba(212,175,55,0.3); padding: 10px 20px; border-radius: 30px;">
                 📷 Instagram: gitalks.official
             </a>
-        </div>
-    </div>
-
-    <div id="guestModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal-btn" id="closeGuestModalBtn">&times;</span>
-            <h2 style="margin-top:0;">ONUR KONUKLARI & DAVETLİLER</h2>
-            <div class="guests-grid">
-                
-                <div class="guest-card-item">
-                    <div class="guest-logo-box"><img src="atiker.png" alt="Atiker Yazılım Logo"></div>
-                    <div class="guest-name">Atiker Yazılım</div>
-                    <div class="guest-bio">
-                        Konya merkezli, Türkiye'nin önde gelen yerli yazılım firmalarından biri. ERP, MRP ve dijital dönüşüm çözümleriyle endüstriye yön veriyor.
-                    </div>
-                </div>
-
-                <div class="guest-card-item">
-                    <div class="guest-logo-box"><img src="ilko.png" alt="İlko İlaç Logo"></div>
-                    <div class="guest-name">İlko İlaç Sanayi</div>
-                    <div class="guest-bio">
-                        50 yılı aşkın tecrübesiyle, küresel ölçekte Ar-Ge çalışmaları yürüten, biyoteknoloji ve ilaç sektörünün öncü kuruluşu.
-                    </div>
-                </div>
-
-                <div class="guest-card-item">
-                    <div class="guest-logo-box icon-only">🏛️</div>
-                    <div class="guest-name">Yazgan Mimarlık</div>
-                    <div class="guest-bio">
-                        Ulusal ve uluslararası ödüllere sahip, sürdürülebilir ve yenilikçi tasarım anlayışıyla tanınan prestijli mimarlık ofisi.
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
@@ -906,33 +804,36 @@
             }, 3200); 
         });
 
-        // POPUP İŞLEMLERİ İÇİN EK SCRIPT
+        // SCRIPT.JS İÇİNDEKİ TAB DEĞİŞTİRME FONKSİYONUNU KULLANACAĞIZ
+        // VEYA BASİTÇE BURAYA MANUEL BİR GEÇİŞ YAZABİLİRİZ
         document.addEventListener('DOMContentLoaded', function() {
-            // Modal Elements
-            const guestModal = document.getElementById('guestModal');
-            const openModalBtn = document.getElementById('openGuestModalBtn');
-            const closeModalBtn = document.getElementById('closeGuestModalBtn');
+            const goToConfBtn = document.getElementById('goToConfBtn');
+            const homeTab = document.getElementById('home-tab');
+            const confTab = document.getElementById('conferences-tab');
+            const navLinks = document.querySelectorAll('.nav-link');
 
-            // Open Modal
-            if(openModalBtn) {
-                openModalBtn.addEventListener('click', function() {
-                    guestModal.classList.add('active');
+            if(goToConfBtn) {
+                goToConfBtn.addEventListener('click', function() {
+                    // Tüm tabları gizle
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.style.display = 'none';
+                    });
+                    
+                    // Etkinlikler tabını göster
+                    if(confTab) {
+                        confTab.style.display = 'block';
+                        window.scrollTo(0, 0); // Sayfa başına git
+                    }
+
+                    // Navbar aktif sınıfını güncelle
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if(link.getAttribute('data-tab') === 'conferences-tab') {
+                            link.classList.add('active');
+                        }
+                    });
                 });
             }
-
-            // Close Modal
-            if(closeModalBtn) {
-                closeModalBtn.addEventListener('click', function() {
-                    guestModal.classList.remove('active');
-                });
-            }
-
-            // Close on Outside Click
-            window.addEventListener('click', function(e) {
-                if (e.target == guestModal) {
-                    guestModal.classList.remove('active');
-                }
-            });
         });
     </script>
 
