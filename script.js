@@ -1,5 +1,5 @@
 /* Dosya Adı: script.js
-   GıTalks - Tüm Fonksiyonlar (Bot, Sayaç, Menü, Geçişler)
+   GıTalks - Tüm Fonksiyonlar (Bot, Sayaç, Menü, Geçişler, Logo Navigasyonu)
 */
 
 // --- 1. GLOBAL DEĞİŞKENLER VE BOT AYARLARI ---
@@ -227,6 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Varsayılan Tab
     if(document.getElementById('home-tab')) {
         switchTab('home-tab');
+    }
+
+    // --- LOGO TIKLANINCA ANASAYFAYA DÖN ---
+    const mainLogo = document.getElementById('mainLogo');
+    if(mainLogo) {
+        mainLogo.addEventListener('click', () => {
+            switchTab('home-tab');
+        });
     }
 
     // --- ÖZEL BUTON: ANASAYFADAKİ "GITALKS TEKNOLOJİ" TIKLAMASI ---
