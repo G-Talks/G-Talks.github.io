@@ -1,4 +1,6 @@
-/* --- GITALKS YEREL YAPAY ZEKA MOTORU (NO-API) --- */
+/* GıTalks Yerel Yapay Zeka Motoru 
+   (API Anahtarı Gerektirmez - Kural Tabanlı)
+*/
 
 // 1. EĞİTİM VERİ SETİ (BİLGİ BANKASI)
 const knowledgeBase = [
@@ -45,6 +47,8 @@ const knowledgeBase = [
 ];
 
 // 2. YEREL ZEKA FONKSİYONLARI
+
+// Kullanıcının yazdığı metne göre cevap bulur
 function findAnswer(userText) {
     const cleanText = userText.toLowerCase();
     for (let item of knowledgeBase) {
@@ -55,6 +59,7 @@ function findAnswer(userText) {
     return "🤔 Bu konuda şu an net bir bilgim yok veya henüz açıklanmadı. Ancak tarih, konum veya genel vizyonumuz hakkında sorularını yanıtlayabilirim.";
 }
 
+// Chat penceresini açıp kapatır
 function toggleChat() {
     const ui = document.getElementById("ai-chat-interface");
     const btn = document.getElementById("ai-btn-trigger");
@@ -68,8 +73,10 @@ function toggleChat() {
     }
 }
 
+// Enter tuşuna basıldığında mesaj gönderir
 function checkEnter(e) { if(e.key === "Enter") sendMessage(); }
 
+// Mesaj gönderme ve cevaplama simülasyonu
 async function sendMessage() {
     const input = document.getElementById("chat-input");
     const area = document.getElementById("messages-area");
@@ -95,6 +102,7 @@ async function sendMessage() {
     }, 600); 
 }
 
+// Ekrana baloncuk ekler
 function addBubble(txt, cls) {
     const area = document.getElementById("messages-area");
     const div = document.createElement("div");
