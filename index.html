@@ -204,25 +204,49 @@
         .guest-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #bbb; }
         .guest-pill strong { color: var(--gold-primary); }
 
-        /* --- YENİ LOGO ALANI STİLLERİ --- */
-        .participant-logos {
+        /* --- GÜNCELLENMİŞ DİKEY (ALT ALTA) LOGO LİSTESİ --- */
+        .participant-list {
             display: flex;
-            gap: 15px;
+            flex-direction: column; /* Alt alta dizilim */
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .participant-item {
+            display: flex;
             align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .participant-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .brand-logo {
             max-height: 35px;
-            max-width: 90px;
+            max-width: 80px;
             object-fit: contain;
             filter: grayscale(100%) opacity(0.7);
             transition: all 0.3s ease;
         }
-        .brand-logo:hover {
+        .participant-item:hover .brand-logo {
             filter: grayscale(0%) opacity(1);
-            transform: scale(1.1);
+        }
+        .participant-name {
+            margin-left: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+        .participant-item:hover .participant-name {
+            color: #fff;
         }
 
         .mini-countdown { display: flex; gap: 6px; background: rgba(0, 0, 0, 0.6); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
@@ -343,7 +367,11 @@
 
         <div class="contact-home">
             <p style="color:#777; font-size:0.8rem; letter-spacing:3px; margin-bottom:10px; font-weight: 600;">RESMİ İLETİŞİM & BASIN</p>
-            <a href="mailto:gitalks.official@gmail.com">gitalks.official@gmail.com</a>
+            <a href="mailto:gitalks.official@gmail.com" style="display:block; margin-bottom:15px;">gitalks.official@gmail.com</a>
+            
+            <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1rem; color: #fff; display: inline-flex; align-items: center; gap: 8px;">
+                <span style="color:var(--gold-primary)">📷</span> @gitalks.official
+            </a>
         </div>
     </div>
 
@@ -358,12 +386,24 @@
                 <h3>GıTalks 2026 TEKNOLOJİ</h3>
                 <p>Yapay zekâ, yazılım ekosistemleri ve dijital dönüşümün geleceğini sektörün öncüleriyle konuşuyoruz.</p>
                 
-                <div style="margin-bottom: 10px; font-size: 0.8rem; color: #777; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Katılımcı Firmalar</div>
-                <div class="participant-logos">
-                    <img src="atiker.png" alt="Atiker Yazılım" class="brand-logo" title="Atiker Yazılım">
-                    <img src="ilko.png" alt="İlko İlaç" class="brand-logo" title="İlko İlaç Sanayi">
-                    <img src="akin.png" alt="Akın Robotics" class="brand-logo" title="Akın Robotics">
-                    <img src="yazgan.png" alt="Yazgan Mimarlık" class="brand-logo" title="Yazgan Mimarlık">
+                <div style="margin-bottom: 15px; font-size: 0.8rem; color: #777; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Katılımcı Firmalar</div>
+                <div class="participant-list">
+                    <div class="participant-item">
+                        <img src="atiker.png" alt="Atiker Yazılım" class="brand-logo">
+                        <span class="participant-name">Atiker Yazılım</span>
+                    </div>
+                    <div class="participant-item">
+                        <img src="ilko.png" alt="İlko İlaç" class="brand-logo">
+                        <span class="participant-name">İlko İlaç Sanayi</span>
+                    </div>
+                    <div class="participant-item">
+                        <img src="akin.png" alt="Akın Robotics" class="brand-logo">
+                        <span class="participant-name">Akın Robotics</span>
+                    </div>
+                    <div class="participant-item">
+                        <img src="yazgan.png" alt="Yazgan Mimarlık" class="brand-logo">
+                        <span class="participant-name">Yazgan Mimarlık</span>
+                    </div>
                 </div>
 
                 <div class="card-footer">
@@ -476,6 +516,9 @@
                 <p style="font-size:0.85rem; color:#777; font-style: italic;">
                     GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.
                 </p>
+                <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 0.9rem; color: #888; display: inline-flex; align-items: center; gap: 5px; margin-top:10px; text-decoration:none;">
+                    <span style="color:var(--gold-primary)">📷</span> @gitalks.official
+                </a>
             </div>
         </div>
     </div>
@@ -669,8 +712,8 @@
                 response: "🤝 Sponsorluk görüşmelerimiz devam etmektedir. Vizyoner markalar çok yakında 'Sponsorlar' sekmesinde yerini alacak."
             },
             {
-                keywords: ["iletişim", "mail", "eposta", "bize ulaş", "telefon"],
-                response: "📩 Bizimle resmi iletişim için **gitalks.official@gmail.com** adresini kullanabilirsin."
+                keywords: ["iletişim", "mail", "eposta", "bize ulaş", "telefon", "instagram"],
+                response: "📩 Bizimle resmi iletişim için **gitalks.official@gmail.com** adresini kullanabilirsin. Ayrıca bizi Instagram'da **@gitalks.official** olarak bulabilirsin."
             },
             {
                 keywords: ["vizyon", "misyon", "amaç", "nedir"],
