@@ -801,49 +801,6 @@
         <div id="ai-btn-trigger" onclick="toggleChat()">🤖</div>
     </div>
 
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                var overlay = document.getElementById('intro-overlay');
-                if(overlay) {
-                    overlay.style.display = 'none'; 
-                }
-            }, 3200); 
-        });
-
-        // SCRIPT.JS İÇİNDEKİ TAB DEĞİŞTİRME FONKSİYONUNU KULLANACAĞIZ
-        // VEYA BASİTÇE BURAYA MANUEL BİR GEÇİŞ YAZABİLİRİZ
-        document.addEventListener('DOMContentLoaded', function() {
-            const goToConfBtn = document.getElementById('goToConfBtn');
-            const homeTab = document.getElementById('home-tab');
-            const confTab = document.getElementById('conferences-tab');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            if(goToConfBtn) {
-                goToConfBtn.addEventListener('click', function() {
-                    // Tüm tabları gizle
-                    document.querySelectorAll('.tab-content').forEach(tab => {
-                        tab.style.display = 'none';
-                    });
-                    
-                    // Etkinlikler tabını göster
-                    if(confTab) {
-                        confTab.style.display = 'block';
-                        window.scrollTo(0, 0); // Sayfa başına git
-                    }
-
-                    // Navbar aktif sınıfını güncelle
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if(link.getAttribute('data-tab') === 'conferences-tab') {
-                            link.classList.add('active');
-                        }
-                    });
-                });
-            }
-        });
-    </script>
-
     <script src="script.js"></script>
 </body>
 </html>
