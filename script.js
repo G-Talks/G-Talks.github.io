@@ -589,3 +589,226 @@ const UI = {
         document.body.style.opacity = 1; 
     }
 };
+
+
+
+/* Dosya Adı: script.js
+   GıTalks - Etkileşim ve Animasyon Kodları
+*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- 1. INTRO & YÜKLENME EKRANI ---
+    const introOverlay = document.getElementById('intro-overlay');
+    if (introOverlay) {
+        // CSS animasyonu 2.8s sürüyor, 3.2s sonra tamamen kaldırıyoruz
+        setTimeout(() => {
+            introOverlay.style.display = 'none';
+        }, 3200);
+    }
+
+    // --- 2. SIDEBAR (YAN MENÜ) İŞLEMLERİ ---
+    const sidebar = document.getElementById("mySidebar");
+    const openBtn = document.getElementById("openNavBtn");
+    const closeBtn = document.getElementById("closeNavBtn");
+    const menuOverlay = document.getElementById("menuOverlay");
+
+    function openNav() {
+        if(window.innerWidth < 600) {
+            sidebar.style.width = "100%";
+        } else {
+            sidebar.style.width = "350px";
+        }
+        menuOverlay.style.display = "block";
+    }
+
+    function closeNav() {
+        sidebar.style.width = "0";
+        menuOverlay.style.display = "none";
+    }
+
+    if(openBtn) openBtn.addEventListener("click", openNav);
+    if(closeBtn) closeBtn.addEventListener("click", closeNav);
+    if(menuOverlay) menuOverlay.addEventListener("click", closeNav);
+
+    // --- 3. TAB (SEKME) GEÇİŞ SİSTEMİ ---
+    const navLinks = document.querySelectorAll('.nav-link, .modal-link'); // Sidebar ve Footer linkleri
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function switchTab(tabId) {
+        // Tüm içerikleri gizle
+        tabContents.forEach(content => {
+            content.style.display = 'none';
+        });
+
+        // Tüm linklerden active sınıfını kaldır
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Seçilen içeriği göster
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.style.display = 'block';
+            window.scrollTo(0, 0); // Sayfa başına at
+            
+            // İlgili linki aktif yap (Sidebar'daki)
+            const activeLink = document.querySelector(`.sidebar a[data-tab="${tabId}"]`);
+            if(activeLink) activeLink.classList.add('active');
+        }
+    }
+
+    // Linklere tıklama olayını ekle
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = link.getAttribute('data-tab');
+            switchTab(tabId);
+            closeNav(); // Mobilde menüyü kapat
+        });
+    });
+
+    // Varsayılan olarak Anasayfa'yı aç (Eğer CSS'de display:none ise)
+    // HTML'de #home-tab style="display:block" olduğu için burası opsiyoneldir ama garanti olsun.
+    if(document.getElementById('home-tab').style.display !== 'block') {
+         switchTab('home-tab'); 
+    }
+
+    // --- 4. AKORDİYON (SSS ve GİZLİLİK) ---
+    const acc = document.getElementsByClassName("accordion-btn");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active-acc");
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+
+    // --- 5. GERİ SAYIM SAYACI (COUNTDOWN) ---
+    // Hedef Tarih: 16 Şubat 2026, Saat 09:30
+    const targetDate = new Date("Feb 16, 2026 09:30:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            // Süre dolduysa
+            const timerElement = document.getElementById("countdown");
+            if(timerElement) timerElement.innerHTML = "<div style='font-size:1.5rem; color:#D4AF37;'>ETKİNLİK BAŞLADI!</div>";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Anasayfa Sayacı
+        if(document.getElementById("days")) document.getElementById("days").innerText = days;
+        if(document.getElementById("hours")) document.getElementById("hours").innerText = hours;
+        if(document.getElementById("minutes")) document.getElementById("minutes").innerText = minutes;
+        if(document.getElementById("seconds")) document.getElementById("seconds").innerText = seconds;
+
+        // Kart İçi Mini Sayaç
+        if(document.getElementById("t-days")) document.getElementById("t-days").innerText = days;
+        if(document.getElementById("t-hours")) document.getElementById("t-hours").innerText = hours;
+        if(document.getElementById("t-min")) document.getElementById("t-min").innerText = minutes;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // İlk yüklemede hemen çalışsın
+
+    // --- 6. ÇEREZ (COOKIE) BANNER ---
+    const cookieBanner = document.getElementById("cookieBanner");
+    const btnAccept = document.getElementById("btnAccept");
+    const btnReject = document.getElementById("btnReject");
+
+    // Daha önce tercih yapılmış mı?
+    if (!localStorage.getItem("gitalks_cookie_consent")) {
+        // Yapılmamışsa banner'ı göster (biraz gecikmeli)
+        setTimeout(() => {
+            if(cookieBanner) cookieBanner.style.display = "block";
+        }, 2000);
+    }
+
+    if(btnAccept) {
+        btnAccept.addEventListener("click", () => {
+            localStorage.setItem("gitalks_cookie_consent", "accepted");
+            cookieBanner.style.display = "none";
+        });
+    }
+
+    if(btnReject) {
+        btnReject.addEventListener("click", () => {
+            localStorage.setItem("gitalks_cookie_consent", "rejected");
+            cookieBanner.style.display = "none";
+        });
+    }
+
+});
+
+// --- 7. AI ASİSTAN (GLOBAL FONKSİYONLAR) ---
+// HTML onclick="toggleChat()" kullandığı için bu fonksiyonları dışarıda (window scope) tutuyoruz.
+
+function toggleChat() {
+    const chatInterface = document.getElementById("ai-chat-interface");
+    if (chatInterface.style.display === "flex") {
+        chatInterface.style.display = "none";
+    } else {
+        chatInterface.style.display = "flex";
+    }
+}
+
+function checkEnter(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+
+function sendMessage() {
+    const inputField = document.getElementById("chat-input");
+    const messagesArea = document.getElementById("messages-area");
+    const userText = inputField.value.trim();
+
+    if (userText === "") return;
+
+    // 1. Kullanıcı Mesajını Ekle
+    const userBubble = document.createElement("div");
+    userBubble.classList.add("bubble", "bubble-user");
+    userBubble.innerText = userText;
+    messagesArea.appendChild(userBubble);
+
+    inputField.value = "";
+    messagesArea.scrollTop = messagesArea.scrollHeight; // En alta kaydır
+
+    // 2. Basit Bot Cevabı Simülasyonu
+    setTimeout(() => {
+        const botBubble = document.createElement("div");
+        botBubble.classList.add("bubble", "bubble-bot");
+        
+        // Basit Anahtar Kelime Kontrolü
+        const lowerText = userText.toLowerCase();
+        let botResponse = "Bu konuda detaylı bilgi için gitalks.official@gmail.com adresine yazabilirsin.";
+
+        if(lowerText.includes("merhaba") || lowerText.includes("selam")) {
+            botResponse = "Merhaba! GıTalks 2026 için heyecanlı mısın? Sana nasıl yardımcı olabilirim?";
+        } else if(lowerText.includes("nerede") || lowerText.includes("konum") || lowerText.includes("yer")) {
+            botResponse = "Etkinliklerimiz Konya Gıda ve Tarım Üniversitesi (KGTÜ) Konferans Salonu'nda gerçekleşecektir.";
+        } else if(lowerText.includes("ne zaman") || lowerText.includes("tarih") || lowerText.includes("saat")) {
+            botResponse = "Teknoloji Zirvesi 16 Şubat 2026'da yapılacak. Sayaçtan kalan süreyi takip edebilirsin!";
+        } else if(lowerText.includes("bilet") || lowerText.includes("kayıt") || lowerText.includes("ücret")) {
+            botResponse = "Katılım ücretsizdir! Ancak kontenjan sınırlı olduğu için yakında açılacak kayıt formunu doldurman gerekecek.";
+        } else if(lowerText.includes("sponsor")) {
+            botResponse = "Sponsorluk dosyamız hazır! Detaylar için 'Sponsorlar' sekmesine göz atabilir veya mail atabilirsin.";
+        }
+
+        botBubble.innerHTML = botResponse;
+        messagesArea.appendChild(botBubble);
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }, 1000);
+}
