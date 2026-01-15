@@ -3,121 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GıTalks | Bakımdayız</title>
-    
-    <meta name="google-site-verification" content="google9abc17c4cb03dde9" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #030303;
-            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 70%);
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .container {
-            padding: 20px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            margin: 0;
-            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #AA771C 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-weight: 900;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            color: #D4AF37;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 10px;
-            font-weight: 400;
-        }
-
-        p {
-            color: #a0a0a0;
-            margin-top: 20px;
-            font-size: 1.1rem;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        .divider {
-            width: 100px;
-            height: 2px;
-            background: #D4AF37;
-            margin: 30px auto;
-            opacity: 0.5;
-        }
-
-        .contact-btn {
-            margin-top: 30px;
-            display: inline-block;
-            text-decoration: none;
-            color: #000;
-            background: #D4AF37;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
-
-        .contact-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .gear-icon {
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 20px;
-            animation: spin 10s linear infinite;
-        }
-
-        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-    </style>
+    <title>GıTALKS | Teknoloji Konferansı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="gear-icon">⚙️</div>
-        <h1>GıTalks</h1>
-        <h2>Sitemiz Kısa Bir Süreliğine Bakımda</h2>
-        
-        <div class="divider"></div>
-        
-        <p>
-            Daha iyi bir deneyim sunmak için altyapımızı yeniliyoruz.<br>
-            Çok yakında, yenilenmiş içeriklerimizle karşınızda olacağız.
-        </p>
+    <div class="bg-overlay"></div>
 
-        <a href="mailto:gitalks.official@gmail.com" class="contact-btn">Bize Ulaşın</a>
+    <nav>
+        <div class="logo">GıTALKS</div>
+        <div class="socials">
+            <a href="https://instagram.com/gitalks.official" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:gitalks.official@gmail.com"><i class="far fa-envelope"></i></a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <span class="badge">SIRADAKİ ETKİNLİK</span>
+            <h1 class="glitch" data-text="GıTALKS TEKNOLOJİ">GıTALKS TEKNOLOJİ</h1>
+            <p class="subtitle">Tarımın ve Teknolojinin Geleceği Burada Konuşuluyor.</p>
+            
+            <div id="countdown" class="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>Gün</small>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>Saat</small>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>Dakika</small>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>Saniye</small>
+                </div>
+            </div>
+
+            <div class="event-date">
+                <i class="far fa-calendar-alt"></i> 16 ŞUBAT 2026
+            </div>
+        </div>
+    </header>
+
+    <div id="cookie-popup" class="cookie-overlay">
+        <div class="cookie-content">
+            <h3>Gizlilik ve Çerez Politikası</h3>
+            <div class="policy-text">
+                <h4>1. Kişisel Verilerin Toplanması ve İşlenmesi</h4>
+                <p>Sitemizi kullanırken sizden adınız, e-posta adresiniz veya başka kişisel bilgiler talep edilebilir. Bu bilgiler, yalnızca site deneyiminizi iyileştirmek, hizmetlerimizi sunmak ve geliştirmek için toplanır ve KVKK (6698 sayılı Kanun) hükümlerine uygun olarak işlenir.</p>
+                
+                <h4>2. Kişisel Verilerin Saklanması</h4>
+                <p>Toplanan kişisel verileriniz, yalnızca gerekli süre boyunca ve güvenli bir şekilde saklanır. Verileriniz, izniniz olmadan üçüncü kişilerle paylaşılmaz.</p>
+
+                <h4>3. Çerezler (Cookies) ve Takip Teknolojileri</h4>
+                <p>Sitemiz, kullanım deneyimini geliştirmek için çerezler kullanabilir. Tarayıcı ayarlarınızdan çerezleri reddedebilir veya silebilirsiniz; ancak bazı site fonksiyonları çalışmayabilir.</p>
+
+                <h4>4. Kullanıcı Hakları (KVKK Madde 11)</h4>
+                <p>Verilerinize erişme, düzeltilmesini veya silinmesini talep etme hakkına sahipsiniz. Taleplerinizi <strong>gitalks.official@gmail.com</strong> üzerinden iletebilirsiniz.</p>
+                
+                <h4>5. Sorumluluk ve Güvenlik</h4>
+                <p>Site, kişisel verilerinizi korumak için gerekli teknik tedbirleri uygular.</p>
+            </div>
+            <div class="cookie-actions">
+                <p class="note">Siteye devam etmek için politikaları kabul etmelisiniz.</p>
+                <button id="accept-btn" class="btn-primary">Okudum ve Kabul Ediyorum</button>
+            </div>
+        </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
