@@ -62,7 +62,7 @@
             line-height: 1.5; padding-top: 80px; overflow-x: hidden;
         }
 
-        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span, .ai-header span, .chat-title {
+        h1, h2, h3, .sub-header, .navbar-logo, .sidebar a, .accordion-btn, .mini-time span, .time-box span {
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -141,8 +141,6 @@
         
         .sub-header { font-size: clamp(0.8rem, 2vw, 1.1rem); color: #e0e0e0; font-weight: 300; letter-spacing: 5px; margin-bottom: 40px; text-transform: uppercase; opacity: 0.8; }
         
-        /* GUEST INFO REMOVED as requested */
-
         h2 { 
             color: #fff; display: inline-block; margin-top: 30px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem; font-weight: 700;
             background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -380,41 +378,6 @@
         .text-content-box strong { color: #fff; }
         .text-content-box h3 { color: var(--gold-primary); font-size: 1.1rem; margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
         
-        /* --- AI STYLES --- */
-        #gitalks-ai-container { position: fixed; bottom: 30px; right: 30px; z-index: 20000; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: flex-end; }
-        
-        #ai-btn-trigger {
-            width: 60px; height: 60px; background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 40%, #AA771C 100%);
-            border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-            display: flex; align-items: center; justify-content: center; font-size: 30px; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); animation: aiGlow 4s infinite;
-        }
-        #ai-btn-trigger:hover { transform: scale(1.1); }
-        @keyframes aiGlow { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 50% { box-shadow: 0 0 20px 10px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
-        
-        #ai-chat-interface {
-            display: none; width: 340px; height: 480px; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid #D4AF37; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 30px 80px rgba(0,0,0,0.9); flex-direction: column; overflow: hidden;
-        }
-        .chat-header { padding: 15px; background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .chat-title { color: #D4AF37; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 10px rgba(212,175,55,0.3); }
-        .chat-close { color: #fff; cursor: pointer; font-size: 1.4rem; transition:0.3s; }
-        .chat-close:hover { color: #D4AF37; transform: rotate(90deg); }
-        .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .chat-body::-webkit-scrollbar { width: 5px; } .chat-body::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
-        .bubble { padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; line-height: 1.4; max-width: 85%; position: relative; word-wrap: break-word; }
-        .bubble-bot { background: rgba(255, 255, 255, 0.08); color: #e0e0e0; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); border-bottom-left-radius: 2px; }
-        .bubble-user { background: linear-gradient(135deg, #D4AF37 0%, #AA771C 100%); color: #000; align-self: flex-end; font-weight: 600; border-bottom-right-radius: 2px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .chat-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 8px; background: rgba(0,0,0,0.4); }
-        #chat-input { flex: 1; background: #000; border: 1px solid #444; border-radius: 8px; padding: 10px; color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: 0.3s; font-size: 0.9rem; }
-        #chat-input:focus { border-color: #D4AF37; }
-        #chat-send { background: #D4AF37; color: #000; border: none; border-radius: 8px; width: 40px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }
-        #chat-send:hover { background: #fff; box-shadow: 0 0 15px #D4AF37; }
-        
-        @media (max-width: 480px) {
-            #ai-chat-interface { width: 90vw; height: 60vh; right: 5vw; bottom: 90px; }
-            #gitalks-ai-container { right: 20px; bottom: 20px; }
-        }
-
         /* --- MOBİL DÜZELTME KODU --- */
         @media (max-width: 600px) {
             body { padding-top: 60px; }
@@ -721,27 +684,12 @@
                 <p>GıTalks; üyelik sistemi, zorunlu kayıt veya form aracılığıyla doğrudan kişisel veri toplama kullanmamaktadır.</p>
             </div>
 
-            <button class="accordion-btn">2. Yapay Zekâ Botu Kullanımı <span>&#9660;</span></button>
+            <button class="accordion-btn">2. Veri İşleme Amaçları & Hukuki Sebepler <span>&#9660;</span></button>
             <div class="accordion-panel">
-                <p>GıTalks internet sitesinde, kullanıcı deneyimini geliştirmek ve bilgilendirme sağlamak amacıyla API anahtarı kullanılmadan çalışan (keysiz) bir yapay zekâ botu entegre edilmiştir.</p>
-                <p>Bu kapsamda:</p>
-                <ul>
-                    <li>Yapay zekâ botu zorunlu kullanıcı kaydı gerektirmez</li>
-                    <li>Kullanıcıların bot ile paylaştığı içerikler kalıcı olarak saklanmaz</li>
-                    <li>Girilen metinler kişisel veri olarak işlenmek üzere özel olarak analiz edilmez</li>
-                    <li>Sohbet içerikleri, GıTalks tarafından manuel olarak izlenmez veya arşivlenmez</li>
-                </ul>
-                <p style="background: rgba(255, 0, 0, 0.1); padding: 10px; border-radius: 5px; border-left: 3px solid #ff4444;">
-                    <strong>⚠️ Kullanıcıların, yapay zekâ botu üzerinden kimlik bilgisi, iletişim bilgisi veya özel nitelikli kişisel veri paylaşmamaları önerilir.</strong>
-                </p>
-            </div>
+                <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
+                <p>Toplanan teknik veriler; web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini, sistem performansının izlenmesi ve kullanıcı deneyiminin geliştirilmesi amaçlarıyla sınırlı olarak işlenmektedir.</p>
 
-            <button class="accordion-btn">3. Veri İşleme Amaçları & Hukuki Sebepler <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <h3>4. Kişisel Verilerin İşlenme Amaçları</h3>
-                <p>Toplanan teknik veriler ve yapay zekâ etkileşimleri; web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini, sistem performansının izlenmesi ve kullanıcı deneyiminin geliştirilmesi amaçlarıyla sınırlı olarak işlenmektedir.</p>
-
-                <h3>5. Hukuki Sebep</h3>
+                <h3>4. Hukuki Sebep</h3>
                 <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca;</p>
                 <ul>
                     <li>Kanunlarda açıkça öngörülmesi</li>
@@ -752,17 +700,16 @@
                 <p>Bu kapsamda ayrıca açık rıza alınması gerekmemektedir.</p>
             </div>
 
-            <button class="accordion-btn">4. Aktarım ve Çerezler <span>&#9660;</span></button>
+            <button class="accordion-btn">3. Aktarım ve Çerezler <span>&#9660;</span></button>
             <div class="accordion-panel">
-                <h3>6. Kişisel Verilerin Aktarılması</h3>
+                <h3>5. Kişisel Verilerin Aktarılması</h3>
                 <p>Kişisel verileriniz;</p>
                 <ul>
                     <li>Doğrudan üçüncü kişi veya kurumlarla paylaşılmaz</li>
                     <li>Sadece barındırma ve teknik altyapı hizmetleri kapsamında GitHub Inc. tarafından işlenebilir</li>
-                    <li>Yapay zekâ botu, üçüncü taraf bir API anahtarı ile veri aktarımı yapmaz</li>
                 </ul>
 
-                <h3>7. Çerez (Cookie) Kullanımı</h3>
+                <h3>6. Çerez (Cookie) Kullanımı</h3>
                 <p>Bu sitede yalnızca;</p>
                 <ul>
                     <li>Zorunlu teknik çerezler</li>
@@ -771,9 +718,9 @@
                 <p>kullanılmaktadır. Reklam veya izleme amaçlı çerez kullanılmaz.</p>
             </div>
 
-            <button class="accordion-btn">5. Haklarınız ve İletişim <span>&#9660;</span></button>
+            <button class="accordion-btn">4. Haklarınız ve İletişim <span>&#9660;</span></button>
             <div class="accordion-panel">
-                <h3>8. KVKK Kapsamındaki Haklarınız</h3>
+                <h3>7. KVKK Kapsamındaki Haklarınız</h3>
                 <p>KVKK’nın 11. maddesi kapsamında kullanıcılar;</p>
                 <ul>
                     <li>Kişisel verilerinin işlenip işlenmediğini öğrenme</li>
@@ -782,7 +729,7 @@
                 </ul>
                 <p>haklarına sahiptir.</p>
 
-                <h3>9. İletişim</h3>
+                <h3>8. İletişim</h3>
                 <p>KVKK ve gizlilik uygulamalarına ilişkin her türlü talep için: <br>
                 📩 <a href="mailto:gitalks.official@gmail.com" style="color:var(--gold-primary); text-decoration:none; font-weight:bold;">gitalks.official@gmail.com</a></p>
             </div>
@@ -797,7 +744,6 @@
                 <p>GıTalks tarafından yürütülen internet sitesini ziyaret etmem kapsamında;</p>
                 <ul>
                     <li>Siteye erişim sırasında oluşan teknik verilerin,</li>
-                    <li>Yapay zekâ botu ile yapılan etkileşimlerin,</li>
                 </ul>
                 <p>yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliği ve kullanıcı deneyiminin geliştirilmesi amaçlarıyla işlendiği konusunda bilgilendirildim.</p>
                 
@@ -835,28 +781,6 @@
         </div>
     </div>
     
-    <div id="gitalks-ai-container">
-        <div id="ai-chat-interface">
-            <div class="chat-header">
-                <span class="chat-title">GıTalks AI</span>
-                <span class="chat-close" onclick="toggleChat()">✕</span>
-            </div>
-            <div class="chat-body" id="messages-area">
-                <div class="bubble bubble-bot">
-                    Merhaba! 🤖 Ben <strong>GıTalks AI</strong>. <br><br>
-                    Zirve detayları, tarih, ulaşım veya vizyonumuz hakkında sorularını cevaplamak için eğitildim.
-                </div>
-            </div>
-            <div class="chat-footer">
-                <input type="text" id="chat-input" placeholder="Bir soru yazın..." onkeypress="checkEnter(event)">
-                <button id="chat-send" onclick="sendMessage()">➤</button>
-            </div>
-        </div>
-        <div id="ai-btn-trigger" onclick="toggleChat()">🤖</div>
-    </div>
-
-    <script src="ai-bot.js"></script>
-
     <script>
         // --- SİTE GENEL JS (NAVBAR, TAB, COUNTDOWN) ---
         document.addEventListener("DOMContentLoaded", function () {
@@ -900,6 +824,7 @@
                 mainLogo.addEventListener("click", function() { switchTab('home-tab'); });
             }
 
+            // Function to navigate to tech card
             function goToTechCard() {
                 switchTab('conferences-tab');
                 setTimeout(function(){
@@ -910,9 +835,12 @@
                 }, 100);
             }
 
+            // Bind click events to both tech title and new button
             document.getElementById("tech-title-btn").addEventListener("click", goToTechCard);
-            // YENİ EKLENEN BUTON İÇİN DİNLEYİCİ
-            document.getElementById("go-to-tech-btn").addEventListener("click", goToTechCard);
+            const goToTechBtn = document.getElementById("go-to-tech-btn");
+            if (goToTechBtn) {
+                goToTechBtn.addEventListener("click", goToTechCard);
+            }
 
             document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
