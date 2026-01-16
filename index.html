@@ -378,16 +378,62 @@
         .text-content-box strong { color: #fff; }
         .text-content-box h3 { color: var(--gold-primary); font-size: 1.1rem; margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
         
-        /* --- MOBİL DÜZELTME KODU --- */
+        /* --- MOBİL DÜZELTME KODU (REVİZE EDİLDİ) --- */
         @media (max-width: 600px) {
-            body { padding-top: 60px; }
-            .countdown-container { gap: 8px; width: 100%; padding: 0 5px; }
-            .time-box { width: auto; min-width: auto; flex: 1; padding: 10px 5px; }
+            /* 1. Body'ye yanlardan boşluk ekle ki içerik kenarlara yapışmasın */
+            body {
+                padding-top: 70px; /* Navbar yüksekliği kadar */
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            /* 2. Başlık ve alt başlık arasını aç */
+            h1 {
+                margin-top: 20px;
+                margin-bottom: 15px;
+            }
+            .sub-header {
+                margin-bottom: 30px;
+            }
+
+            /* 3. Ana kutuların (info-box) iç ve dış boşluklarını rahatlat */
+            .info-box {
+                padding: 30px 20px; /* İç boşluk artırıldı */
+                margin: 25px auto;  /* Dış dikey boşluk artırıldı */
+            }
+
+            /* 4. Geri sayım sayacını rahatlat */
+            .countdown-container {
+                gap: 10px; /* Kutular arası boşluk arttı */
+                padding: 10px 0; /* Dikeyde biraz nefes payı */
+            }
+            .time-box {
+                width: auto;
+                min-width: auto;
+                flex: 1;
+                padding: 12px 5px; /* Kutuların iç dikey boşluğu arttı */
+            }
             .time-box span { font-size: 1.4rem; }
             .time-box label { font-size: 0.55rem; }
-            .info-box { padding: 25px 20px; margin: 15px auto; }
-            h1 { margin-top: 10px; }
-            .contact-wrapper { flex-direction: column; align-items: center; }
+
+            /* 5. İletişim butonlarının arasını aç */
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px; /* Alt alta gelen butonların arası açıldı */
+                margin-top: 20px;
+            }
+            .premium-contact-btn {
+                 max-width: 100%; /* Mobilde tam genişlik */
+            }
+            .contact-home {
+                 padding: 30px 15px; /* İletişim kutusu iç boşluğu */
+            }
+
+            /* 6. Genel sekme içeriğinin altını rahatlat */
+            .tab-content {
+                padding-bottom: 100px;
+            }
         }
     </style>
 </head>
@@ -780,7 +826,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         // --- SİTE GENEL JS (NAVBAR, TAB, COUNTDOWN) ---
         document.addEventListener("DOMContentLoaded", function () {
