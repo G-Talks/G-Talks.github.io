@@ -139,8 +139,9 @@
         }
         @keyframes liquidGold { to { background-position: 200% center; } }
         
-        .sub-header { font-size: clamp(0.8rem, 2vw, 1.1rem); color: #e0e0e0; font-weight: 300; letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; opacity: 0.8; }
-        .guest-info { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300; letter-spacing: 1px; }
+        .sub-header { font-size: clamp(0.8rem, 2vw, 1.1rem); color: #e0e0e0; font-weight: 300; letter-spacing: 5px; margin-bottom: 40px; text-transform: uppercase; opacity: 0.8; }
+        
+        /* GUEST INFO REMOVED as requested */
 
         h2 { 
             color: #fff; display: inline-block; margin-top: 30px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem; font-weight: 700;
@@ -183,6 +184,30 @@
 
         .clickable-title { cursor: pointer; transition: all 0.4s; display: inline-block; font-size: 1.4rem; color: #fff; padding-bottom: 5px; border-bottom: 1px solid transparent; }
         .clickable-title:hover { color: var(--gold-primary); text-shadow: 0 0 20px rgba(212, 175, 55, 0.4); border-bottom: 1px solid var(--gold-primary); }
+
+        /* YENİ BUTTON STİLİ (DETAY İÇİN) */
+        .gold-cta-btn {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 10px 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .gold-cta-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
 
         .conf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left; margin-top: 20px; }
         .conf-card {
@@ -435,7 +460,6 @@
             <h1>GıTalks 2026</h1>
         </div>
         <div class="sub-header">Geleceği Şekillendiren Sesler</div>
-        <div class="guest-info">Katılımcılar: <span style="font-weight:600; color:#D4AF37; text-shadow: 0 0 10px rgba(212,175,55,0.3);">Yakında Açıklanacak</span></div>
         
         <div class="info-box">
             <h3 id="tech-title-btn" class="clickable-title">GıTalks Teknoloji</h3>
@@ -446,6 +470,13 @@
                 <div class="time-box"><span id="minutes">00</span><label>DK</label></div>
                 <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
             </div>
+            
+            <div style="margin-top: 20px;">
+                <button id="go-to-tech-btn" class="gold-cta-btn">
+                    DETAYLI BİLGİ İÇİN TIKLAYINIZ ➔
+                </button>
+            </div>
+
             <p style="color:#D4AF37; font-weight:700; margin-top:25px; letter-spacing: 2px; font-size: 0.85rem;">📅 16 ŞUBAT 2026 | KGTÜ KONFERANS SALONU</p>
             <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin:25px 0;">
             <p style="font-size:0.9rem; color:var(--text-muted); font-style:italic; font-weight: 300;">GıTalks, 2026 ve sonrası için sürdürülebilir etkinlik vizyonu ile planlanmaktadır.</p>
@@ -477,6 +508,18 @@
                     <div class="contact-text-group">
                         <span class="contact-label">INSTAGRAM</span>
                         <span class="contact-value">@gitalks.official</span>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/g%C4%B1talks-konferanslar%C4%B1-b297313a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="premium-contact-btn">
+                    <div class="icon-circle">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-text-group">
+                        <span class="contact-label">LINKEDIN</span>
+                        <span class="contact-value">@gitalks-konferanslari</span>
                     </div>
                 </a>
 
@@ -857,7 +900,7 @@
                 mainLogo.addEventListener("click", function() { switchTab('home-tab'); });
             }
 
-            document.getElementById("tech-title-btn").addEventListener("click", function() {
+            function goToTechCard() {
                 switchTab('conferences-tab');
                 setTimeout(function(){
                     const targetCard = document.getElementById("target-tech-card");
@@ -865,7 +908,11 @@
                         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 }, 100);
-            });
+            }
+
+            document.getElementById("tech-title-btn").addEventListener("click", goToTechCard);
+            // YENİ EKLENEN BUTON İÇİN DİNLEYİCİ
+            document.getElementById("go-to-tech-btn").addEventListener("click", goToTechCard);
 
             document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
                 link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
