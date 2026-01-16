@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="logo.png">
 
     <meta name="theme-color" content="#030303">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -281,9 +283,65 @@
         .mini-time span { font-size: 0.8rem; color: var(--gold-light); font-weight: bold; line-height: 1; }
         .mini-time label { font-size: 0.4rem; color: #666; margin-top: 2px; }
 
-        .contact-home { margin-top: 40px; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; }
-        .contact-home a { color: var(--gold-primary); text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
-        .contact-home a:hover { color: #fff; text-shadow: 0 0 20px var(--gold-primary); }
+        /* --- YENİLENMİŞ PREMIUM CONTACT (İLETİŞİM) --- */
+        .contact-home { margin-top: 40px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; }
+        
+        .contact-title {
+            color: #777; font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 25px; font-weight: 700; text-transform: uppercase;
+        }
+
+        .contact-wrapper {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 800px; margin: 0 auto;
+        }
+
+        .premium-contact-btn {
+            display: flex; align-items: center; justify-content: flex-start; gap: 15px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.2) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 18px 25px;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            max-width: 380px; /* Genişlik sınırı */
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .premium-contact-btn:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0.4) 100%);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .icon-circle {
+            width: 45px; height: 45px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        
+        .premium-contact-btn:hover .icon-circle {
+            background: var(--gold-gradient);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .contact-icon {
+            width: 20px; height: 20px; fill: #aaa; transition: 0.3s;
+        }
+        
+        .premium-contact-btn:hover .contact-icon { fill: #000; }
+
+        .contact-text-group { display: flex; flex-direction: column; text-align: left; }
+        .contact-label { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 2px; }
+        .contact-value { font-size: 1rem; color: #eee; font-weight: 500; font-family: 'Inter', sans-serif; transition: 0.3s; }
+        
+        .premium-contact-btn:hover .contact-value { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
         /* --- YENİLENMİŞ SPONSOR ALANI (COMING SOON) --- */
         .coming-soon-box {
@@ -341,6 +399,7 @@
             .time-box label { font-size: 0.55rem; }
             .info-box { padding: 25px 20px; margin: 15px auto; }
             h1 { margin-top: 10px; }
+            .contact-wrapper { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -393,12 +452,35 @@
         </div>
 
         <div class="contact-home">
-            <p style="color:#777; font-size:0.8rem; letter-spacing:3px; margin-bottom:10px; font-weight: 600;">RESMİ İLETİŞİM & BASIN</p>
-            <a href="mailto:gitalks.official@gmail.com" style="display:block; margin-bottom:15px;">gitalks.official@gmail.com</a>
+            <p class="contact-title">RESMİ İLETİŞİM & BASIN</p>
             
-            <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 1rem; color: #fff; display: inline-flex; align-items: center; gap: 8px;">
-                <span style="color:var(--gold-primary)">📷</span> @gitalks.official
-            </a>
+            <div class="contact-wrapper">
+                
+                <a href="mailto:gitalks.official@gmail.com" class="premium-contact-btn">
+                    <div class="icon-circle">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-text-group">
+                        <span class="contact-label">E-POSTA ADRESİ</span>
+                        <span class="contact-value">gitalks.official@gmail.com</span>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/gitalks.official" target="_blank" class="premium-contact-btn">
+                    <div class="icon-circle">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-text-group">
+                        <span class="contact-label">INSTAGRAM</span>
+                        <span class="contact-value">@gitalks.official</span>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </div>
 
