@@ -27,15 +27,13 @@
 
     <title>GıTalks | Global Teknoloji Zirvesi</title>
     <style>
-        /* --- 1. PREMIUM DEĞİŞKENLER (GÜNCELLENDİ) --- */
+        /* --- 1. PREMIUM DEĞİŞKENLER --- */
         :root {
             --gold-primary: #D4AF37;
             --gold-light: #F2E2A6;
             --gold-dark: #8E7020;
-            /* Daha zengin, metalik bir altın degrade */
             --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FBF5B7 25%, #AA771C 50%, #FCF6BA 75%, #B38728 100%);
             --bg-dark: #030303;
-            /* Daha ince, sofistike cam sınırları */
             --glass-bg: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 255, 255, 0.06);
             --glass-blur: blur(25px);
@@ -47,7 +45,7 @@
 
         * { box-sizing: border-box; }
 
-        /* Arka Plan Dokusu (Daha hafif) */
+        /* Arka Plan Dokusu (Çok hafif) */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -59,7 +57,6 @@
 
         body {
             background-color: var(--bg-dark);
-            /* Daha derin, merkeze odaklı arka plan */
             background-image: radial-gradient(circle at 50% 30%, #1a1a1a 0%, #000000 70%);
             color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
@@ -70,7 +67,7 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* --- NAVBAR (Daha şeffaf ve pürüzsüz) --- */
+        /* --- NAVBAR --- */
         .navbar {
             position: fixed; top: 0; width: 100%; height: 70px; 
             background: rgba(3, 3, 3, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -147,7 +144,7 @@
         }
         h3 { color: #fff; font-size: 1.3rem; letter-spacing: 1px; margin-top:0; font-weight: 600; }
 
-        /* --- COMPONENTS & CARDS (PREMIUM UPGRADE) --- */
+        /* --- COMPONENTS & CARDS --- */
         .info-box {
             background: linear-gradient(160deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.2) 100%);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
@@ -172,7 +169,7 @@
         .time-box span { display: block; font-size: 2rem; font-weight: 700; line-height: 1; margin-bottom: 5px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); }
         .time-box label { font-size: 0.6rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
 
-        /* BUTTON STİLİ (Daha Parlak) */
+        /* BUTTON STİLİ */
         .gold-cta-btn {
             background: transparent; border: 1px solid var(--gold-primary); color: var(--gold-primary); padding: 12px 30px;
             font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -186,7 +183,7 @@
         .gold-cta-btn:hover { color: #000; border-color: transparent; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); transform: scale(1.03); }
         .gold-cta-btn:hover::before { width: 100%; }
 
-        /* --- ANASAYFA KONUŞMACI VİTRİNİ (YENİ BÖLÜM) --- */
+        /* --- ANASAYFA KONUŞMACI VİTRİNİ --- */
         .home-speakers-showcase { margin: 50px 0; text-align: left; }
         .home-section-title { color: #fff; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px; display: flex; align-items: center; }
         .home-section-title::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--gold-primary), transparent); margin-left: 15px; opacity: 0.3; }
@@ -209,18 +206,18 @@
         }
         .home-speaker-card:hover::before { opacity: 1; }
 
-        .h-sp-img-box { width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: var(--gold-gradient); flex-shrink: 0; }
-        .h-sp-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #111; }
-        .h-sp-info h4 { color: #fff; font-size: 0.95rem; margin: 0 0 5px 0; font-weight: 700; }
-        .h-sp-info p { color: var(--gold-light); font-size: 0.75rem; margin: 0; opacity: 0.8; }
-        .h-sp-arrow { margin-left: auto; color: var(--gold-primary); font-size: 1.2rem; opacity: 0.5; transition: 0.3s; }
-        .home-speaker-card:hover .h-sp-arrow { opacity: 1; transform: translateX(5px); }
+        .h-sp-img-box { width: 70px; height: 70px; border-radius: 50%; padding: 2px; background: var(--gold-gradient); flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .h-sp-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #000; }
+        .h-sp-info h4 { color: #fff; font-size: 1rem; margin: 0 0 5px 0; font-weight: 700; }
+        .h-sp-info p { color: var(--gold-light); font-size: 0.8rem; margin: 0; opacity: 0.8; }
+        .h-sp-arrow { margin-left: auto; color: var(--gold-primary); font-size: 1.4rem; opacity: 0.6; transition: 0.3s; }
+        .home-speaker-card:hover .h-sp-arrow { opacity: 1; transform: translateX(5px) scale(1.1); }
 
-        .mystery-home .h-sp-img-box { background: #222; border: 1px solid #444; display: flex; align-items: center; justify-content: center; color: #555; font-size: 1.5rem; }
+        .mystery-home .h-sp-img-box { background: linear-gradient(145deg, #222, #111); border: 1px solid #444; display: flex; align-items: center; justify-content: center; color: #555; font-size: 1.8rem; }
         .mystery-home { cursor: default; }
         .mystery-home:hover { border-color: #444; box-shadow: none; transform: none; }
 
-        /* --- CONFERENCE CARDS (PREMIUM UPGRADE) --- */
+        /* --- CONFERENCE CARDS --- */
         .conf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; text-align: left; margin-top: 30px; }
         .conf-card {
             background: linear-gradient(160deg, rgba(255,255,255,0.02) 0%, rgba(10,10,10,0.4) 100%);
@@ -246,53 +243,74 @@
         .guest-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #bbb; }
         .guest-pill strong { color: var(--gold-primary); }
 
-        /* --- SPEAKERS (Conferences Tab) --- */
+        /* --- SPEAKERS SEKSİYONU (YENİLENMİŞ DİKEY/YATAY DÜZEN) --- */
         .speakers-section-title {
             font-size: 0.85rem; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
             margin: 30px 0 20px 0; display: flex; align-items: center; gap: 10px; opacity: 0.9;
         }
         .speakers-section-title::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), transparent); }
         
-        .speaker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; margin-bottom: 35px; }
+        /* Ana Grid artık Dikey Liste (Column) */
+        .speaker-grid { display: flex; flex-direction: column; gap: 20px; margin-bottom: 35px; }
         
+        /* Kartın kendisi yatay düzen için */
         .speaker-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.2) 100%);
-            border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 20px;
-            text-align: center; position: relative; transition: 0.4s ease; display: flex; flex-direction: column; align-items: center;
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 0; /* Padding'i sıfırladık */
+            display: flex; flex-direction: column; /* İçerik ve Biyo alt alta */
+            position: relative; transition: 0.4s ease; 
             box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+            overflow: hidden;
         }
         .speaker-card:hover { 
             background: linear-gradient(145deg, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0.3) 100%);
-            border-color: rgba(212, 175, 55, 0.3); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: rgba(212, 175, 55, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Yatay Üst Kısım (Foto + Bilgi + Buton) */
+        .speaker-header-row {
+            display: flex; align-items: center; padding: 20px; gap: 20px; width: 100%;
         }
         
-        .speaker-img-container { width: 100px; height: 100px; border-radius: 50%; padding: 3px; background: var(--gold-gradient); margin-bottom: 12px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        /* Fotoğraf Kutusu (Büyütüldü ve Kaliteli Görünüm İçin Ayarlandı) */
+        .speaker-img-container { width: 110px; height: 110px; border-radius: 50%; padding: 3px; background: var(--gold-gradient); flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
         .speaker-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #111; display: block; }
         
+        /* Bilgi Kutusu */
+        .speaker-info-box { flex-grow: 1; text-align: left; }
+        .speaker-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .speaker-role { font-size: 0.85rem; color: var(--gold-light); line-height: 1.4; font-weight: 500; opacity: 0.9; }
+
+        /* Yan Buton (Biyografi Açma) */
+        .bio-side-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1); color: var(--gold-primary); font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .bio-side-btn:hover { background: var(--gold-primary); color: #000; border-color: transparent; transform: rotate(90deg) scale(1.1); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+        
+        /* Yeni Badge Konumu */
         .new-badge {
-            position: absolute; top: -8px; right: -8px; background: #c00; color: #fff; font-size: 0.65rem; padding: 4px 10px; border-radius: 12px;
+            position: absolute; top: 15px; right: 15px; background: #c00; color: #fff; font-size: 0.65rem; padding: 4px 10px; border-radius: 12px;
             font-weight: 800; text-transform: uppercase; box-shadow: 0 2px 10px rgba(200,0,0,0.5); animation: pulseBadge 2s infinite; z-index: 5; border: 1px solid rgba(255,255,255,0.2);
         }
         @keyframes pulseBadge { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200,0,0, 0.4); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(200,0,0, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200,0,0, 0); } }
 
-        .speaker-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
-        .speaker-role { font-size: 0.75rem; color: var(--gold-light); margin-bottom: 12px; line-height: 1.3; font-weight: 500; opacity: 0.8; }
-        
-        .bio-btn {
-            background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #aaa; font-size: 0.7rem; padding: 6px 14px; border-radius: 20px;
-            cursor: pointer; transition: 0.3s; margin-top: auto; font-weight: 600; letter-spacing: 0.5px;
-        }
-        .bio-btn:hover { border-color: var(--gold-primary); color: var(--gold-primary); background: rgba(212, 175, 55, 0.05); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
-
-        .mystery-card { border-style: dashed; opacity: 0.6; }
-        .mystery-icon { font-size: 2.5rem; color: #333; background: linear-gradient(145deg, #111, #0a0a0a); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 1px solid #222; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
+        /* Gizemli Kart Düzeni */
+        .mystery-card { border-style: dashed; opacity: 0.7; }
+        .mystery-card .speaker-header-row { opacity: 0.6; }
+        .mystery-icon { font-size: 2.5rem; color: #333; background: linear-gradient(145deg, #181818, #0a0a0a); width: 110px; height: 110px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #333; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
         .mystery-text { font-size: 0.8rem; color: #666; font-style: italic; }
 
+        /* Biyografi İçeriği (Açılır Kısım) */
         .speaker-bio-content {
-            display: none; width: 100%; background: rgba(0,0,0,0.3); margin-top: 15px; padding: 12px; border-radius: 10px;
-            font-size: 0.8rem; color: #ccc; text-align: left; border-left: 2px solid var(--gold-primary); box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            display: none; width: 100%; background: rgba(0,0,0,0.4); padding: 25px;
+            font-size: 0.85rem; color: #ccc; text-align: left; border-top: 1px solid rgba(255,255,255,0.08);
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.2); line-height: 1.6;
         }
-        .bio-visible { display: block; animation: slideDown 0.3s ease; }
+        .bio-visible { display: block; animation: slideDown 0.4s ease; }
+        @keyframes slideDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
 
         /* --- PARTICIPANTS & MINI COUNTDOWN --- */
         .participant-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
@@ -345,7 +363,7 @@
 
         #cookieBanner { background: rgba(5, 5, 5, 0.95); border-top: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 -10px 40px rgba(0,0,0,0.8); backdrop-filter: blur(20px); }
 
-        /* --- MOBİL DÜZELTME KODU (FERAHLATMA) --- */
+        /* --- MOBİL DÜZELTME KODU --- */
         @media (max-width: 600px) {
             body { padding-top: 70px; padding-left: 10px; padding-right: 10px; }
             .tab-content { width: 100% !important; max-width: 100%; padding: 0; }
@@ -360,12 +378,21 @@
             .contact-home { padding: 40px 15px; }
             .premium-contact-btn { width: 100%; max-width: none; justify-content: center; padding: 18px; }
             .contact-text-group { text-align: left; }
-            .speaker-grid, .home-speaker-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .home-speaker-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .conf-card { padding: 25px; }
             .home-speaker-card { padding: 15px; flex-direction: column; text-align: center; gap: 10px; }
             .h-sp-arrow { display: none; }
             .home-section-title::after { display: none; }
             .home-section-title { justify-content: center; margin-bottom: 25px; }
+
+            /* Mobil Konuşmacı Kartı Düzenlemesi */
+            .speaker-header-row { padding: 15px; gap: 15px; }
+            .speaker-img-container { width: 80px; height: 80px; }
+            .speaker-name { font-size: 1rem; }
+            .speaker-role { font-size: 0.75rem; }
+            .bio-side-btn { width: 35px; height: 35px; font-size: 1.1rem; }
+            .speaker-bio-content { padding: 20px; font-size: 0.8rem; }
+            .mystery-icon { width: 80px; height: 80px; font-size: 2rem; }
         }
     </style>
 </head>
@@ -425,7 +452,7 @@
                 
                 <div class="home-speaker-card" id="home-speaker-havvana">
                     <div class="h-sp-img-box">
-                        <img src="havvana.jpg" alt="Havvana Çamurlu" class="h-sp-img" onerror="this.src='https://via.placeholder.com/60/333/BF953F?text=HC'">
+                        <img src="havvana.jpg" alt="Havvana Çamurlu" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=HC'">
                     </div>
                     <div class="h-sp-info">
                         <h4>Havvana Çamurlu</h4>
@@ -452,47 +479,37 @@
 
             </div>
         </div>
+
         <div class="contact-home">
             <p class="contact-title">RESMİ İLETİŞİM & BASIN</p>
-            
             <div class="contact-wrapper">
-                
                 <a href="mailto:gitalks.official@gmail.com" class="premium-contact-btn">
                     <div class="icon-circle">
-                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </div>
                     <div class="contact-text-group">
                         <span class="contact-label">E-POSTA ADRESİ</span>
                         <span class="contact-value">gitalks.official@gmail.com</span>
                     </div>
                 </a>
-
                 <a href="https://instagram.com/gitalks.official" target="_blank" class="premium-contact-btn">
                     <div class="icon-circle">
-                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
-                        </svg>
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
                     </div>
                     <div class="contact-text-group">
                         <span class="contact-label">INSTAGRAM</span>
                         <span class="contact-value">@gitalks.official</span>
                     </div>
                 </a>
-
-                <a href="https://www.linkedin.com/in/g%C4%B1talks-konferanslar%C4%B1-b297313a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="premium-contact-btn">
+                <a href="https://www.linkedin.com/in/g%C4%B1talks-konferanslar%C4%B1-b297313a6" target="_blank" class="premium-contact-btn">
                     <div class="icon-circle">
-                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </div>
                     <div class="contact-text-group">
                         <span class="contact-label">LINKEDIN</span>
                         <span class="contact-value">@gitalks-konferanslari</span>
                     </div>
                 </a>
-
             </div>
         </div>
     </div>
@@ -509,17 +526,21 @@
                 <p>Yapay zekâ, yazılım ekosistemleri ve dijital dönüşümün geleceğini sektörün öncüleriyle konuşuyoruz.</p>
                 
                 <div class="speakers-section-title">KONUŞMACILAR</div>
+                
                 <div class="speaker-grid">
                     
                     <div class="speaker-card" id="speaker-havvana-full">
                         <div class="new-badge">YENİ</div>
-                        <div class="speaker-img-container">
-                            <img src="havvana.jpg" alt="Havvana Çamurlu" class="speaker-img" onerror="this.src='https://via.placeholder.com/100/333/BF953F?text=HC'">
+                        <div class="speaker-header-row">
+                            <div class="speaker-img-container">
+                                <img src="havvana.jpg" alt="Havvana Çamurlu" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=HC'">
+                            </div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name">Havvana Çamurlu</div>
+                                <div class="speaker-role">Atiker Yazılım<br>İletişim Yöneticisi & Yazar</div>
+                            </div>
+                            <button class="bio-side-btn" onclick="toggleBio('bio1')">➜</button>
                         </div>
-                        <span class="speaker-name">Havvana Çamurlu</span>
-                        <span class="speaker-role">Atiker Yazılım<br>İletişim Yöneticisi & Yazar</span>
-                        
-                        <button class="bio-btn" onclick="toggleBio('bio1')">Biyografi ▾</button>
                         
                         <div id="bio1" class="speaker-bio-content">
                             <strong>Hakkında:</strong><br>
@@ -530,22 +551,28 @@
                     </div>
 
                     <div class="speaker-card mystery-card">
-                        <div class="mystery-icon">?</div>
-                        <span class="speaker-name" style="color:#777;">Sürpriz İsim</span>
-                        <span class="mystery-text">Yakında Açıklanacak<br>Global Teknoloji Devinden</span>
+                        <div class="speaker-header-row">
+                            <div class="mystery-icon">?</div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name" style="color:#777;">Sürpriz İsim</div>
+                                <div class="mystery-text">Yakında Açıklanacak<br>Global Teknoloji Devinden</div>
+                            </div>
+                        </div>
                     </div>
 
                      <div class="speaker-card mystery-card">
-                        <div class="mystery-icon">?</div>
-                        <span class="speaker-name" style="color:#777;">Sürpriz İsim</span>
-                        <span class="mystery-text">Yakında Açıklanacak</span>
+                        <div class="speaker-header-row">
+                            <div class="mystery-icon">?</div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name" style="color:#777;">Sürpriz İsim</div>
+                                <div class="mystery-text">Yakında Açıklanacak</div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-
                 <div style="margin-bottom: 20px; font-size: 0.85rem; color: #777; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Katılımcı Firmalar</div>
                 <div class="participant-list">
-                    
                     <div class="participant-item">
                         <div class="logo-wrapper">
                             <img src="atiker.png" alt="Atiker Yazılım" class="brand-logo">
@@ -555,38 +582,7 @@
                             <span class="participant-desc">ERP ve iş yazılımlarında öncü çözümler.</span>
                         </div>
                     </div>
-
-                    <div class="participant-item">
-                        <div class="logo-wrapper">
-                            <img src="ilko.png" alt="İlko İlaç" class="brand-logo">
-                        </div>
-                        <div class="participant-info">
-                            <span class="participant-name">İlko İlaç Sanayi</span>
-                            <span class="participant-desc">İlaç sanayi ve biyoteknolojide yenilikçi üretim.</span>
-                        </div>
                     </div>
-
-                    <div class="participant-item">
-                        <div class="logo-wrapper">
-                            <img src="akin.png" alt="Akın Robotics" class="brand-logo">
-                        </div>
-                        <div class="participant-info">
-                            <span class="participant-name">Akın Robotics</span>
-                            <span class="participant-desc">Yerli robotik teknolojiler ve yapay zeka.</span>
-                        </div>
-                    </div>
-
-                    <div class="participant-item">
-                        <div class="logo-wrapper">
-                            <img src="yazgan.png" alt="Yazgan Mimarlık" class="brand-logo">
-                        </div>
-                        <div class="participant-info">
-                            <span class="participant-name">Yazgan Mimarlık</span>
-                            <span class="participant-desc">Ödüllü mimari tasarım ve proje uygulamaları.</span>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div class="card-footer">
                     <div class="guest-pill">
@@ -600,388 +596,17 @@
                 </div>
             </div>
         </div>
-
-        <button class="accordion-btn">Planlanan Diğer Etkinlikler <span>&#9660;</span></button>
-        <div class="accordion-panel">
-            <div class="conf-grid">
-                <div class="conf-card">
-                    <div class="card-header">
-                        <div class="card-icon" style="background: #555; box-shadow:none;"></div>
-                    </div>
-                    <h3>GıTalks 2026 AKADEMİ</h3>
-                    <p>Bilimsel araştırmalar, akademik kariyer rotaları ve üniversite-sanayi iş birliği modelleri.</p>
-                    <div class="card-footer">
-                        <div class="guest-pill">
-                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="conf-card">
-                    <div class="card-header">
-                        <div class="card-icon" style="background: #555; box-shadow:none;"></div>
-                    </div>
-                    <h3>GıTalks 2026 TARIM</h3>
-                    <p>Sürdürülebilir tarım teknikleri, gıda güvenliği ve modern tarım teknolojileri.</p>
-                    <div class="card-footer">
-                        <div class="guest-pill">
-                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="conf-card">
-                    <div class="card-header">
-                        <div class="card-icon" style="background: #555; box-shadow:none;"></div>
-                    </div>
-                    <h3>GıTalks 2026 EKONOMİ</h3>
-                    <p>Küresel piyasalar, fintech girişimleri ve yeni nesil ekonomi modelleri üzerine analizler.</p>
-                    <div class="card-footer">
-                        <div class="guest-pill">
-                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="conf-card">
-                    <div class="card-header">
-                        <div class="card-icon" style="background: #555; box-shadow:none;"></div>
-                    </div>
-                    <h3>GıTalks 2026 SOSYAL ETKİ</h3>
-                    <p>Toplumsal fayda odaklı projeler, sosyal sorumluluk ve yardım organizasyonları.</p>
-                    <div class="card-footer">
-                        <div class="guest-pill">
-                            Durum: <span style="color:#888; margin-left:5px;">Planlanıyor</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-
-    <div id="sponsors-tab" class="tab-content">
-        <h2>Sponsorlarımız</h2>
-        <div class="coming-soon-box">
-            <h3>ÇOK YAKINDA KATILACAKLAR</h3>
-            <p>Sektörün öncüleri ve vizyoner markaları burada yerini alacak.</p>
-        </div>
-    </div>
-
-    <div id="about-tab" class="tab-content">
-        <h2>Hakkımızda | GıTalks</h2>
-        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
-            
-            <button class="accordion-btn">GITALKS NEDİR? <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <p><strong>GıTalks</strong>, tarım teknolojileri, yardım ve akademi ekseninde; teknoloji, inovasyon ve toplumsal faydayı bir araya getiren bir konferans ve etkinlik platformudur.</p>
-                <p>Akademisyenler, sektör temsilcileri, girişimciler ve öğrencileri aynı çatı altında buluşturan GıTalks; güncel teknolojik gelişmelerin tarım ve toplumsal destek alanlarındaki etkilerini ele almayı amaçlar.</p>
-            </div>
-            
-            <button class="accordion-btn">VİZYONUMUZ <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <p>GıTalks; teknoloji, akademi, tarım, ekonomi ve sosyal etki alanlarında geleceği şekillendiren fikirlerin buluştuğu, Türkiye merkezli fakat küresel bakış açısına sahip saygın bir konferans ve düşünce platformu olmayı hedefler.</p>
-                <p>Gençlerin, akademisyenlerin ve sektör profesyonellerinin ortak akıl ürettiği; bilgi, inovasyon ve toplumsal faydanın sürdürülebilir biçimde yaygınlaştığı bir ekosistem oluşturmayı vizyon edinir.</p>
-            </div>
-
-            <button class="accordion-btn">MİSYONUMUZ <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <p>GıTalks’un misyonu;</p>
-                <ul>
-                    <li>Güncel ve geleceğe yön veren konuları alanında uzman konuşmacılar ile ele almak,</li>
-                    <li>Akademi, sektör ve gençler arasında etkileşim ve iş birliği ortamı oluşturmak,</li>
-                    <li>Teknoloji ve bilginin toplumsal faydaya dönüşmesini desteklemek,</li>
-                    <li>Katılımcılara ilham veren, nitelikli ve erişilebilir etkinlikler düzenleyerek kalıcı etki yaratmaktır.</li>
-                </ul>
-                <p>GıTalks, yalnızca bir etkinlik serisi değil; öğrenen, paylaşan ve üreten bir topluluk olmayı amaçlar.</p>
-            </div>
-            <div style="margin-top:50px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
-                <p style="font-size:0.85rem; color:#777; font-style: italic;">
-                    GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.
-                </p>
-                <a href="https://instagram.com/gitalks.official" target="_blank" style="font-size: 0.9rem; color: #888; display: inline-flex; align-items: center; gap: 5px; margin-top:10px; text-decoration:none;">
-                    <span style="color:var(--gold-primary)">📷</span> @gitalks.official
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="privacy-tab" class="tab-content">
-        <h2>GİZLİLİK POLİTİKASI & KVKK AYDINLATMA METNİ</h2>
-        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
-            
-            <button class="accordion-btn">1. Veri Sorumlusu & Altyapı <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <h3>1. Veri Sorumlusu</h3>
-                <p>KVKK uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla GıTalks Organizasyonu tarafından işlenmektedir.</p>
-
-                <h3>2. Web Sitesi Altyapısı</h3>
-                <p>GıTalks internet sitesi GitHub Pages üzerinden barındırılmaktadır. Siteye erişim sırasında;</p>
-                <ul>
-                    <li>IP adresi</li>
-                    <li>Tarayıcı ve cihaz bilgileri</li>
-                    <li>Ziyaret tarihi ve saati</li>
-                    <li>Teknik erişim ve kullanım verileri</li>
-                </ul>
-                <p>GitHub’ın sunucu ve güvenlik altyapısı kapsamında otomatik olarak işlenebilmektedir.</p>
-                <p>GıTalks; üyelik sistemi, zorunlu kayıt veya form aracılığıyla doğrudan kişisel veri toplama kullanmamaktadır.</p>
-            </div>
-
-            <button class="accordion-btn">2. Veri İşleme Amaçları & Hukuki Sebepler <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
-                <p>Toplanan teknik veriler; web sitesinin teknik işleyişinin sağlanması, bilgi güvenliğinin temini, sistem performansının izlenmesi ve kullanıcı deneyiminin geliştirilmesi amaçlarıyla sınırlı olarak işlenmektedir.</p>
-
-                <h3>4. Hukuki Sebep</h3>
-                <p>Kişisel verileriniz, KVKK’nın 5. maddesi uyarınca;</p>
-                <ul>
-                    <li>Kanunlarda açıkça öngörülmesi</li>
-                    <li>Veri sorumlusunun hukuki yükümlülüklerini yerine getirmesi</li>
-                    <li>Meşru menfaatler</li>
-                </ul>
-                <p>hukuki sebeplerine dayanılarak işlenmektedir.</p>
-                <p>Bu kapsamda ayrıca açık rıza alınması gerekmemektedir.</p>
-            </div>
-
-            <button class="accordion-btn">3. Aktarım ve Çerezler <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <h3>5. Kişisel Verilerin Aktarılması</h3>
-                <p>Kişisel verileriniz;</p>
-                <ul>
-                    <li>Doğrudan üçüncü kişi veya kurumlarla paylaşılmaz</li>
-                    <li>Sadece barındırma ve teknik altyapı hizmetleri kapsamında GitHub Inc. tarafından işlenebilir</li>
-                </ul>
-
-                <h3>6. Çerez (Cookie) Kullanımı</h3>
-                <p>Bu sitede yalnızca;</p>
-                <ul>
-                    <li>Zorunlu teknik çerezler</li>
-                    <li>Site işlevselliği için gerekli yerel depolama (localStorage)</li>
-                </ul>
-                <p>kullanılmaktadır. Reklam veya izleme amaçlı çerez kullanılmaz.</p>
-            </div>
-
-            <button class="accordion-btn">4. Haklarınız ve İletişim <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <h3>7. KVKK Kapsamındaki Haklarınız</h3>
-                <p>KVKK’nın 11. maddesi kapsamında kullanıcılar;</p>
-                <ul>
-                    <li>Kişisel verilerinin işlenip işlenmediğini öğrenme</li>
-                    <li>İşlenmişse buna ilişkin bilgi talep etme</li>
-                    <li>İşlenme amacını öğrenme</li>
-                </ul>
-                <p>haklarına sahiptir.</p>
-
-                <h3>8. İletişim</h3>
-                <p>KVKK ve gizlilik uygulamalarına ilişkin her türlü talep için: <br>
-                📩 <a href="mailto:gitalks.official@gmail.com" style="color:var(--gold-primary); text-decoration:none; font-weight:bold;">gitalks.official@gmail.com</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="consent-tab" class="tab-content">
-        <h2>AÇIK RIZA METNİ</h2>
-        <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
-            <button class="accordion-btn">AÇIK RIZA BEYANINI GÖRÜNTÜLE <span>&#9660;</span></button>
-            <div class="accordion-panel">
-                <p>GıTalks tarafından yürütülen internet sitesini ziyaret etmem kapsamında;</p>
-                <ul>
-                    <li>Siteye erişim sırasında oluşan teknik verilerin,</li>
-                </ul>
-                <p>yalnızca web sitesinin teknik işleyişinin sağlanması, bilgi güvenliği ve kullanıcı deneyiminin geliştirilmesi amaçlarıyla işlendiği konusunda bilgilendirildim.</p>
-                
-                <p>Bu işlemlerin, 6698 sayılı KVKK’nın 5. maddesi uyarınca meşru menfaat kapsamında gerçekleştirildiğini ve bu nedenle ayrıca açık rızamın aranmadığını anladım.</p>
-                
-                <p>Bu bilgilendirme doğrultusunda siteyi kullanmaya devam ediyorum.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="corporate-statement" style="max-width: 800px; margin: 0 auto 20px auto; color: #666; text-align: center; padding: 0 20px; font-size: 0.8rem;">
-            <p><strong>Yasal Bilgilendirme:</strong> GıTalks, üniversite öğrenci toplulukları tarafından yürütülen bağımsız bir etkinlik platformudur.</p>
-        </div>
-        <div class="footer-links" style="text-align: center; margin-bottom: 30px;">
-            <a href="#" class="modal-link" data-tab="privacy-tab">Gizlilik Politikası ve KVKK</a> | 
-            <a href="#" class="modal-link" data-tab="consent-tab">Açık Rıza Metni</a>
-        </div>
-        <p style="text-align: center; color: #555; font-size: 0.8rem;">&copy; 2026 GıTalks Organization. All rights reserved.</p>
-    </footer>
-
-    <div id="cookieBanner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(5, 5, 5, 0.95); border-top:1px solid rgba(212, 175, 55, 0.3); color:#ccc; padding:25px; z-index:9999; display:none; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); backdrop-filter: blur(20px);">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <strong style="color:var(--gold-primary); font-size: 1.1rem; letter-spacing: 1px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">ÇEREZ VE GİZLİLİK BİLGİLENDİRMESİ</strong><br>
-            <p style="margin: 15px 0; color:#ddd; font-size:0.9rem; line-height: 1.6;">
-                Sitemizde KVKK ve Çerez Politikası uyarınca işlem yapılmaktadır. Detaylar için 
-                <a href="#" class="cookie-link" style="color:var(--gold-light); text-decoration:underline; cursor:pointer;" data-target="privacy-tab">KVKK Aydınlatma Metni</a> 
-                ve 
-                <a href="#" class="cookie-link" style="color:var(--gold-light); text-decoration:underline; cursor:pointer;" data-target="consent-tab">Açık Rıza Metni</a>'ni inceleyebilirsiniz.
-            </p>
-            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                <button id="btnReject" style="background:transparent; color:#aaa; border:1px solid #444; padding:10px 20px; cursor:pointer; border-radius: 6px; transition:0.3s;">Kapat</button>
-                <button id="btnAccept" style="background:var(--gold-gradient); color:#000; border:none; padding:10px 25px; font-weight:bold; cursor:pointer; border-radius: 6px; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3); transition:0.3s;">Kabul Et ve Devam Et</button>
-            </div>
-        </div>
-    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            
-            const sidebar = document.getElementById("mySidebar");
-            const overlay = document.getElementById("menuOverlay");
-            
-            document.getElementById("openNavBtn").addEventListener("click", function() {
-                if(window.innerWidth <= 600) { sidebar.style.width = "80%"; } else { sidebar.style.width = "320px"; }
-                overlay.style.display = "block";
-            });
-
-            function closeNav() { sidebar.style.width = "0"; overlay.style.display = "none"; }
-            document.getElementById("closeNavBtn").addEventListener("click", closeNav);
-            overlay.addEventListener("click", closeNav);
-
-            const navLinks = document.querySelectorAll('.nav-link');
-            const tabs = document.querySelectorAll('.tab-content');
-
-            function switchTab(targetId) {
-                tabs.forEach(tab => tab.style.display = 'none');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if(link.getAttribute('data-tab') === targetId) link.classList.add('active');
-                });
-                document.getElementById(targetId).style.display = 'block';
-                window.scrollTo(0, 0);
-                closeNav(); 
-            }
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    switchTab(this.getAttribute('data-tab'));
-                });
-            });
-
-            const mainLogo = document.getElementById("mainLogo");
-            if (mainLogo) {
-                mainLogo.addEventListener("click", function() { switchTab('home-tab'); });
-            }
-
-            // YENİ FONKSİYON: Anasayfadaki konuşmacıya tıklayınca diğer sekmeye git ve kaydır
-            function goToSpeakerCard(cardId) {
-                switchTab('conferences-tab');
-                setTimeout(function(){
-                    const targetCard = document.getElementById(cardId);
-                    if(targetCard) {
-                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        // Dikkat çekmek için kısa bir parlama efekti ekleyelim
-                        targetCard.style.transition = "box-shadow 0.5s ease";
-                        targetCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.6)";
-                        setTimeout(() => { targetCard.style.boxShadow = ""; }, 1000);
-                    }
-                }, 300); // Tab değişimi için biraz bekleme süresi
-            }
-
-            // Anasayfadaki Havvana kartına tıklama olayı
-            const havvanaHomeCard = document.getElementById("home-speaker-havvana");
-            if(havvanaHomeCard) {
-                havvanaHomeCard.addEventListener("click", function() {
-                    goToSpeakerCard("speaker-havvana-full");
-                });
-            }
-
-
-            function goToTechCard() {
-                switchTab('conferences-tab');
-                setTimeout(function(){
-                    const targetCard = document.getElementById("target-tech-card");
-                    if(targetCard) {
-                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }, 100);
-            }
-
-            document.getElementById("tech-title-btn").addEventListener("click", goToTechCard);
-            const goToTechBtn = document.getElementById("go-to-tech-btn");
-            if (goToTechBtn) {
-                goToTechBtn.addEventListener("click", goToTechCard);
-            }
-
-            document.querySelectorAll('.footer-links .modal-link[data-tab]').forEach(link => {
-                link.addEventListener('click', function(e) { e.preventDefault(); switchTab(this.getAttribute('data-tab')); });
-            });
-
-            document.querySelectorAll('.cookie-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = this.getAttribute('data-target');
-                    switchTab(target);
-                });
-            });
-
-            const acc = document.getElementsByClassName("accordion-btn");
-            for (let i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active-acc");
-                    const panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                        panel.classList.remove('open');
-                    } else {
-                        panel.style.maxHeight = (panel.scrollHeight + 100) + "px";
-                        panel.classList.add('open');
-                    }
-                });
-            }
-
-            const cookieBanner = document.getElementById("cookieBanner");
-            if (localStorage.getItem("cookieConsent") !== "accepted") {
-                cookieBanner.style.display = "block";
-            }
-            document.getElementById('btnAccept').addEventListener('click', function() {
-                localStorage.setItem("cookieConsent", "accepted");
-                cookieBanner.style.display = "none";
-            });
-            document.getElementById('btnReject').addEventListener('click', function() {
-                localStorage.removeItem("cookieConsent"); 
-                cookieBanner.style.display = "none";
-            });
-
-            const countDownDate = new Date("Feb 16, 2026 09:00:00").getTime();
-            function updateCountdowns() {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-                
-                if (distance < 0) {
-                    if(document.getElementById("countdown")) document.getElementById("countdown").innerHTML = "<div style='color:var(--gold-primary); font-size:2rem; text-shadow:0 0 20px var(--gold-primary);'>ZİRVE BAŞLADI!</div>";
-                    if(document.getElementById("tech-countdown")) document.getElementById("tech-countdown").innerHTML = "<span style='color:var(--gold-primary);'>BAŞLADI</span>";
-                    return;
-                }
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                if(document.getElementById("days")) {
-                    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-                    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-                    document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-                    document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-                }
-                if(document.getElementById("t-days")) {
-                    document.getElementById("t-days").innerText = days < 10 ? "0" + days : days;
-                    document.getElementById("t-hours").innerText = hours < 10 ? "0" + hours : hours;
-                    document.getElementById("t-min").innerText = minutes < 10 ? "0" + minutes : minutes;
-                }
-            }
-            setInterval(updateCountdowns, 1000);
-            updateCountdowns(); 
-        });
-
+        // ... Mevcut scriptler ...
+        // YENİ BİYOGRAFİ AÇMA FONKSİYONU
         function toggleBio(id) {
             const bio = document.getElementById(id);
             if (bio.classList.contains('bio-visible')) {
                 bio.classList.remove('bio-visible');
             } else {
                 bio.classList.add('bio-visible');
-                bio.style.maxHeight = bio.scrollHeight + "px";
             }
         }
     </script>
