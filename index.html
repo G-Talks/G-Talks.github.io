@@ -429,20 +429,26 @@
                     <div class="h-sp-arrow">➔</div>
                 </div>
 
-                <div class="home-speaker-card mystery-home">
-                    <div class="h-sp-img-box">?</div>
-                    <div class="h-sp-info" style="opacity: 0.6;">
-                        <h4>Yakında</h4>
-                        <p>Global Teknoloji Devi</p>
+                <div class="home-speaker-card" id="home-speaker-begum">
+                    <div class="h-sp-img-box">
+                        <img src="BEGÜM YAZGAN.PNG" alt="Dr. Begüm Yazgan" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=BY'">
                     </div>
+                    <div class="h-sp-info">
+                        <h4>Dr. Begüm Yazgan</h4>
+                        <p>Yazgan Mimarlık</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
                 </div>
 
-                 <div class="home-speaker-card mystery-home">
-                    <div class="h-sp-img-box">?</div>
-                    <div class="h-sp-info" style="opacity: 0.6;">
-                        <h4>Yakında</h4>
-                        <p>Sürpriz İsim</p>
+                <div class="home-speaker-card" id="home-speaker-kerem">
+                    <div class="h-sp-img-box">
+                        <img src="KEREM YAZGAN.PNG" alt="Dr. Kerem Yazgan" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=KY'">
                     </div>
+                    <div class="h-sp-info">
+                        <h4>Dr. Kerem Yazgan</h4>
+                        <p>Yazgan Mimarlık</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
                 </div>
 
             </div>
@@ -509,17 +515,31 @@
                         </div>
                     </div>
 
-                    <div class="speaker-card mystery-card">
+                    <div class="speaker-card" id="speaker-begum-full">
                         <div class="speaker-header-row">
-                            <div class="mystery-icon">?</div>
+                            <div class="speaker-img-container">
+                                <img src="BEGÜM YAZGAN.PNG" alt="Dr. Begüm Yazgan" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=BY'">
+                            </div>
                             <div class="speaker-info-box">
-                                <div class="speaker-name" style="color:#777;">Sürpriz İsim</div>
-                                <div class="mystery-text">Yakında Açıklanacak<br>Global Teknoloji Devinden</div>
+                                <div class="speaker-name">Dr. Begüm Yazgan</div>
+                                <div class="speaker-role">Yazgan Tasarım Mimarlık<br>Kurucu Ortak</div>
                             </div>
                         </div>
                     </div>
 
-                     <div class="speaker-card mystery-card">
+                    <div class="speaker-card" id="speaker-kerem-full">
+                        <div class="speaker-header-row">
+                            <div class="speaker-img-container">
+                                <img src="KEREM YAZGAN.PNG" alt="Dr. Kerem Yazgan" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=KY'">
+                            </div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name">Dr. Kerem Yazgan</div>
+                                <div class="speaker-role">Yazgan Tasarım Mimarlık<br>Kurucu Ortak</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card mystery-card">
                         <div class="speaker-header-row">
                             <div class="mystery-icon">?</div>
                             <div class="speaker-info-box">
@@ -842,22 +862,19 @@
                 mainLogo.addEventListener("click", function() { switchTab('home-tab'); });
             }
 
-            // YENİ FONKSİYON: Anasayfadaki konuşmacıya tıklayınca diğer sekmeye git ve kaydır
             function goToSpeakerCard(cardId) {
                 switchTab('conferences-tab');
                 setTimeout(function(){
                     const targetCard = document.getElementById(cardId);
                     if(targetCard) {
                         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        // Dikkat çekmek için kısa bir parlama efekti ekleyelim
                         targetCard.style.transition = "box-shadow 0.5s ease";
                         targetCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.6)";
                         setTimeout(() => { targetCard.style.boxShadow = ""; }, 1000);
                     }
-                }, 300); // Tab değişimi için biraz bekleme süresi
+                }, 300);
             }
 
-            // Anasayfadaki Havvana kartına tıklama olayı
             const havvanaHomeCard = document.getElementById("home-speaker-havvana");
             if(havvanaHomeCard) {
                 havvanaHomeCard.addEventListener("click", function() {
@@ -865,6 +882,19 @@
                 });
             }
 
+            const begumHomeCard = document.getElementById("home-speaker-begum");
+            if(begumHomeCard) {
+                begumHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-begum-full");
+                });
+            }
+
+            const keremHomeCard = document.getElementById("home-speaker-kerem");
+            if(keremHomeCard) {
+                keremHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-kerem-full");
+                });
+            }
 
             function goToTechCard() {
                 switchTab('conferences-tab');
@@ -952,16 +982,6 @@
             setInterval(updateCountdowns, 1000);
             updateCountdowns(); 
         });
-
-        function toggleBio(id) {
-            const bio = document.getElementById(id);
-            if (bio.classList.contains('bio-visible')) {
-                bio.classList.remove('bio-visible');
-            } else {
-                bio.classList.add('bio-visible');
-                bio.style.maxHeight = bio.scrollHeight + "px";
-            }
-        }
     </script>
 </body>
 </html>
