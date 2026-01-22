@@ -451,6 +451,17 @@
                     <div class="h-sp-arrow">➔</div>
                 </div>
 
+                <div class="home-speaker-card" id="home-speaker-ahmet">
+                    <div class="h-sp-img-box">
+                        <img src="ahmet.jpeg" alt="Ahmet Ataşoğlu" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=AA'">
+                    </div>
+                    <div class="h-sp-info">
+                        <h4>Ahmet Ataşoğlu</h4>
+                        <p>AKINROBOTICS</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
+                </div>
+
             </div>
         </div>
 
@@ -905,6 +916,13 @@
             if(keremHomeCard) {
                 keremHomeCard.addEventListener("click", function() {
                     goToSpeakerCard("speaker-kerem-full");
+                });
+            }
+
+            const ahmetHomeCard = document.getElementById("home-speaker-ahmet");
+            if(ahmetHomeCard) {
+                ahmetHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-ahmet-full");
                 });
             }
 
