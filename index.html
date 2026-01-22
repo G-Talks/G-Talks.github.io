@@ -228,6 +228,52 @@
         .guest-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #bbb; }
         .guest-pill strong { color: var(--gold-primary); }
 
+        /* --- YENİ EKLENEN KONUŞMACI STİLLERİ (SPEAKER CSS) --- */
+        .speakers-section-title {
+            font-size: 0.9rem; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            margin: 25px 0 15px 0; display: flex; align-items: center; gap: 10px;
+        }
+        .speakers-section-title::after { content: ''; flex-grow: 1; height: 1px; background: rgba(255,255,255,0.1); }
+        
+        .speaker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        
+        .speaker-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px;
+            text-align: center; position: relative; transition: 0.3s ease; display: flex; flex-direction: column; align-items: center;
+        }
+        .speaker-card:hover { background: rgba(255,255,255,0.07); border-color: var(--gold-primary); transform: translateY(-3px); }
+        
+        .speaker-img-container { width: 90px; height: 90px; border-radius: 50%; padding: 3px; background: var(--gold-gradient); margin-bottom: 10px; position: relative; }
+        .speaker-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #111; display: block; }
+        
+        .new-badge {
+            position: absolute; top: -5px; right: -5px; background: #c00; color: #fff; font-size: 0.6rem; padding: 4px 8px; border-radius: 10px;
+            font-weight: 800; text-transform: uppercase; box-shadow: 0 2px 10px rgba(200,0,0,0.5); animation: pulseBadge 2s infinite; z-index: 5;
+        }
+        @keyframes pulseBadge { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .speaker-name { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 2px; font-family: 'Montserrat', sans-serif; }
+        .speaker-role { font-size: 0.7rem; color: var(--gold-light); margin-bottom: 10px; line-height: 1.2; font-weight: 500; }
+        
+        .bio-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #aaa; font-size: 0.7rem; padding: 5px 12px; border-radius: 20px;
+            cursor: pointer; transition: 0.3s; margin-top: auto;
+        }
+        .bio-btn:hover { border-color: var(--gold-primary); color: var(--gold-primary); }
+
+        /* Gizemli Konuşmacı */
+        .mystery-card { border-style: dashed; opacity: 0.7; }
+        .mystery-icon { font-size: 2rem; color: #333; background: #111; width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 1px solid #333; }
+        .mystery-text { font-size: 0.8rem; color: #666; font-style: italic; }
+
+        /* Biyografi Açılır Alanı */
+        .speaker-bio-content {
+            display: none; width: 100%; background: rgba(0,0,0,0.4); margin-top: 10px; padding: 10px; border-radius: 8px;
+            font-size: 0.75rem; color: #ccc; text-align: left; border-left: 2px solid var(--gold-primary);
+        }
+        .bio-visible { display: block; animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+
         /* --- GÜNCELLENMİŞ DİKEY (ALT ALTA) LOGO LİSTESİ --- */
         .participant-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
         .participant-item { display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; transition: all 0.3s ease; cursor: default; }
@@ -334,6 +380,9 @@
                 padding: 15px;
             }
             .contact-text-group { text-align: left; }
+            
+            /* Mobil Konuşmacı Grid */
+            .speaker-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -447,6 +496,40 @@
                 <h3>GıTalks 2026 TEKNOLOJİ</h3>
                 <p>Yapay zekâ, yazılım ekosistemleri ve dijital dönüşümün geleceğini sektörün öncüleriyle konuşuyoruz.</p>
                 
+                <div class="speakers-section-title">KONUŞMACILAR</div>
+                <div class="speaker-grid">
+                    
+                    <div class="speaker-card">
+                        <div class="new-badge">YENİ</div>
+                        <div class="speaker-img-container">
+                            <img src="havvana.jpg" alt="Havvana Çamurlu" class="speaker-img" onerror="this.src='https://via.placeholder.com/100/333/BF953F?text=HC'">
+                        </div>
+                        <span class="speaker-name">Havvana Çamurlu</span>
+                        <span class="speaker-role">Atiker Yazılım<br>İletişim Yöneticisi & Yazar</span>
+                        
+                        <button class="bio-btn" onclick="toggleBio('bio1')">Biyografi ▾</button>
+                        
+                        <div id="bio1" class="speaker-bio-content">
+                            <strong>Hakkında:</strong><br>
+                            Karamanoğlu Mehmet Bey Üni. İktisat mezunu. Necmettin Erbakan Üni.'de İnovasyon Ekonomisi üzerine Yüksek Lisans yaptı.<br><br>
+                            <strong>Kitap:</strong> "EŞİK: Yapay Zekâ Çağında İş ve İnsan".<br><br>
+                            Atiker Yazılım'da İletişim ve Koordinasyon Yöneticisi olarak teknoloji ve inovasyon alanında çalışmalarını sürdürüyor.
+                        </div>
+                    </div>
+
+                    <div class="speaker-card mystery-card">
+                        <div class="mystery-icon">?</div>
+                        <span class="speaker-name" style="color:#555;">Sürpriz İsim</span>
+                        <span class="mystery-text">Yakında Açıklanacak<br>Global Teknoloji Devinden</span>
+                    </div>
+
+                     <div class="speaker-card mystery-card">
+                        <div class="mystery-icon">?</div>
+                        <span class="speaker-name" style="color:#555;">Sürpriz İsim</span>
+                        <span class="mystery-text">Yakında Açıklanacak</span>
+                    </div>
+
+                </div>
                 <div style="margin-bottom: 15px; font-size: 0.8rem; color: #777; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Katılımcı Firmalar</div>
                 <div class="participant-list">
                     
@@ -862,6 +945,16 @@
             setInterval(updateCountdowns, 1000);
             updateCountdowns(); 
         });
+
+        // YENİ EKLENEN JS FONKSİYONU: BİYOGRAFİ AÇ/KAPA
+        function toggleBio(id) {
+            const bio = document.getElementById(id);
+            if (bio.classList.contains('bio-visible')) {
+                bio.classList.remove('bio-visible');
+            } else {
+                bio.classList.add('bio-visible');
+            }
+        }
     </script>
 </body>
 </html>
