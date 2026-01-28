@@ -292,10 +292,14 @@
         .participant-item { display: flex; align-items: center; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04); padding: 15px; border-radius: 12px; transition: all 0.3s ease; cursor: default; backdrop-filter: blur(5px); }
         .participant-item:hover { background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.3); transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .logo-wrapper { width: 60px; height: 60px; min-width: 60px; background: rgba(0,0,0,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 8px; border: 1px solid rgba(255,255,255,0.05); }
-        .brand-logo { width: 100%; height: 100%; object-fit: contain; filter: grayscale(100%) opacity(0.6); transition: all 0.4s ease; }
-        .participant-item:hover .brand-logo { filter: grayscale(0%) opacity(1); transform: scale(1.05); }
+        
+        /* LOGO DÜZELTMESİ: Grayscale kaldırıldı, renkli görünecek */
+        .brand-logo { width: 100%; height: 100%; object-fit: contain; filter: none; opacity: 1; transition: all 0.4s ease; }
+        .participant-item:hover .brand-logo { transform: scale(1.05); }
+        
         .participant-info { display: flex; flex-direction: column; margin-left: 15px; }
         .participant-name { font-size: 1rem; color: #fff; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 3px; }
+        /* Açıklama kısmı silindiği için CSS'de durabilir ama HTML'den kaldırdım */
         .participant-desc { font-size: 0.8rem; color: #888; font-weight: 400; line-height: 1.4; }
         .participant-item:hover .participant-desc { color: #aaa; }
 
@@ -323,8 +327,20 @@
         .text-content-box { text-align: left; line-height: 1.9; color: #ccc; font-size: 1rem; }
         .text-content-box strong { color: #fff; font-weight: 600; }
         
-        .accordion-btn { background: linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.05); padding: 22px; font-size: 1rem; letter-spacing: 1.5px; }
-        .accordion-btn:hover, .accordion-btn.active-acc { background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02)); border-color: rgba(212, 175, 55, 0.3); color: #fff; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+        /* ACCORDION DÜZELTMESİ: Sabit Premium Renk (Hover efekti kaldırıldı) */
+        .accordion-btn { 
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.2)); /* Sabit Premium Renk */
+            border: 1px solid rgba(212, 175, 55, 0.2); /* Sabit Altın Çerçeve */
+            padding: 22px; font-size: 1rem; letter-spacing: 1.5px; 
+            color: #fff; /* Yazı rengi hep beyaz */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .accordion-btn:hover { 
+            /* Hover'da renk değişimi YOK, sadece aynı kalıyor */
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.2));
+            border-color: rgba(212, 175, 55, 0.2);
+        }
         
         /* DÜZELTME BURADA: Akordiyon için gerekli stiller eklendi */
         .accordion-panel { 
@@ -593,6 +609,30 @@
                         </div>
                     </div>
 
+                    <div class="speaker-card">
+                        <div class="speaker-header-row">
+                            <div class="speaker-img-container">
+                                <img src="egeşen.jpg" alt="N. Egeşen KÖK" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=EK'">
+                            </div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name">N. Egeşen KÖK</div>
+                                <div class="speaker-role">Ar-Ge Uzmanı</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card">
+                        <div class="speaker-header-row">
+                            <div class="speaker-img-container">
+                                <img src="beyza.jpeg" alt="Beyza YILMAZ" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=BY'">
+                            </div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name">Beyza YILMAZ</div>
+                                <div class="speaker-role">Ar-Ge Uzman Yardımcısı</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="speaker-card mystery-card">
                         <div class="speaker-header-row">
                             <div class="mystery-icon">?</div>
@@ -613,7 +653,6 @@
                         </div>
                         <div class="participant-info">
                             <span class="participant-name">Atiker Yazılım</span>
-                            <span class="participant-desc">ERP ve iş yazılımlarında öncü çözümler.</span>
                         </div>
                     </div>
                     
@@ -623,7 +662,6 @@
                         </div>
                         <div class="participant-info">
                             <span class="participant-name">İlko İlaç Sanayi</span>
-                            <span class="participant-desc">İlaç sanayi ve biyoteknolojide yenilikçi üretim.</span>
                         </div>
                     </div>
 
@@ -633,7 +671,6 @@
                         </div>
                         <div class="participant-info">
                             <span class="participant-name">Akın Robotics</span>
-                            <span class="participant-desc">Yerli robotik teknolojiler ve yapay zeka.</span>
                         </div>
                     </div>
 
@@ -643,7 +680,6 @@
                         </div>
                         <div class="participant-info">
                             <span class="participant-name">Yazgan Mimarlık</span>
-                            <span class="participant-desc">Ödüllü mimari tasarım ve proje uygulamaları.</span>
                         </div>
                     </div>
                 </div>
