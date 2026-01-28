@@ -325,7 +325,15 @@
         
         .accordion-btn { background: linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.05); padding: 22px; font-size: 1rem; letter-spacing: 1.5px; }
         .accordion-btn:hover, .accordion-btn.active-acc { background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02)); border-color: rgba(212, 175, 55, 0.3); color: #fff; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
-        .accordion-panel { background-color: rgba(0, 0, 0, 0.3); border-radius: 0 0 12px 12px; }
+        
+        /* DÜZELTME BURADA: Akordiyon için gerekli stiller eklendi */
+        .accordion-panel { 
+            background-color: rgba(0, 0, 0, 0.3); 
+            border-radius: 0 0 12px 12px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
 
         /* --- FOOTER & COOKIES --- */
         footer { margin-top: 80px; padding-bottom: 30px; color: #666; font-size: 0.85rem; }
@@ -462,6 +470,17 @@
                     <div class="h-sp-arrow">➔</div>
                 </div>
 
+                <div class="home-speaker-card" id="home-speaker-egemen">
+                    <div class="h-sp-img-box">
+                        <img src="egemen.jpg" alt="Egemen Yurdakul" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=EY'">
+                    </div>
+                    <div class="h-sp-info">
+                        <h4>Egemen Yurdakul</h4>
+                        <p>AIESEC / Pazarlama</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
+                </div>
+
             </div>
         </div>
 
@@ -558,6 +577,18 @@
                             <div class="speaker-info-box">
                                 <div class="speaker-name">Ahmet Ataşoğlu</div>
                                 <div class="speaker-role">AKINROBOTICS<br>Yapay Zeka Yazılım Sorumlusu</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card" id="speaker-egemen-full">
+                        <div class="speaker-header-row">
+                            <div class="speaker-img-container">
+                                <img src="egemen.jpg" alt="Egemen Yurdakul" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=EY'">
+                            </div>
+                            <div class="speaker-info-box">
+                                <div class="speaker-name">Egemen Yurdakul</div>
+                                <div class="speaker-role">AIESEC<br>Pazarlama Koordinatörü</div>
                             </div>
                         </div>
                     </div>
@@ -923,6 +954,14 @@
             if(ahmetHomeCard) {
                 ahmetHomeCard.addEventListener("click", function() {
                     goToSpeakerCard("speaker-ahmet-full");
+                });
+            }
+
+            // YENİ EKLENEN KONUŞMACI İÇİN TIKLAMA OLAYI
+            const egemenHomeCard = document.getElementById("home-speaker-egemen");
+            if(egemenHomeCard) {
+                egemenHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-egemen-full");
                 });
             }
 
