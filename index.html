@@ -327,7 +327,7 @@
         .text-content-box { text-align: left; line-height: 1.9; color: #ccc; font-size: 1rem; }
         .text-content-box strong { color: #fff; font-weight: 600; }
         
-        /* ACCORDION DÜZELTMESİ: Sabit Premium Renk (Hover efekti kaldırıldı) */
+        /* ACCORDION DÜZELTMESİ: Sabit Premium Renk ve Aynı Boyut */
         .accordion-btn { 
             background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.2)); /* Sabit Premium Renk */
             border: 1px solid rgba(212, 175, 55, 0.2); /* Sabit Altın Çerçeve */
@@ -335,6 +335,12 @@
             color: #fff; /* Yazı rengi hep beyaz */
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%; /* Hepsi aynı genişlikte (kutuyu doldurur) */
+            text-align: left; /* Yazı sola hizalı */
+            display: flex; /* Flex düzeni ile içerik hizalama */
+            justify-content: space-between; /* Yazı solda, ok sağda */
+            align-items: center; /* Dikey ortalama */
+            box-sizing: border-box; /* Padding dahil genişlik hesabı */
         }
         .accordion-btn:hover { 
             /* Hover'da renk değişimi YOK, sadece aynı kalıyor */
@@ -439,7 +445,7 @@
         </div>
 
         <div class="home-speakers-showcase">
-            <h4 class="home-section-title">Öne Çıkan İsimler</h4>
+            <h4 class="home-section-title">Konuşmacılarımız</h4>
             <div class="home-speaker-grid">
                 
                 <div class="home-speaker-card" id="home-speaker-havvana">
@@ -493,6 +499,28 @@
                     <div class="h-sp-info">
                         <h4>EGEMEN YURDAKUL</h4>
                         <p>AIESEC PAZARLAMA KOORDİNATÖRÜ</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
+                </div>
+
+                <div class="home-speaker-card" id="home-speaker-egesen">
+                    <div class="h-sp-img-box">
+                        <img src="egeşen.jpg" alt="N. Egeşen KÖK" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=EK'">
+                    </div>
+                    <div class="h-sp-info">
+                        <h4>N. Egeşen KÖK</h4>
+                        <p>Ar-Ge Uzmanı</p>
+                    </div>
+                    <div class="h-sp-arrow">➔</div>
+                </div>
+
+                <div class="home-speaker-card" id="home-speaker-beyza">
+                    <div class="h-sp-img-box">
+                        <img src="beyza.jpeg" alt="Beyza YILMAZ" class="h-sp-img" onerror="this.src='https://via.placeholder.com/70/333/BF953F?text=BY'">
+                    </div>
+                    <div class="h-sp-info">
+                        <h4>Beyza YILMAZ</h4>
+                        <p>Ar-Ge Uzman Yardımcısı</p>
                     </div>
                     <div class="h-sp-arrow">➔</div>
                 </div>
@@ -609,7 +637,7 @@
                         </div>
                     </div>
 
-                    <div class="speaker-card">
+                    <div class="speaker-card" id="speaker-egesen-full">
                         <div class="speaker-header-row">
                             <div class="speaker-img-container">
                                 <img src="egeşen.jpg" alt="N. Egeşen KÖK" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=EK'">
@@ -621,7 +649,7 @@
                         </div>
                     </div>
 
-                    <div class="speaker-card">
+                    <div class="speaker-card" id="speaker-beyza-full">
                         <div class="speaker-header-row">
                             <div class="speaker-img-container">
                                 <img src="beyza.jpeg" alt="Beyza YILMAZ" class="speaker-img" onerror="this.src='https://via.placeholder.com/110/333/BF953F?text=BY'">
@@ -629,16 +657,6 @@
                             <div class="speaker-info-box">
                                 <div class="speaker-name">Beyza YILMAZ</div>
                                 <div class="speaker-role">Ar-Ge Uzman Yardımcısı</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="speaker-card mystery-card">
-                        <div class="speaker-header-row">
-                            <div class="mystery-icon">?</div>
-                            <div class="speaker-info-box">
-                                <div class="speaker-name" style="color:#777;">Sürpriz İsim</div>
-                                <div class="mystery-text">Yakında Açıklanacak</div>
                             </div>
                         </div>
                     </div>
@@ -955,14 +973,20 @@
             function goToSpeakerCard(cardId) {
                 switchTab('conferences-tab');
                 setTimeout(function(){
-                    const targetCard = document.getElementById(cardId);
+                    const targetCard = document.getElementById("target-tech-card");
                     if(targetCard) {
                         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        targetCard.style.transition = "box-shadow 0.5s ease";
-                        targetCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.6)";
-                        setTimeout(() => { targetCard.style.boxShadow = ""; }, 1000);
                     }
-                }, 300);
+                    setTimeout(() => {
+                        const finalCard = document.getElementById(cardId);
+                        if(finalCard) {
+                            finalCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            finalCard.style.transition = "box-shadow 0.5s ease";
+                            finalCard.style.boxShadow = "0 0 30px rgba(212, 175, 55, 0.6)";
+                            setTimeout(() => { finalCard.style.boxShadow = ""; }, 1000);
+                        }
+                    }, 500);
+                }, 100);
             }
 
             const havvanaHomeCard = document.getElementById("home-speaker-havvana");
@@ -993,11 +1017,24 @@
                 });
             }
 
-            // YENİ EKLENEN KONUŞMACI İÇİN TIKLAMA OLAYI
             const egemenHomeCard = document.getElementById("home-speaker-egemen");
             if(egemenHomeCard) {
                 egemenHomeCard.addEventListener("click", function() {
                     goToSpeakerCard("speaker-egemen-full");
+                });
+            }
+
+            const egesenHomeCard = document.getElementById("home-speaker-egesen");
+            if(egesenHomeCard) {
+                egesenHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-egesen-full");
+                });
+            }
+
+            const beyzaHomeCard = document.getElementById("home-speaker-beyza");
+            if(beyzaHomeCard) {
+                beyzaHomeCard.addEventListener("click", function() {
+                    goToSpeakerCard("speaker-beyza-full");
                 });
             }
 
