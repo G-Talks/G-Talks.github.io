@@ -407,6 +407,8 @@
         <a href="#" class="nav-link active" data-tab="home-tab">Anasayfa</a>
         <a href="#" class="nav-link" data-tab="conferences-tab">Etkinlikler</a>
         <a href="#" class="nav-link" data-tab="about-tab">Hakkında</a>
+        <a href="#" class="nav-link" data-tab="verify-tab" style="color: var(--gold-primary); font-weight: bold;">Sertifika Doğrula</a>
+        
         <div class="sidebar-legal">
             <a href="#" class="nav-link" data-tab="privacy-tab" style="font-size: 0.8rem; opacity: 0.7;">Gizlilik Politikası & KVKK</a>
             <a href="#" class="nav-link" data-tab="consent-tab" style="font-size: 0.8rem; opacity: 0.7;">Açık Rıza Metni</a>
@@ -783,6 +785,20 @@
         </div>
     </div>
 
+    <div id="verify-tab" class="tab-content">
+        <h2>Sertifika Doğrulama</h2>
+        <div class="info-box" style="text-align: center; padding: 50px 20px;">
+            <p style="color: #ccc; margin-bottom: 30px; font-size: 0.95rem;">GıTalks 2026 etkinlikleri kapsamında verilen sertifikanın üzerindeki numarayı girerek belgenin orijinal olup olmadığını kontrol edebilirsiniz.</p>
+            <style>
+                #sertifikaNo:focus { border-color: var(--gold-primary) !important; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+            </style>
+            <input type="text" id="sertifikaNo" placeholder="Örn: GT2026-001-001" autocomplete="off" style="width: 100%; max-width: 350px; padding: 15px; font-size: 1.1rem; background: rgba(0,0,0,0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #fff; text-align: center; text-transform: uppercase; margin-bottom: 20px; outline: none; font-family: 'Inter', sans-serif; transition: 0.3s;">
+            <br>
+            <button onclick="sorgula()" class="gold-cta-btn" style="margin-top: 10px; font-size: 1rem; padding: 15px 40px;">DOĞRULA</button>
+            <div id="sonuc" style="margin-top: 30px; min-height: 60px;"></div>
+        </div>
+    </div>
+
     <div id="about-tab" class="tab-content">
         <h2>Hakkımızda | GıTalks</h2>
         <div class="info-box text-content-box" style="background:transparent; border:none; box-shadow:none; padding: 0;">
@@ -1133,7 +1149,36 @@
             }
             setInterval(updateCountdowns, 1000);
             updateCountdowns(); 
+
+            // QR KODDAN DOĞRUDAN YÖNLENDİRME SİSTEMİ EKLENTİSİ
+            if (window.location.hash === '#dogrula' || window.location.hash === '#verify-tab') {
+                setTimeout(() => switchTab('verify-tab'), 200);
+            }
         });
+
+        // --- SERTİFİKA DOĞRULAMA SİSTEMİ EKLENTİSİ ---
+        const onayliListe = [
+            "GT2026-001-001",
+            "GT2026-001-002",
+            "GT2026-001-003"
+            // Yeni numaraları buraya virgül koyarak ekleyebilirsin
+        ];
+
+        function sorgula() {
+            const girilenNo = document.getElementById('sertifikaNo').value.trim().toUpperCase();
+            const sonucDiv = document.getElementById('sonuc');
+            
+            if (girilenNo === "") {
+                sonucDiv.innerHTML = "<div style='color: #ff5252; background: rgba(255, 82, 82, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 82, 82, 0.3); font-weight: 600; letter-spacing: 1px;'>⚠️ Lütfen bir sertifika numarası giriniz.</div>";
+                return;
+            }
+
+            if (onayliListe.includes(girilenNo)) {
+                sonucDiv.innerHTML = "<div style='color: #4caf50; background: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 8px; border: 1px solid rgba(76, 175, 80, 0.3); font-weight: 700; letter-spacing: 1px;'>✅ BU BELGE ORİJİNALDİR.<br><span style='font-size: 0.85rem; font-weight: 400; color: #ccc; display: block; margin-top: 8px;'>Konya Gıda ve Tarım Üniversitesi İletişim ve Tanıtım Topluluğu tarafından onaylanmıştır.</span></div>";
+            } else {
+                sonucDiv.innerHTML = "<div style='color: #ff5252; background: rgba(255, 82, 82, 0.1); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 82, 82, 0.3); font-weight: 700; letter-spacing: 1px;'>❌ GEÇERSİZ SERTİFİKA NUMARASI!</div>";
+            }
+        }
     </script>
 </body>
 </html>
